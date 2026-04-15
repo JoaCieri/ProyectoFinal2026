@@ -1,0 +1,15 @@
+1) Descargar IDE: https://www.st.com/en/development-tools/stm32cubeide.html
+Hacer click en get software y en download te pide nombre, apellido y te manda el link de descarga por mail
+
+2) Instalar el IDE como administrador
+
+3) Descargar MX: https://www.st.com/en/development-tools/stm32cubemx.html#section-get-software-table
+STM32CubeMX No el STM32CubeMX2
+
+3) Instalar STM32CubeMX como administrador
+
+En la actualización nueva los proyectos se crean desde el STM32CubeMX, no los creen desde el IDE porque sino no les aparece el configurador grafico .ioc.
+
+Para crear un proyecto abren el STM32CubeMX, van a File, nuevo proyecto y ahí eligen el board y lo propio al proyecto. El resto GPIO, CLOCK, ADC, etc. desde el configurador grafico (archivo .ioc dentro del proyecto).
+
+
