@@ -1,0 +1,12 @@
+<RCC>
+  <qresource prefix="/">
+    <file>rsc/fuente_alimentacion.png</file>
+    <file>rsc/utn-logo.jpg</file>
+    <file>rsc/UTN-frh.png</file>
+    <file>rsc/esquemaRL.PNG</file>
+    <file>rsc/fuente.jpg</file>
+    <file>rsc/multimetro.PNG</file>
+    <file>rsc/regulador.PNG</file>
+    <file>rsc/esquemaRC.PNG</file>
+  </qresource>
+</RCC>

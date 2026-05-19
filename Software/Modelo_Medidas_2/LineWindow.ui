@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>LineWindow</class>
+ <widget class="QDialog" name="LineWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>584</width>
+    <height>357</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Efecto de Linea</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#centralwidget {
+background-color: #d0e7f9;
+border-image: url(:/fondo/bkg3.png) 0 0 0 0 stretch stretch; /* No cambiar esta linea de lugar*/
+/*background-image:url(:/fondo/bkg3.png);  /* No cambiar esta linea de lugar*/
+background-position: center center;
+background-repeat: no-repeat;
+
+}
+
+/*QLabel*/
+QLabel {
+    color: #003865;
+    font-size: 12pt;
+    font-weight: 500;
+    padding: 4px 8px;
+    margin: 2px;
+    border: none;
+    background: transparent;
+}
+
+QLabel:disabled {
+    color: gray;
+}
+
+QTabWidget {
+    background-color: #d0e7f9;  /* Fondo del widget contenedor */
+    border: none;
+}
+
+QTabWidget::pane {
+    border: 1px solid #003865;
+    background: #eaf4fb;  /* Fondo del área activa del tab */
+    border-radius: 8px;
+    padding: 5px;
+}
+
+QTabBar::tab {
+    background: #6FB1FC;
+    border: 1px solid #003865;
+    padding: 8px 16px;
+    margin-right: 2px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    color: #003865;
+}
+
+QTabBar::tab:selected {
+    background: #ffffff;
+    border: 2px solid #003865;
+    border-bottom: none;
+    font-weight: bold;
+    color: #003865;
+}
+
+QTabBar::tab:hover {
+    background: #A8D4FF;
+}
+
+QWidget#tab,
+QWidget#tab_2,
+QWidget#tab_3,
+QWidget#tab_4 {
+    background-color: #eaf4fb;  /* Fondo para cada QWidget de pestaña */
+}
+
+
+
+/*QCheckBox
+QCheckBox {
+color:white;
+}*/
+
+/*QGroupBox
+QGroupBox{
+color:white;
+text-align: center;
+}*/
+
+QStatusBar {
+    background-color: #b8d5ec;
+    border-top: 1px solid #003865;
+    color: #003865;
+}
+
+/*QPushButton */
+QPushButton {
+    background-color: #6FB1FC;
+    color: white;
+    border: 1px solid #003865;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 11pt;
+    font-weight: 500;
+    min-width: 200px;
+}
+
+QPushButton:hover {
+    background-color: #A8D4FF;
+    border: 1px solid #003865;
+}
+
+QPushButton:pressed {
+    background-color: #4C97D2;
+    border: 1px solid #002849;
+}
+
+QPushButton:disabled {
+    background-color: #cccccc;
+    color: #888888;
+    border: 1px solid #aaaaaa;
+}
+
+QTextEdit {
+    background-color: #f9fcff;
+    color: #003865;
+    border: 1px solid #003865;
+    border-radius: 6px;
+    padding: 8px;
+    font-family: &quot;Segoe UI&quot;, &quot;Arial&quot;;
+    font-size: 11pt;
+    selection-background-color: #A8D4FF;
+    selection-color: #000000;
+}
+
+
+/*QLineEdit*/
+QLineEdit {
+	background-color: transparent;	
+    border-style: solid;
+    border-width: 1px;
+    border-color: #003865;
+    color: #003865;
+	text-align: center;
+}
+
+QLineEdit:disabled {
+    color: gray;
+}
+
+/*QDateEdit*/
+QDateTimeEdit {
+    color:black;
+    background-color: qlineargradient(x1:0, y1:0, x2:1,y2:1, stop: 1 rgba(228, 255, 255, 255), stop: 0 rgba(150, 200, 100, 100));
+    border-color: rgba(255,255,255,200);
+    border-width: 1px;
+    border-style: solid;
+    padding: 1px 0px 1px 3px; /*This makes text colour work*/
+}
+
+QDateEdit:disabled {
+    color: gray;
+}
+
+/*QComboBox*/
+QComboBox {
+    color: #003865;
+    background-color: #ffffff;
+    border: 1px solid #6FB1FC;
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 11pt;
+    font-weight: 500;
+    min-width: 200px;
+    max-width: 300px;
+    text-align: center;
+}
+
+QComboBox:hover {
+    background-color: #eaf4fb;
+    border: 1px solid #003865;
+}
+
+QComboBox::drop-down {
+    border-left: 1px solid #6FB1FC;
+    width: 20px;
+    background-color: #6FB1FC;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+QComboBox::down-arrow {
+    /* image: url(:/icons/down-arrow.svg); Opcional, o podés dejarlo por defecto */
+    width: 12px;
+    height: 12px;
+}
+
+/*QRadioButton */
+QRadioButton {
+  color:white;
+}
+
+
+/*TABLA*/
+
+QTableView {
+    color: white;
+    gridline-color: black;
+    border-color: rgb(242, 128, 133);
+	 background-color: rgb(99, 176, 209);
+	text-align:center;
+    font-family: sans-serif;
+}
+QTableCornerButton::section {
+	background-color: rgb(23, 63, 94);
+}
+QHeaderView::section {
+    background-color: rgb(23, 63, 94);
+    color: white;
+	text-align:center;
+	font-weight: bold;
+
+}
+QScrollBar:vertical {
+    background: rgb(188, 224, 235);
+}
+ QScrollBar::handle:vertical {
+    background: rgb(71, 153, 176);
+ }
+QScrollBar:horizontal {
+    background: rgb(188, 224, 235);
+}
+ QScrollBar::handle:horizontal {
+    background: rgb(71, 153, 176);
+ }
+
+QTableView::item:focus{
+    border: 2px solid rgb(242, 128, 133);
+    background: rgb(71, 153, 176);
+	text-align:center;
+}
+QTableView::item:selected{
+    border: 2px solid rgb(242, 128, 133);
+    background: gray;
+	text-align:center;
+}</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QLabel" name="label_2">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Voltímetro de entrada</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLabel" name="label_3">
+     <property name="text">
+      <string>Voltímetro de salida</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLCDNumber" name="LBL_multimetroEntrada">
+     <property name="styleSheet">
+      <string notr="true">
+    QLCDNumber {
+        background-color: #0A0F2C;       /* Azul muy oscuro */
+        color: #86D1FF;                  /* Celeste eléctrico */
+        border: 1px solid #1E3A8A;       /* Borde tenue */
+        padding: 4px;
+    }
+</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QLCDNumber" name="LBL_multimetroSalida">
+     <property name="styleSheet">
+      <string notr="true">
+    QLCDNumber {
+        background-color: #0A0F2C;       /* Azul muy oscuro */
+        color: #86D1FF;                  /* Celeste eléctrico */
+        border: 1px solid #1E3A8A;       /* Borde tenue */
+        padding: 4px;
+    }
+</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="2">
+    <widget class="QSlider" name="TestingSlide">
+     <property name="maximum">
+      <number>999</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Orientation::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="2">
+    <widget class="QLabel" name="LBL_mensaje">
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+    background-color: #dceeff;          /* celeste claro */
+    color: #003366;                     /* azul profundo para buen contraste */
+    border: 1px solid #80bfff;          /* borde azul suave */
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: Segoe UI, Arial, sans-serif;
+}
+</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="2">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="BTN_cancelar">
+       <property name="text">
+        <string> Cancelar medición</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,11 @@
+{
+    "Fuente_1": {
+        "modelo": "Fuente de alimentación",
+        "fabricante": "Marca.",
+        "tension": "220",
+        "corriente": "0.23",
+        "salida": "9",
+        "reg_carga": "150",
+        "reg_linea": "100"
+    }
+}

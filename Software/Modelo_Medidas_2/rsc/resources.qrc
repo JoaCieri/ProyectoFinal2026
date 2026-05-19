@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="mainwindow">
+    <file>esquemaRL.PNG</file>
+    <file>fuente.jpg</file>
+    <file>multimetro.PNG</file>
+    <file>regulador.PNG</file>
+  </qresource>
+</RCC>
