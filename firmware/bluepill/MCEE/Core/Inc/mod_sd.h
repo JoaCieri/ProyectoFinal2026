@@ -16,16 +16,8 @@
 #include <strings.h>
 #include <math.h>
 
-#include "mod_max30100.h"
-#include "user_gpio.h"
 #include "fatfs.h"
 #include "fatfs_sd.h"
-
-#include "FreeRTOS.h"
-#include "cmsis_os.h"
-#include "task.h"
-#include "semphr.h"
-#include "queue.h"
 
 /*==================[macros]=================================================*/
 

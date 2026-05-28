@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include <math.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -40,18 +41,50 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-UART_HandleTypeDef huart1;
+ADC_HandleTypeDef hadc1;
+DMA_HandleTypeDef hdma_adc1;
+
+TIM_HandleTypeDef htim3;
 
 /* USER CODE BEGIN PV */
+#define ADC_CHANNELS              6
+#define DMA_BUFFER_SAMPLES        256
+#define HALF_BUFFER_SAMPLES       (DMA_BUFFER_SAMPLES / 2)
+
+/* Buffer del ADC */
+uint16_t adc_buffer[ADC_CHANNELS * DMA_BUFFER_SAMPLES];
+volatile uint8_t adc_half_complete = 0;
+volatile uint8_t adc_full_complete = 0;
+
+/* Valores de tension y corriente por fase */
+float voltage1[HALF_BUFFER_SAMPLES];
+float current1[HALF_BUFFER_SAMPLES];
+float voltage2[HALF_BUFFER_SAMPLES];
+float current2[HALF_BUFFER_SAMPLES];
+float voltage3[HALF_BUFFER_SAMPLES];
+float current3[HALF_BUFFER_SAMPLES];
+float voltage1_ac[HALF_BUFFER_SAMPLES];
+float current1_ac[HALF_BUFFER_SAMPLES];
+float voltage2_ac[HALF_BUFFER_SAMPLES];
+float current2_ac[HALF_BUFFER_SAMPLES];
+float voltage3_ac[HALF_BUFFER_SAMPLES];
+float current3_ac[HALF_BUFFER_SAMPLES];
+
+volatile float mean_voltage1 = 0;
 
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
-static void MX_USART1_UART_Init(void);
-/* USER CODE BEGIN PFP */
+static void MX_DMA_Init(void);
+static void MX_ADC1_Init(void);
+static void MX_TIM3_Init(void);
 
+/* USER CODE BEGIN PFP */
+void ProcessADCBuffer(uint16_t *buffer);
+float CalculateRMS(float *signal);
+float CalculateMean(float *signal);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -88,7 +121,16 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_USART1_UART_Init();
+  MX_DMA_Init();
+  MX_ADC1_Init();
+  /* Inicializacion de Timer3*/
+  MX_TIM3_Init();
+  HAL_TIM_Base_Start(&htim3);
+  HAL_ADC_Start_DMA(
+      &hadc1,
+      (uint32_t*)adc_buffer,
+      ADC_CHANNELS * DMA_BUFFER_SAMPLES
+  );
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
@@ -97,7 +139,13 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    /* USER CODE END WHILE */
+	  mean_voltage1 = CalculateMean(voltage1);
+
+	  float vrms1;
+	  vrms1 = CalculateRMS(voltage1_ac);
+
+
+	  /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
   }
@@ -112,6 +160,7 @@ void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+  RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
 
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
@@ -141,38 +190,164 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-}
-
-/**
-  * @brief USART1 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_USART1_UART_Init(void)
-{
-
-  /* USER CODE BEGIN USART1_Init 0 */
-
-  /* USER CODE END USART1_Init 0 */
-
-  /* USER CODE BEGIN USART1_Init 1 */
-
-  /* USER CODE END USART1_Init 1 */
-  huart1.Instance = USART1;
-  huart1.Init.BaudRate = 115200;
-  huart1.Init.WordLength = UART_WORDLENGTH_8B;
-  huart1.Init.StopBits = UART_STOPBITS_1;
-  huart1.Init.Parity = UART_PARITY_NONE;
-  huart1.Init.Mode = UART_MODE_TX_RX;
-  huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
-  huart1.Init.OverSampling = UART_OVERSAMPLING_16;
-  if (HAL_UART_Init(&huart1) != HAL_OK)
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_ADC;
+  PeriphClkInit.AdcClockSelection = RCC_ADCPCLK2_DIV6;
+  if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
   {
     Error_Handler();
   }
-  /* USER CODE BEGIN USART1_Init 2 */
+}
 
-  /* USER CODE END USART1_Init 2 */
+/**
+  * @brief ADC1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_ADC1_Init(void)
+{
+
+  /* USER CODE BEGIN ADC1_Init 0 */
+
+  /* USER CODE END ADC1_Init 0 */
+
+  ADC_ChannelConfTypeDef sConfig = {0};
+
+  /* USER CODE BEGIN ADC1_Init 1 */
+
+  /* USER CODE END ADC1_Init 1 */
+
+  /** Common config
+  */
+  hadc1.Instance = ADC1;
+  hadc1.Init.ScanConvMode = ADC_SCAN_ENABLE;
+  hadc1.Init.ContinuousConvMode = DISABLE;
+  hadc1.Init.DiscontinuousConvMode = DISABLE;
+  hadc1.Init.ExternalTrigConv = ADC_EXTERNALTRIGCONV_T3_TRGO;
+  hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
+  hadc1.Init.NbrOfConversion = 6;
+  if (HAL_ADC_Init(&hadc1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Configure Regular Channel
+  */
+  sConfig.Channel = ADC_CHANNEL_0;
+  sConfig.Rank = ADC_REGULAR_RANK_1;
+  sConfig.SamplingTime = ADC_SAMPLETIME_71CYCLES_5;
+  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Configure Regular Channel
+  */
+  sConfig.Channel = ADC_CHANNEL_1;
+  sConfig.Rank = ADC_REGULAR_RANK_2;
+  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Configure Regular Channel
+  */
+  sConfig.Channel = ADC_CHANNEL_2;
+  sConfig.Rank = ADC_REGULAR_RANK_3;
+  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Configure Regular Channel
+  */
+  sConfig.Channel = ADC_CHANNEL_3;
+  sConfig.Rank = ADC_REGULAR_RANK_4;
+  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Configure Regular Channel
+  */
+  sConfig.Channel = ADC_CHANNEL_5;
+  sConfig.Rank = ADC_REGULAR_RANK_5;
+  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Configure Regular Channel
+  */
+  sConfig.Channel = ADC_CHANNEL_6;
+  sConfig.Rank = ADC_REGULAR_RANK_6;
+  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN ADC1_Init 2 */
+
+  /* USER CODE END ADC1_Init 2 */
+
+}
+
+/**
+  * @brief TIM3 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM3_Init(void)
+{
+
+  /* USER CODE BEGIN TIM3_Init 0 */
+
+  /* USER CODE END TIM3_Init 0 */
+
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+
+  /* USER CODE BEGIN TIM3_Init 1 */
+
+  /* USER CODE END TIM3_Init 1 */
+  htim3.Instance = TIM3;
+  htim3.Init.Prescaler = 71;
+  htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim3.Init.Period = 199;
+  htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim3, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_UPDATE;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM3_Init 2 */
+
+  /* USER CODE END TIM3_Init 2 */
+
+}
+
+/**
+  * Enable DMA controller clock
+  */
+static void MX_DMA_Init(void)
+{
+
+  /* DMA controller clock enable */
+  __HAL_RCC_DMA1_CLK_ENABLE();
+
+  /* DMA interrupt init */
+  /* DMA1_Channel1_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Channel1_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Channel1_IRQn);
 
 }
 
@@ -196,6 +371,9 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
 
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(SD_CS_GPIO_Port, SD_CS_Pin, GPIO_PIN_RESET);
+
   /*Configure GPIO pin : PC13 */
   GPIO_InitStruct.Pin = GPIO_PIN_13;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
@@ -203,12 +381,84 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
+  /*Configure GPIO pin : SD_CS_Pin */
+  GPIO_InitStruct.Pin = SD_CS_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(SD_CS_GPIO_Port, &GPIO_InitStruct);
+
   /* USER CODE BEGIN MX_GPIO_Init_2 */
 
   /* USER CODE END MX_GPIO_Init_2 */
 }
 
 /* USER CODE BEGIN 4 */
+/* El buffer completo tiene 6*256=1536 muestras
+ * Con 5kHz el callback ocurre cada 0,307 segundos*/
+/* callback de buffer completo */
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
+{
+    adc_full_complete = 1;
+
+    ProcessADCBuffer(
+        &adc_buffer[(ADC_CHANNELS * DMA_BUFFER_SAMPLES)/2]
+    );
+}
+
+/* Callback de mitad de buffer */
+void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* hadc)
+{
+    adc_half_complete = 1;
+
+    ProcessADCBuffer(&adc_buffer[0]);
+}
+
+void ProcessADCBuffer(uint16_t *buffer)
+{
+    for(uint16_t i = 0; i < HALF_BUFFER_SAMPLES; i++)
+    {
+        uint16_t index = i * ADC_CHANNELS;
+        voltage1[i] =((buffer[index + 0] * 3.3f) / 4095.0f);
+        current1[i] =((buffer[index + 1] * 3.3f) / 4095.0f);
+        voltage2[i] =((buffer[index + 2] * 3.3f) / 4095.0f);
+        current2[i] =((buffer[index + 3] * 3.3f) / 4095.0f);
+        voltage3[i] =((buffer[index + 4] * 3.3f) / 4095.0f);
+        current3[i] =((buffer[index + 5] * 3.3f) / 4095.0f);
+
+        //voltage1_ac[i] = (voltage1[i] - 1.65f);
+        current1_ac[i] = (current1[i] - 1.65f);
+        voltage2_ac[i] = (voltage2[i] - 1.65f);
+        current2_ac[i] = (current2[i] - 1.65f);
+        voltage3_ac[i] = (voltage3[i] - 1.65f);
+        current3_ac[i] = (current3[i] - 1.65f);
+    }
+}
+
+float CalculateRMS(float *signal)
+{
+    float sum = 0.0f;
+
+    for(uint16_t i = 0; i < HALF_BUFFER_SAMPLES; i++)
+    {
+        sum += signal[i] * signal[i];
+    }
+
+    return sqrtf(sum / HALF_BUFFER_SAMPLES);
+}
+
+float CalculateMean(float *signal)
+{
+    float sum = 0.0f;
+
+    for(uint16_t i = 0; i < HALF_BUFFER_SAMPLES; i++)
+    {
+        sum += signal[i];
+    }
+
+    return sum / HALF_BUFFER_SAMPLES;
+}
+
 
 /* USER CODE END 4 */
 
