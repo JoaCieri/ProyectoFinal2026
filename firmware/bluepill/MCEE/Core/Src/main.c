@@ -50,6 +50,7 @@ TIM_HandleTypeDef htim3;
 #define ADC_CHANNELS              6
 #define DMA_BUFFER_SAMPLES        256
 #define HALF_BUFFER_SAMPLES       (DMA_BUFFER_SAMPLES / 2)
+#define FACTOR_ESCALA			  67
 
 /* Buffer del ADC */
 uint16_t adc_buffer[ADC_CHANNELS * DMA_BUFFER_SAMPLES];
@@ -71,6 +72,14 @@ float voltage3_ac[HALF_BUFFER_SAMPLES];
 float current3_ac[HALF_BUFFER_SAMPLES];
 
 volatile float mean_voltage1 = 0;
+volatile float mean_voltage2 = 0;
+volatile float mean_voltage3 = 0;
+volatile float vrms1 = 0;
+volatile float irms1 = 0;
+volatile float vrms2 = 0;
+volatile float irms2 = 0;
+volatile float vrms3 = 0;
+volatile float irms3 = 0;
 
 /* USER CODE END PV */
 
@@ -139,11 +148,35 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  mean_voltage1 = CalculateMean(voltage1);
+	  if(adc_half_complete)
+	  {
+		  adc_half_complete = 0;
 
-	  float vrms1;
-	  vrms1 = CalculateRMS(voltage1_ac);
+		  mean_voltage1 = CalculateMean(voltage1)*FACTOR_ESCALA;
+		  mean_voltage2 = CalculateMean(voltage2);
+		  mean_voltage3 = CalculateMean(voltage3);
+		  vrms1 = CalculateRMS(voltage1_ac);
+		  irms1 = CalculateRMS(current1_ac);
+		  vrms2 = CalculateRMS(voltage2_ac);
+		  irms2 = CalculateRMS(current2_ac);
+		  vrms3 = CalculateRMS(voltage3_ac);
+		  irms3 = CalculateRMS(current3_ac);
+	  }
 
+	  if(adc_full_complete)
+	  {
+		  adc_full_complete = 0;
+
+		  mean_voltage1 = CalculateMean(voltage1)*FACTOR_ESCALA;
+		  mean_voltage2 = CalculateMean(voltage2);
+		  mean_voltage3 = CalculateMean(voltage3);
+		  vrms1 = CalculateRMS(voltage1_ac);
+		  irms1 = CalculateRMS(current1_ac);
+		  vrms2 = CalculateRMS(voltage2_ac);
+		  irms2 = CalculateRMS(current2_ac);
+		  vrms3 = CalculateRMS(voltage3_ac);
+		  irms3 = CalculateRMS(current3_ac);
+	  }
 
 	  /* USER CODE END WHILE */
 
@@ -400,7 +433,6 @@ static void MX_GPIO_Init(void)
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
     adc_full_complete = 1;
-
     ProcessADCBuffer(
         &adc_buffer[(ADC_CHANNELS * DMA_BUFFER_SAMPLES)/2]
     );
@@ -410,7 +442,6 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* hadc)
 {
     adc_half_complete = 1;
-
     ProcessADCBuffer(&adc_buffer[0]);
 }
 
@@ -426,7 +457,7 @@ void ProcessADCBuffer(uint16_t *buffer)
         voltage3[i] =((buffer[index + 4] * 3.3f) / 4095.0f);
         current3[i] =((buffer[index + 5] * 3.3f) / 4095.0f);
 
-        //voltage1_ac[i] = (voltage1[i] - 1.65f);
+        voltage1_ac[i] = (voltage1[i] - 1.65f);
         current1_ac[i] = (current1[i] - 1.65f);
         voltage2_ac[i] = (voltage2[i] - 1.65f);
         current2_ac[i] = (current2[i] - 1.65f);
