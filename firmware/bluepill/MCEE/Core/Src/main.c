@@ -50,12 +50,12 @@ TIM_HandleTypeDef htim3;
 #define ADC_CHANNELS              6
 #define DMA_BUFFER_SAMPLES        256
 #define HALF_BUFFER_SAMPLES       (DMA_BUFFER_SAMPLES / 2)
-#define FACTOR_ESCALA			  67
 
 /* Buffer del ADC */
 uint16_t adc_buffer[ADC_CHANNELS * DMA_BUFFER_SAMPLES];
 volatile uint8_t adc_half_complete = 0;
 volatile uint8_t adc_full_complete = 0;
+uint8_t calibration_done = 0;
 
 /* Valores de tension y corriente por fase */
 float voltage1[HALF_BUFFER_SAMPLES];
@@ -70,6 +70,20 @@ float voltage2_ac[HALF_BUFFER_SAMPLES];
 float current2_ac[HALF_BUFFER_SAMPLES];
 float voltage3_ac[HALF_BUFFER_SAMPLES];
 float current3_ac[HALF_BUFFER_SAMPLES];
+
+/* Factores de ajuste y calibración(ganancia y offset)  */
+float voltage1_offset = 0.0f;
+float current1_offset = 0.0f;
+float voltage2_offset = 0.0f;
+float current2_offset = 0.0f;
+float voltage3_offset = 0.0f;
+float current3_offset = 0.0f;
+float voltage1_gain = 1.0f;
+float current1_gain = 1.0f;
+float voltage2_gain = 1.0f;
+float current2_gain = 1.0f;
+float voltage3_gain = 1.0f;
+float current3_gain = 1.0f;
 
 volatile float mean_voltage1 = 0;
 volatile float mean_voltage2 = 0;
@@ -92,8 +106,12 @@ static void MX_TIM3_Init(void);
 
 /* USER CODE BEGIN PFP */
 void ProcessADCBuffer(uint16_t *buffer);
+void ProcessMeasurements(void);
+void CalibrateOffset(void);
+void ApplyCalibration(void);
 float CalculateRMS(float *signal);
 float CalculateMean(float *signal);
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -148,35 +166,22 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  if(adc_half_complete)
+	  // Leer y procesar las muestras capturadas por el ADC dependiendo si esta a la mitad o al final de la cola
+	  if (adc_half_complete)
 	  {
 		  adc_half_complete = 0;
-
-		  mean_voltage1 = CalculateMean(voltage1)*FACTOR_ESCALA;
-		  mean_voltage2 = CalculateMean(voltage2);
-		  mean_voltage3 = CalculateMean(voltage3);
-		  vrms1 = CalculateRMS(voltage1_ac);
-		  irms1 = CalculateRMS(current1_ac);
-		  vrms2 = CalculateRMS(voltage2_ac);
-		  irms2 = CalculateRMS(current2_ac);
-		  vrms3 = CalculateRMS(voltage3_ac);
-		  irms3 = CalculateRMS(current3_ac);
+		  ProcessADCBuffer(&adc_buffer[0]);
+		  ProcessMeasurements();
 	  }
 
-	  if(adc_full_complete)
+	  else if (adc_full_complete)
 	  {
 		  adc_full_complete = 0;
-
-		  mean_voltage1 = CalculateMean(voltage1)*FACTOR_ESCALA;
-		  mean_voltage2 = CalculateMean(voltage2);
-		  mean_voltage3 = CalculateMean(voltage3);
-		  vrms1 = CalculateRMS(voltage1_ac);
-		  irms1 = CalculateRMS(current1_ac);
-		  vrms2 = CalculateRMS(voltage2_ac);
-		  irms2 = CalculateRMS(current2_ac);
-		  vrms3 = CalculateRMS(voltage3_ac);
-		  irms3 = CalculateRMS(current3_ac);
+		  ProcessADCBuffer(&adc_buffer[(ADC_CHANNELS * DMA_BUFFER_SAMPLES)/2]);
+		  ProcessMeasurements();
 	  }
+
+
 
 	  /* USER CODE END WHILE */
 
@@ -428,21 +433,17 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 /* El buffer completo tiene 6*256=1536 muestras
- * Con 5kHz el callback ocurre cada 0,307 segundos*/
+ * A 5 kHz por canal cada uno de los 2 callback se ejecuta cada 128/5000 = 25,6 ms*/
 /* callback de buffer completo */
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
     adc_full_complete = 1;
-    ProcessADCBuffer(
-        &adc_buffer[(ADC_CHANNELS * DMA_BUFFER_SAMPLES)/2]
-    );
 }
 
 /* Callback de mitad de buffer */
 void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* hadc)
 {
     adc_half_complete = 1;
-    ProcessADCBuffer(&adc_buffer[0]);
 }
 
 void ProcessADCBuffer(uint16_t *buffer)
@@ -450,20 +451,44 @@ void ProcessADCBuffer(uint16_t *buffer)
     for(uint16_t i = 0; i < HALF_BUFFER_SAMPLES; i++)
     {
         uint16_t index = i * ADC_CHANNELS;
+        // ADC de 12 Bits: 2^12=4095
         voltage1[i] =((buffer[index + 0] * 3.3f) / 4095.0f);
         current1[i] =((buffer[index + 1] * 3.3f) / 4095.0f);
         voltage2[i] =((buffer[index + 2] * 3.3f) / 4095.0f);
         current2[i] =((buffer[index + 3] * 3.3f) / 4095.0f);
         voltage3[i] =((buffer[index + 4] * 3.3f) / 4095.0f);
         current3[i] =((buffer[index + 5] * 3.3f) / 4095.0f);
-
-        voltage1_ac[i] = (voltage1[i] - 1.65f);
-        current1_ac[i] = (current1[i] - 1.65f);
-        voltage2_ac[i] = (voltage2[i] - 1.65f);
-        current2_ac[i] = (current2[i] - 1.65f);
-        voltage3_ac[i] = (voltage3[i] - 1.65f);
-        current3_ac[i] = (current3[i] - 1.65f);
     }
+}
+
+void ProcessMeasurements()
+{
+
+	// Calibracion inicial si es que no se hizo
+	if (!calibration_done)
+	{
+		CalibrateOffset();
+		calibration_done = 1;
+	}
+
+	// Aplicar calibracion
+	ApplyCalibration();
+
+    mean_voltage1 = CalculateMean(voltage1_ac);
+    mean_voltage2 = CalculateMean(voltage2_ac);
+    mean_voltage3 = CalculateMean(voltage3_ac);
+
+	vrms1 = CalculateRMS(voltage1_ac);
+	irms1 = CalculateRMS(current1_ac);
+
+	vrms2 = CalculateRMS(voltage2_ac);
+	irms2 = CalculateRMS(current2_ac);
+
+	vrms3 = CalculateRMS(voltage3_ac);
+	irms3 = CalculateRMS(current3_ac);
+
+
+
 }
 
 float CalculateRMS(float *signal)
@@ -490,6 +515,42 @@ float CalculateMean(float *signal)
     return sum / HALF_BUFFER_SAMPLES;
 }
 
+/* Función para calibrar offset  */
+void CalibrateOffset(void)
+{
+    voltage1_offset = CalculateMean(voltage1);
+    current1_offset = CalculateMean(current1);
+
+    voltage2_offset = CalculateMean(voltage2);
+    current2_offset = CalculateMean(current2);
+
+    voltage3_offset = CalculateMean(voltage3);
+    current3_offset = CalculateMean(current3);
+}
+
+void ApplyCalibration(void)
+{
+    for(uint16_t i = 0; i < HALF_BUFFER_SAMPLES; i++)
+    {
+        voltage1_ac[i] =
+            (voltage1[i] - voltage1_offset) * voltage1_gain;
+
+        current1_ac[i] =
+            (current1[i] - current1_offset) * current1_gain;
+
+        voltage2_ac[i] =
+            (voltage2[i] - voltage2_offset) * voltage2_gain;
+
+        current2_ac[i] =
+            (current2[i] - current2_offset) * current2_gain;
+
+        voltage3_ac[i] =
+            (voltage3[i] - voltage3_offset) * voltage3_gain;
+
+        current3_ac[i] =
+            (current3[i] - current3_offset) * current3_gain;
+    }
+}
 
 /* USER CODE END 4 */
 
