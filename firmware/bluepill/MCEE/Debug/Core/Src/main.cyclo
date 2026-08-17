@@ -11,8 +11,8 @@
 ../Core/Src/main.c:553:6:HAL_ADC_ConvHalfCpltCallback	1
 ../Core/Src/main.c:558:6:ProcessADCBuffer	2
 ../Core/Src/main.c:573:6:ProcessMeasurements	2
-../Core/Src/main.c:604:7:CalculateRMS	2
-../Core/Src/main.c:616:7:CalculateMean	2
-../Core/Src/main.c:629:6:CalibrateOffset	1
-../Core/Src/main.c:641:6:ApplyCalibration	2
-../Core/Src/main.c:671:6:Error_Handler	1
+../Core/Src/main.c:599:7:CalculateRMS	2
+../Core/Src/main.c:611:7:CalculateMean	2
+../Core/Src/main.c:624:6:CalibrateOffset	1
+../Core/Src/main.c:636:6:ApplyCalibration	2
+../Core/Src/main.c:666:6:Error_Handler	1

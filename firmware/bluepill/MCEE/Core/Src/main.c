@@ -580,15 +580,11 @@ void ProcessMeasurements()
 		calibration_done = 1;
 	}
 
-	// Aplicar calibracion
-	/*
+	// Aplicar factores de calibracion por offset y ganancia
 	ApplyCalibration();
 
-    mean_voltage1 = CalculateMean(voltage1_ac);
-    mean_voltage2 = CalculateMean(voltage2_ac);
-    mean_voltage3 = CalculateMean(voltage3_ac);
-
 	vrms1 = CalculateRMS(voltage1_ac);
+	/*
 	irms1 = CalculateRMS(current1_ac);
 
 	vrms2 = CalculateRMS(voltage2_ac);
@@ -597,7 +593,6 @@ void ProcessMeasurements()
 	vrms3 = CalculateRMS(voltage3_ac);
 	irms3 = CalculateRMS(current3_ac);
 	*/
-
 
 }
 
@@ -643,7 +638,7 @@ void ApplyCalibration(void)
     for(uint16_t i = 0; i < HALF_BUFFER_SAMPLES; i++)
     {
         voltage1_ac[i] =
-            (voltage1[i] - voltage1_offset); voltage1_gain;
+            (voltage1[i] - voltage1_offset) * voltage1_gain;
 
         current1_ac[i] =
             (current1[i] - current1_offset) * current1_gain;
