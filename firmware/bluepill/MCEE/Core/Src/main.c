@@ -43,14 +43,19 @@
 ADC_HandleTypeDef hadc1;
 DMA_HandleTypeDef hdma_adc1;
 
-TIM_HandleTypeDef htim1;
 TIM_HandleTypeDef htim3;
 
 /* USER CODE BEGIN PV */
 #define ADC_CHANNELS              6
 #define DMA_BUFFER_SAMPLES        256
 #define HALF_BUFFER_SAMPLES       (DMA_BUFFER_SAMPLES / 2)
-#define SINE_SAMPLES 100
+#define SAMPLES_PER_CYCLE   100   // 5000 SPS / 50 Hz
+
+// Media movil
+#define VRMS_AVG_SAMPLES   50   // ~1s de promedio (50 buffers de ~20ms)
+volatile float vrms1_display = 0.0f;
+static float vrms1_accum = 0.0f;
+static uint16_t vrms1_avg_count = 0;
 
 
 /* Buffer del ADC */
@@ -80,16 +85,14 @@ float voltage2_offset = 0.0f;
 float current2_offset = 0.0f;
 float voltage3_offset = 0.0f;
 float current3_offset = 0.0f;
-float voltage1_gain = 1.0f;
+float voltage1_gain = 224/1.4; //1,4vrms medidos con 224 vac medidos con multimetro
 float current1_gain = 1.0f;
 float voltage2_gain = 1.0f;
 float current2_gain = 1.0f;
 float voltage3_gain = 1.0f;
 float current3_gain = 1.0f;
 
-volatile float mean_voltage1 = 0;
-volatile float mean_voltage2 = 0;
-volatile float mean_voltage3 = 0;
+/* Variables electricas */
 volatile float vrms1 = 0;
 volatile float irms1 = 0;
 volatile float vrms2 = 0;
@@ -105,7 +108,6 @@ static void MX_GPIO_Init(void);
 static void MX_DMA_Init(void);
 static void MX_ADC1_Init(void);
 static void MX_TIM3_Init(void);
-static void MX_TIM1_Init(void);
 /* USER CODE BEGIN PFP */
 void ProcessADCBuffer(uint16_t *buffer);
 void ProcessMeasurements(void);
@@ -113,30 +115,11 @@ void CalibrateOffset(void);
 void ApplyCalibration(void);
 float CalculateRMS(float *signal);
 float CalculateMean(float *signal);
-void GenerateSineTable(void);
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
-//TESTING PARA GENERAR SENOIDAL
-uint16_t sine_table[SINE_SAMPLES];
-volatile uint16_t sine_index = 0;
-void GenerateSineTable(void)
-{
-    for (uint16_t i = 0; i < SINE_SAMPLES; i++)
-    {
-        float angle = 2.0f * 3.14159265f * i / SINE_SAMPLES;
-
-        float sine = sinf(angle);
-
-        // Duty entre 10% y 90%
-        float duty = 0.5f + 0.4f * sine;
-
-        sine_table[i] = (uint16_t)(duty * 1439.0f);
-    }
-}
 
 
 /* USER CODE END 0 */
@@ -172,20 +155,10 @@ int main(void)
   MX_DMA_Init();
   MX_ADC1_Init();
   MX_TIM3_Init();
-  MX_TIM1_Init();
-
-
   /* USER CODE BEGIN 2 */
-  GenerateSineTable();
-
-  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1); // TESTING: Timer PWM
 
   HAL_TIM_Base_Start_IT(&htim3);
-
-  HAL_ADC_Start_DMA(&hadc1,
-                    (uint32_t*)adc_buffer,
-                    ADC_CHANNELS * DMA_BUFFER_SAMPLES);
-
+  HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adc_buffer, ADC_CHANNELS * DMA_BUFFER_SAMPLES);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -355,71 +328,6 @@ static void MX_ADC1_Init(void)
 }
 
 /**
-  * @brief TIM1 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_TIM1_Init(void)
-{
-
-  /* USER CODE BEGIN TIM1_Init 0 */
-
-  /* USER CODE END TIM1_Init 0 */
-
-  TIM_MasterConfigTypeDef sMasterConfig = {0};
-  TIM_OC_InitTypeDef sConfigOC = {0};
-  TIM_BreakDeadTimeConfigTypeDef sBreakDeadTimeConfig = {0};
-
-  /* USER CODE BEGIN TIM1_Init 1 */
-
-  /* USER CODE END TIM1_Init 1 */
-  htim1.Instance = TIM1;
-  htim1.Init.Prescaler = 0;
-  htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim1.Init.Period = 1439;
-  htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-  htim1.Init.RepetitionCounter = 0;
-  htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-  if (HAL_TIM_PWM_Init(&htim1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
-  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-  if (HAL_TIMEx_MasterConfigSynchronization(&htim1, &sMasterConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 720;
-  sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
-  sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
-  sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
-  sConfigOC.OCIdleState = TIM_OCIDLESTATE_RESET;
-  sConfigOC.OCNIdleState = TIM_OCNIDLESTATE_RESET;
-  if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sBreakDeadTimeConfig.OffStateRunMode = TIM_OSSR_DISABLE;
-  sBreakDeadTimeConfig.OffStateIDLEMode = TIM_OSSI_DISABLE;
-  sBreakDeadTimeConfig.LockLevel = TIM_LOCKLEVEL_OFF;
-  sBreakDeadTimeConfig.DeadTime = 0;
-  sBreakDeadTimeConfig.BreakState = TIM_BREAK_DISABLE;
-  sBreakDeadTimeConfig.BreakPolarity = TIM_BREAKPOLARITY_HIGH;
-  sBreakDeadTimeConfig.AutomaticOutput = TIM_AUTOMATICOUTPUT_DISABLE;
-  if (HAL_TIMEx_ConfigBreakDeadTime(&htim1, &sBreakDeadTimeConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN TIM1_Init 2 */
-
-  /* USER CODE END TIM1_Init 2 */
-  HAL_TIM_MspPostInit(&htim1);
-
-}
-
-/**
   * @brief TIM3 Initialization Function
   * @param None
   * @retval None
@@ -523,23 +431,6 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-{
-    if (htim->Instance == TIM3)
-    {
-        __HAL_TIM_SET_COMPARE(&htim1,
-                              TIM_CHANNEL_1,
-                              sine_table[sine_index]);
-
-        sine_index++;
-
-        if (sine_index >= SINE_SAMPLES)
-        {
-            sine_index = 0;
-        }
-    }
-}
-
 
 /* El buffer completo tiene 6*256=1536 muestras
  * A 5 kHz por canal cada uno de los 2 callback se ejecuta cada 128/5000 = 25,6 ms*/
@@ -573,51 +464,50 @@ void ProcessADCBuffer(uint16_t *buffer)
 void ProcessMeasurements()
 {
 
-	// Calibracion inicial si es que no se hizo
-	if (!calibration_done)
-	{
-		CalibrateOffset();
-		calibration_done = 1;
-	}
+    if (!calibration_done)
+    {
+        CalibrateOffset();
+        calibration_done = 1;
+    }
 
-	// Aplicar factores de calibracion por offset y ganancia
-	ApplyCalibration();
+    ApplyCalibration();
+    vrms1 = CalculateRMS(voltage1_ac);
 
-	vrms1 = CalculateRMS(voltage1_ac);
-	/*
-	irms1 = CalculateRMS(current1_ac);
+    vrms1_accum += vrms1;
+    vrms1_avg_count++;
 
-	vrms2 = CalculateRMS(voltage2_ac);
-	irms2 = CalculateRMS(current2_ac);
-
-	vrms3 = CalculateRMS(voltage3_ac);
-	irms3 = CalculateRMS(current3_ac);
-	*/
+    if (vrms1_avg_count >= VRMS_AVG_SAMPLES)
+    {
+        vrms1_display = vrms1_accum / VRMS_AVG_SAMPLES;
+        vrms1_accum = 0.0f;
+        vrms1_avg_count = 0;
+    }
 
 }
+
 
 float CalculateRMS(float *signal)
 {
     float sum = 0.0f;
 
-    for(uint16_t i = 0; i < HALF_BUFFER_SAMPLES; i++)
+    for(uint16_t i = 0; i < SAMPLES_PER_CYCLE; i++)
     {
         sum += signal[i] * signal[i];
     }
 
-    return sqrtf(sum / HALF_BUFFER_SAMPLES);
+    return sqrtf(sum / SAMPLES_PER_CYCLE);
 }
 
 float CalculateMean(float *signal)
 {
     float sum = 0.0f;
 
-    for(uint16_t i = 0; i < HALF_BUFFER_SAMPLES; i++)
+    for(uint16_t i = 0; i < SAMPLES_PER_CYCLE; i++)
     {
         sum += signal[i];
     }
 
-    return sum / HALF_BUFFER_SAMPLES;
+    return sum / SAMPLES_PER_CYCLE;
 }
 
 /* Función para calibrar offset  */
