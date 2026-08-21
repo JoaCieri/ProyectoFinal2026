@@ -50,6 +50,8 @@ TIM_HandleTypeDef htim3;
 #define DMA_BUFFER_SAMPLES        256
 #define HALF_BUFFER_SAMPLES       (DMA_BUFFER_SAMPLES / 2)
 #define SAMPLES_PER_CYCLE   100   // 5000 SPS / 50 Hz
+#define WARMUP_BUFFERS   200   // ~5s de descarte antes de calibrar y medir
+volatile uint16_t buffer_count = 0;
 
 // Media movil
 #define VRMS_AVG_SAMPLES   50   // ~1s de promedio (50 buffers de ~20ms)
@@ -85,7 +87,7 @@ float voltage2_offset = 0.0f;
 float current2_offset = 0.0f;
 float voltage3_offset = 0.0f;
 float current3_offset = 0.0f;
-float voltage1_gain = 224/1.4; //1,4vrms medidos con 224 vac medidos con multimetro
+float voltage1_gain = 228/1.4159;//1,4159vrms medidos con 228 vac medidos con multimetro
 float current1_gain = 1.0f;
 float voltage2_gain = 1.0f;
 float current2_gain = 1.0f;
@@ -463,6 +465,11 @@ void ProcessADCBuffer(uint16_t *buffer)
 
 void ProcessMeasurements()
 {
+    if (buffer_count < WARMUP_BUFFERS)
+    {
+        buffer_count++;
+        return; // descartar buffers iniciales, todavia no calibrar ni medir
+    }
 
     if (!calibration_done)
     {
