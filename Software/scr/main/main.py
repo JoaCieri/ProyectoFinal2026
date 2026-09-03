@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5 import uic
 
 from driver import Driver
+from historico import Historico
 
 
 class MainWindow(QMainWindow):
@@ -15,6 +16,7 @@ class MainWindow(QMainWindow):
 
         # Crear driver
         self.driver = Driver()
+        self.historico = Historico()
 
         # Estado inicial
         #self.label_estado.setText("Desconectado")
@@ -39,7 +41,6 @@ class MainWindow(QMainWindow):
         
     def cerrar(self):
         pass
-
 
 # ---------------- MAIN ----------------
 if __name__ == "__main__":

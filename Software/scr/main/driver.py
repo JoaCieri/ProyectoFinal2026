@@ -14,7 +14,6 @@ class Driver:
         if self.client:
             self.client.close()
 
-
     # ---------------- LECTURA ----------------
     def leer_datos(self):
         if self.client is None:
@@ -74,9 +73,3 @@ class Driver:
         }
 
         return datos
-
-    # ---------------- CERRAR ----------------
-    def desconectar(self):
-        if self.client:
-            self.client.close()
-            print("Conexión cerrada")
