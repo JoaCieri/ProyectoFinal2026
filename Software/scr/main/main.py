@@ -3,7 +3,7 @@ import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5 import uic
 
-from driver import Driver
+from driver import driver
 from historico import Historico
 
 
@@ -15,15 +15,15 @@ class MainWindow(QMainWindow):
         uic.loadUi("MainWindow.ui", self)
 
         # Crear driver
-        self.driver = Driver()
+        self.driver = driver()
         self.historico = Historico()
 
-        # Estado inicial
+        # Estado inicialS
         #self.label_estado.setText("Desconectado")
 
         # Conectar botones (IMPORTANTE: nombres del .ui)
-        #self.btn_conectar.clicked.connect(self.conectar)
-        #self.btn_desconectar.clicked.connect(self.desconectar)
+        self.btn_conectar.clicked.connect(self.conectar)
+        self.btn_desconectar.clicked.connect(self.desconectar)
 
     # ---------------- CONECTAR ----------------
     def conectar(self):

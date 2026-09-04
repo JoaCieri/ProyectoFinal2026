@@ -32,7 +32,7 @@ text-decoration: underline;
 background-color: rgb(50, 130, 45);</string>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;MEDICION DE RESISTORES CON METODOS CBM y TBM&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;MEDICION DE CALIDAD DE ENERGÍA ELECTRICA&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_6">
@@ -196,7 +196,7 @@ border-color: rgb(0, 0, 0);</string>
      <string notr="true">background-color: rgb(187, 255, 189);</string>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Cantidad de muestras:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Tiempo de medicion&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_4">
@@ -278,7 +278,7 @@ text-decoration: underline;
      <x>0</x>
      <y>0</y>
      <width>1104</width>
-     <height>26</height>
+     <height>33</height>
     </rect>
    </property>
   </widget>
