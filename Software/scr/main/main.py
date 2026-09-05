@@ -21,14 +21,14 @@ class MainWindow(QMainWindow):
         #Estado inicial
         self.consola.setText("Desconectado")
         self.prueba.setEnabled(False)
-        self.medicion.setEnabled(False)
+        self.proceso.setEnabled(False)
 
         # Conectar botones (IMPORTANTE: nombres del .ui)
         self.btn_conectar.clicked.connect(self.conectar)
         self.btn_desconectar.clicked.connect(self.desconectar)
         self.btn_salir.clicked.connect(self.cerrar)
-        self.prueba.clicked.connect(self.prueba)
-        self.prueba.clicked.connect(self.prueba)
+        self.prueba.clicked.connect(self.prueba_1)
+        self.proceso.clicked.connect(self.proceso_1)
 
     # ---------------- CONECTAR ----------------
     def conectar(self):
@@ -36,14 +36,29 @@ class MainWindow(QMainWindow):
 
         if self.driver.conectar():
             self.consola.setText("Conectado - Leyendo...")
+            self.prueba.setEnabled(True)
+            self.proceso.setEnabled(True)
         else:
             self.consola.setText("Error de conexión")
+
 
     # ---------------- DESCONECTAR ----------------
     def desconectar(self):
         self.driver.desconectar()
-        self.label_estado.setText("Desconectado")
-        
+        self.consola.setText("Desconectado")
+        self.prueba.setEnabled(False)
+        self.proceso.setEnabled(False)
+ 
+    # ---------------- PRUEBA EN TIEMPO REAL ----------------
+    def prueba_1(self):
+        self.consola.setText("PRUEBA en TIEMPO REAL ")
+        datos = self.driver.leer_datos()
+        self.consola.setText(str(datos))
+ 
+    # ---------------- PROCESO ----------------
+    def proceso_1(self):
+        self.consola.setText("PROCESO INICIADO")    
+ 
     # ---------------- CERRAR LA GUI ----------------
         
     def cerrar(self):
