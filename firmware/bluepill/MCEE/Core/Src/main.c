@@ -59,12 +59,17 @@ volatile float vrms1_display = 0.0f;
 static float vrms1_accum = 0.0f;
 static uint16_t vrms1_avg_count = 0;
 
-
 /* Buffer del ADC */
 uint16_t adc_buffer[ADC_CHANNELS * DMA_BUFFER_SAMPLES];
 volatile uint8_t adc_half_complete = 0;
 volatile uint8_t adc_full_complete = 0;
 uint8_t calibration_done = 0;
+
+// Armonicos
+#define MAX_HARMONIC   25   // armónico más alto a calcular (ajustable, hasta ~40-45 con margen)
+float voltage1_harmonics[MAX_HARMONIC + 1]; // [1]=fundamental, [2]=2do armonico, etc. [0] no se usa
+float voltage1_thd = 0.0f;
+
 
 /* Valores de tension y corriente por fase */
 float voltage1[HALF_BUFFER_SAMPLES];
@@ -117,6 +122,8 @@ void CalibrateOffset(void);
 void ApplyCalibration(void);
 float CalculateRMS(float *signal);
 float CalculateMean(float *signal);
+float GoertzelMagnitude(float *signal, uint16_t N, uint16_t k);
+void CalculateHarmonics(float *signal);
 
 /* USER CODE END PFP */
 
@@ -434,9 +441,9 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 
-/* El buffer completo tiene 6*256=1536 muestras
- * A 5 kHz por canal cada uno de los 2 callback se ejecuta cada 128/5000 = 25,6 ms*/
-/* callback de buffer completo */
+
+/******************************* ADQUISICÓN Y PROCESAMIENTO DE MUESTRAS ***************************/
+/* Callback de buffer completo */
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
     adc_full_complete = 1;
@@ -493,30 +500,7 @@ void ProcessMeasurements()
 }
 
 
-float CalculateRMS(float *signal)
-{
-    float sum = 0.0f;
-
-    for(uint16_t i = 0; i < SAMPLES_PER_CYCLE; i++)
-    {
-        sum += signal[i] * signal[i];
-    }
-
-    return sqrtf(sum / SAMPLES_PER_CYCLE);
-}
-
-float CalculateMean(float *signal)
-{
-    float sum = 0.0f;
-
-    for(uint16_t i = 0; i < SAMPLES_PER_CYCLE; i++)
-    {
-        sum += signal[i];
-    }
-
-    return sum / SAMPLES_PER_CYCLE;
-}
-
+/*******************************   CALIBRACION ***************************/
 /* Función para calibrar offset  */
 void CalibrateOffset(void)
 {
@@ -553,6 +537,74 @@ void ApplyCalibration(void)
             (current3[i] - current3_offset) * current3_gain;
     }
 }
+
+/*******************************   CALCULO DE MAGNITUDES ***************************/
+float CalculateRMS(float *signal)
+{
+    float sum = 0.0f;
+
+    for(uint16_t i = 0; i < SAMPLES_PER_CYCLE; i++)
+    {
+        sum += signal[i] * signal[i];
+    }
+
+    return sqrtf(sum / SAMPLES_PER_CYCLE);
+}
+
+float CalculateMean(float *signal)
+{
+    float sum = 0.0f;
+
+    for(uint16_t i = 0; i < SAMPLES_PER_CYCLE; i++)
+    {
+        sum += signal[i];
+    }
+
+    return sum / SAMPLES_PER_CYCLE;
+}
+
+/*******************************   ARMONICOS ***************************/
+/* Calcula la amplitud del armonico "k" (k=1 es la fundamental) sobre un buffer de N muestras */
+float GoertzelMagnitude(float *signal, uint16_t N, uint16_t k)
+{
+    float w = 2.0f * 3.14159265f * k / N;
+    float coeff = 2.0f * cosf(w);
+
+    float s_prev = 0.0f;
+    float s_prev2 = 0.0f;
+
+    for (uint16_t i = 0; i < N; i++)
+    {
+        float s = signal[i] + coeff * s_prev - s_prev2;
+        s_prev2 = s_prev;
+        s_prev = s;
+    }
+
+    float real = s_prev - s_prev2 * cosf(w);
+    float imag = s_prev2 * sinf(w);
+
+    // Amplitud normalizada (factor 2/N para amplitud de pico de una senoidal real)
+    return (2.0f / N) * sqrtf(real * real + imag * imag);
+}
+
+void CalculateHarmonics(float *signal)
+{
+    for (uint16_t k = 1; k <= MAX_HARMONIC; k++)
+    {
+        voltage1_harmonics[k] = GoertzelMagnitude(signal, SAMPLES_PER_CYCLE, k);
+    }
+
+    float sum_sq_harmonics = 0.0f;
+    for (uint16_t k = 2; k <= MAX_HARMONIC; k++)
+    {
+        sum_sq_harmonics += voltage1_harmonics[k] * voltage1_harmonics[k];
+    }
+
+    voltage1_thd = (voltage1_harmonics[1] > 0.0f)
+        ? (sqrtf(sum_sq_harmonics) / voltage1_harmonics[1]) * 100.0f
+        : 0.0f;
+}
+
 
 /* USER CODE END 4 */
 
