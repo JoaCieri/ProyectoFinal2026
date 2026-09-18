@@ -42,70 +42,105 @@
 /* Private variables ---------------------------------------------------------*/
 ADC_HandleTypeDef hadc1;
 DMA_HandleTypeDef hdma_adc1;
-
 TIM_HandleTypeDef htim3;
 
 /* USER CODE BEGIN PV */
+
+/* ADC */
 #define ADC_CHANNELS              6
 #define DMA_BUFFER_SAMPLES        256
 #define HALF_BUFFER_SAMPLES       (DMA_BUFFER_SAMPLES / 2)
 #define SAMPLES_PER_CYCLE   100   // 5000 SPS / 50 Hz
 #define WARMUP_BUFFERS   200   // ~5s de descarte antes de calibrar y medir
 volatile uint16_t buffer_count = 0;
-
-// Media movil
-#define VRMS_AVG_SAMPLES   50   // ~1s de promedio (50 buffers de ~20ms)
-volatile float vrms1_display = 0.0f;
-static float vrms1_accum = 0.0f;
-static uint16_t vrms1_avg_count = 0;
-
 /* Buffer del ADC */
 uint16_t adc_buffer[ADC_CHANNELS * DMA_BUFFER_SAMPLES];
 volatile uint8_t adc_half_complete = 0;
 volatile uint8_t adc_full_complete = 0;
 uint8_t calibration_done = 0;
 
-// Armonicos
+/* TENSION */
+float voltage1[HALF_BUFFER_SAMPLES];
+float voltage2[HALF_BUFFER_SAMPLES];
+float voltage3[HALF_BUFFER_SAMPLES];
+float voltage1_ac[HALF_BUFFER_SAMPLES];
+float voltage2_ac[HALF_BUFFER_SAMPLES];
+float voltage3_ac[HALF_BUFFER_SAMPLES];
+float voltage1_offset = 0.0f;
+float voltage2_offset = 0.0f;
+float voltage3_offset = 0.0f;
+float voltage1_gain = 229/1.355;//1.355vrms medidos con 228 vac medidos con multimetro
+float voltage2_gain = 1.0f;
+float voltage3_gain = 1.0f;
+volatile float vrms1 = 0;
+volatile float vrms2 = 0;
+volatile float vrms3 = 0;
+// Media movil
+#define VRMS_AVG_SAMPLES   50   // ~1s de promedio (50 buffers de ~20ms)
+volatile float vrms1_display = 0.0f;
+static float vrms1_accum = 0.0f;
+static uint16_t vrms1_avg_count = 0;
+
+/* CORRIENTE */
+float current1[HALF_BUFFER_SAMPLES];
+float current2[HALF_BUFFER_SAMPLES];
+float current3[HALF_BUFFER_SAMPLES];
+float current1_ac[HALF_BUFFER_SAMPLES];
+float current2_ac[HALF_BUFFER_SAMPLES];
+float current3_ac[HALF_BUFFER_SAMPLES];
+float current1_offset = 0.0f;
+float current2_offset = 0.0f;
+float current3_offset = 0.0f;
+float current1_gain = 1.0f;
+float current2_gain = 1.0f;
+float current3_gain = 1.0f;
+volatile float irms1 = 0;
+volatile float irms2 = 0;
+volatile float irms3 = 0;
+// Media movil
+volatile float irms1_display = 0.0f;
+static float irms1_accum = 0.0f;
+static uint16_t irms1_avg_count = 0;
+
+/* FRECUENCIA */
+volatile float measured_line_freq = 0.0f;
+volatile float line_freq_min = 9999.0f;
+volatile float line_freq_max = 0.0f;
+#define ZC_HYSTERESIS   3.0f   // volts; ajustable segun ruido observado
+#define MIN_SAMPLES_PER_CYCLE  95    // ~52.6Hz máximo plausible (+5%)
+#define MAX_SAMPLES_PER_CYCLE  105   // ~47.6Hz mínimo plausible (-5%)
+
+/* ARMONICOS */
 #define MAX_HARMONIC   25   // armónico más alto a calcular (ajustable, hasta ~40-45 con margen)
 float voltage1_harmonics[MAX_HARMONIC + 1]; // [1]=fundamental, [2]=2do armonico, etc. [0] no se usa
 float voltage1_thd = 0.0f;
 
+/* POTENCIA */
+volatile float p_active1 = 0.0f;
+volatile float p_apparent1 = 0.0f;
+volatile float p_reactive1 = 0.0f;
+volatile float power_factor1 = 0.0f;
 
-/* Valores de tension y corriente por fase */
-float voltage1[HALF_BUFFER_SAMPLES];
-float current1[HALF_BUFFER_SAMPLES];
-float voltage2[HALF_BUFFER_SAMPLES];
-float current2[HALF_BUFFER_SAMPLES];
-float voltage3[HALF_BUFFER_SAMPLES];
-float current3[HALF_BUFFER_SAMPLES];
-float voltage1_ac[HALF_BUFFER_SAMPLES];
-float current1_ac[HALF_BUFFER_SAMPLES];
-float voltage2_ac[HALF_BUFFER_SAMPLES];
-float current2_ac[HALF_BUFFER_SAMPLES];
-float voltage3_ac[HALF_BUFFER_SAMPLES];
-float current3_ac[HALF_BUFFER_SAMPLES];
+/* EVENTOS: SAG-SWELL */
+typedef enum { EVENT_NONE = 0, EVENT_SAG, EVENT_SWELL } event_type_t;
+typedef struct {
+    event_type_t type;
+    uint32_t start_time_ms;
+    uint32_t duration_ms;
+    float extreme_value;   // valor minimo (sag) o maximo (swell) alcanzado
+} power_event_t;
+#define MAX_EVENTS_LOG   20
+power_event_t events_log[MAX_EVENTS_LOG];
+volatile uint8_t events_count = 0;
+static event_type_t current_event_type = EVENT_NONE;
+static uint32_t current_event_start = 0;
+static float current_event_extreme = 0.0f;
+#define NOMINAL_VOLTAGE       220.0f
+#define SAG_THRESHOLD_LOW     (0.90f * NOMINAL_VOLTAGE)  // entra en sag
+#define SAG_THRESHOLD_HIGH    (0.92f * NOMINAL_VOLTAGE)  // sale del sag (histeresis)
+#define SWELL_THRESHOLD_HIGH  (1.10f * NOMINAL_VOLTAGE)  // entra en swell
+#define SWELL_THRESHOLD_LOW   (1.08f * NOMINAL_VOLTAGE)  // sale del swell (histeresis)
 
-/* Factores de ajuste y calibración(ganancia y offset)  */
-float voltage1_offset = 0.0f;
-float current1_offset = 0.0f;
-float voltage2_offset = 0.0f;
-float current2_offset = 0.0f;
-float voltage3_offset = 0.0f;
-float current3_offset = 0.0f;
-float voltage1_gain = 228/1.4159;//1,4159vrms medidos con 228 vac medidos con multimetro
-float current1_gain = 1.0f;
-float voltage2_gain = 1.0f;
-float current2_gain = 1.0f;
-float voltage3_gain = 1.0f;
-float current3_gain = 1.0f;
-
-/* Variables electricas */
-volatile float vrms1 = 0;
-volatile float irms1 = 0;
-volatile float vrms2 = 0;
-volatile float irms2 = 0;
-volatile float vrms3 = 0;
-volatile float irms3 = 0;
 
 /* USER CODE END PV */
 
@@ -124,6 +159,9 @@ float CalculateRMS(float *signal);
 float CalculateMean(float *signal);
 float GoertzelMagnitude(float *signal, uint16_t N, uint16_t k);
 void CalculateHarmonics(float *signal);
+float MeasureLineFrequency(float *signal, uint16_t N, float fs);
+void CalculatePower(float *voltage_ac, float *current_ac, float vrms, float irms);
+void DetectVoltageEvents(float vrms);
 
 /* USER CODE END PFP */
 
@@ -472,24 +510,33 @@ void ProcessADCBuffer(uint16_t *buffer)
 
 void ProcessMeasurements()
 {
+	/* Descartar buffers iniciales, todavia no calibrar ni medir */
     if (buffer_count < WARMUP_BUFFERS)
     {
         buffer_count++;
-        return; // descartar buffers iniciales, todavia no calibrar ni medir
+        return;
     }
 
+    /* CALIBRACION */
     if (!calibration_done)
     {
         CalibrateOffset();
         calibration_done = 1;
     }
-
     ApplyCalibration();
-    vrms1 = CalculateRMS(voltage1_ac);
 
+    /* FRECUENCIA */
+    measured_line_freq = MeasureLineFrequency(voltage1_ac, HALF_BUFFER_SAMPLES, 5000.0f);
+    if (measured_line_freq > 0.0f)  // descartar el caso de "no se pudo medir"
+    {
+        if (measured_line_freq < line_freq_min) line_freq_min = measured_line_freq;
+        if (measured_line_freq > line_freq_max) line_freq_max = measured_line_freq;
+    }
+
+    /* TENSION RMS */
+	vrms1 = CalculateRMS(voltage1_ac);
     vrms1_accum += vrms1;
     vrms1_avg_count++;
-
     if (vrms1_avg_count >= VRMS_AVG_SAMPLES)
     {
         vrms1_display = vrms1_accum / VRMS_AVG_SAMPLES;
@@ -497,11 +544,29 @@ void ProcessMeasurements()
         vrms1_avg_count = 0;
     }
 
+    /* CORRIENTE RMS */
+    irms1 = CalculateRMS(current1_ac);
+    irms1_accum += irms1;
+    irms1_avg_count++;
+    if (irms1_avg_count >= VRMS_AVG_SAMPLES)
+    {
+        irms1_display = irms1_accum / VRMS_AVG_SAMPLES;
+        irms1_accum = 0.0f;
+        irms1_avg_count = 0;
+    }
+
+    /* POTENCIA */
+    CalculatePower(voltage1_ac, current1_ac, vrms1, irms1);
+
+    /* ARMONICOS */
+	CalculateHarmonics(voltage1_ac);
+
+	/* DETECCION DE EVENTOS */
+	DetectVoltageEvents(vrms1);
+
 }
 
-
 /*******************************   CALIBRACION ***************************/
-/* Función para calibrar offset  */
 void CalibrateOffset(void)
 {
     voltage1_offset = CalculateMean(voltage1);
@@ -563,6 +628,67 @@ float CalculateMean(float *signal)
     return sum / SAMPLES_PER_CYCLE;
 }
 
+float MeasureLineFrequency(float *signal, uint16_t N, float fs)
+{
+    int16_t first_crossing = -1;
+    int16_t second_crossing = -1;
+    uint8_t armed = 0; // se "arma" cuando la señal estuvo claramente negativa
+
+    for (uint16_t i = 0; i < N; i++)
+    {
+        if (signal[i] < -ZC_HYSTERESIS)
+        {
+            armed = 1; // confirmamos que venimos de la parte negativa del ciclo
+        }
+        else if (armed && signal[i] > ZC_HYSTERESIS)
+        {
+            // cruce ascendente válido: veniamos de <-hist y ahora estamos en >+hist
+            if (first_crossing == -1)
+            {
+                first_crossing = i;
+            }
+            else
+            {
+                second_crossing = i;
+                break;
+            }
+            armed = 0; // hay que volver a "armar" antes del próximo cruce
+        }
+    }
+
+    if (first_crossing >= 0 && second_crossing > first_crossing)
+    {
+        uint16_t samples_per_cycle_real = second_crossing - first_crossing;
+
+        // Descartar resultados fuera de rango plausible (indican ruido/glitch, no un ciclo real)
+        if (samples_per_cycle_real >= MIN_SAMPLES_PER_CYCLE &&
+            samples_per_cycle_real <= MAX_SAMPLES_PER_CYCLE)
+        {
+            return fs / (float)samples_per_cycle_real;
+        }
+    }
+
+    return 0.0f; // no se pudo medir un ciclo plausible
+}
+
+void CalculatePower(float *voltage_ac, float *current_ac, float vrms, float irms)
+{
+    float sum_inst = 0.0f;
+
+    for (uint16_t i = 0; i < SAMPLES_PER_CYCLE; i++)
+    {
+        sum_inst += voltage_ac[i] * current_ac[i];
+    }
+
+    p_active1 = sum_inst / SAMPLES_PER_CYCLE;   // Potencia activa (W)
+    p_apparent1 = vrms * irms;                   // Potencia aparente (VA)
+
+    float q_sq = (p_apparent1 * p_apparent1) - (p_active1 * p_active1);
+    p_reactive1 = (q_sq > 0.0f) ? sqrtf(q_sq) : 0.0f;   // Potencia no-activa (VAR)
+
+    power_factor1 = (p_apparent1 > 0.0f) ? (p_active1 / p_apparent1) : 0.0f;
+}
+
 /*******************************   ARMONICOS ***************************/
 /* Calcula la amplitud del armonico "k" (k=1 es la fundamental) sobre un buffer de N muestras */
 float GoertzelMagnitude(float *signal, uint16_t N, uint16_t k)
@@ -605,6 +731,59 @@ void CalculateHarmonics(float *signal)
         : 0.0f;
 }
 
+/*******************************   EVENTOS SAG-SWELL ***************************/
+void DetectVoltageEvents(float vrms)
+{
+    if (current_event_type == EVENT_NONE)
+    {
+        if (vrms < SAG_THRESHOLD_LOW)
+        {
+            current_event_type = EVENT_SAG;
+            current_event_start = HAL_GetTick();
+            current_event_extreme = vrms;
+        }
+        else if (vrms > SWELL_THRESHOLD_HIGH)
+        {
+            current_event_type = EVENT_SWELL;
+            current_event_start = HAL_GetTick();
+            current_event_extreme = vrms;
+        }
+    }
+    else if (current_event_type == EVENT_SAG)
+    {
+        if (vrms < current_event_extreme) current_event_extreme = vrms;
+
+        if (vrms >= SAG_THRESHOLD_HIGH)
+        {
+            if (events_count < MAX_EVENTS_LOG)
+            {
+                events_log[events_count].type = EVENT_SAG;
+                events_log[events_count].start_time_ms = current_event_start;
+                events_log[events_count].duration_ms = HAL_GetTick() - current_event_start;
+                events_log[events_count].extreme_value = current_event_extreme;
+                events_count++;
+            }
+            current_event_type = EVENT_NONE;
+        }
+    }
+    else // EVENT_SWELL
+    {
+        if (vrms > current_event_extreme) current_event_extreme = vrms;
+
+        if (vrms <= SWELL_THRESHOLD_LOW)
+        {
+            if (events_count < MAX_EVENTS_LOG)
+            {
+                events_log[events_count].type = EVENT_SWELL;
+                events_log[events_count].start_time_ms = current_event_start;
+                events_log[events_count].duration_ms = HAL_GetTick() - current_event_start;
+                events_log[events_count].extreme_value = current_event_extreme;
+                events_count++;
+            }
+            current_event_type = EVENT_NONE;
+        }
+    }
+}
 
 /* USER CODE END 4 */
 
