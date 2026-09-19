@@ -5,6 +5,235 @@
 	(uuid "4afc41a5-1cab-46c7-8d6c-030931e45c76")
 	(paper "A4")
 	(lib_symbols
+		(symbol "Connector_Generic:Conn_01x05"
+			(pin_names
+				(offset 1.016)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "J"
+				(at 0 7.62 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "Conn_01x05"
+				(at 0 -7.62 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Generic connector, single row, 01x05, script generated (kicad-library-utils/schlib/autogen/connector/)"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "connector"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "Connector*:*_1x??_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "Conn_01x05_1_1"
+				(rectangle
+					(start -1.27 6.35)
+					(end 1.27 -6.35)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(rectangle
+					(start -1.27 5.207)
+					(end 0 4.953)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -1.27 2.667)
+					(end 0 2.413)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -1.27 0.127)
+					(end 0 -0.127)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -1.27 -2.413)
+					(end 0 -2.667)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -1.27 -4.953)
+					(end 0 -5.207)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at -5.08 5.08 0)
+					(length 3.81)
+					(name "Pin_1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 2.54 0)
+					(length 3.81)
+					(name "Pin_2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 0 0)
+					(length 3.81)
+					(name "Pin_3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 -2.54 0)
+					(length 3.81)
+					(name "Pin_4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 -5.08 0)
+					(length 3.81)
+					(name "Pin_5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "KY-040:KY-040"
 			(pin_names
 				(offset 1.016)
@@ -244,55 +473,179 @@
 			(embedded_fonts no)
 		)
 	)
-	(wire
-		(pts
-			(xy 135.89 72.39) (xy 151.13 72.39)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "18bf2280-1eae-4ca9-9f33-f650b266247a")
+	(junction
+		(at 166.37 72.39)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "af7cd92a-5760-405b-941d-d7a87b74250e")
+	)
+	(junction
+		(at 163.83 69.85)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "b7d1e6ed-312e-4037-9b47-2bf79d959ff4")
 	)
 	(wire
 		(pts
-			(xy 134.62 67.31) (xy 151.13 67.31)
+			(xy 161.29 62.23) (xy 168.91 62.23)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "1a44adfa-27b6-4beb-a400-22eb495b4987")
+		(uuid "00481538-40ab-4b6e-a7de-2e8c79a0420c")
 	)
 	(wire
 		(pts
-			(xy 134.62 62.23) (xy 151.13 62.23)
+			(xy 163.83 69.85) (xy 168.91 69.85)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "6f1b273c-8593-41dc-8ffb-5364d1431660")
+		(uuid "08cb2194-b259-4e5b-a69d-aec1773a7c17")
 	)
 	(wire
 		(pts
-			(xy 134.62 64.77) (xy 151.13 64.77)
+			(xy 161.29 69.85) (xy 163.83 69.85)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "97e4b200-3cb8-4254-8c79-8868c0aab931")
+		(uuid "11fcbdb1-cfc2-4e82-a05d-331a9037d920")
 	)
 	(wire
 		(pts
-			(xy 135.89 69.85) (xy 151.13 69.85)
+			(xy 134.62 67.31) (xy 138.43 67.31)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "a6a56b27-c5b6-4ad1-b37d-ffffd8c58eb5")
+		(uuid "3eeebc35-b531-42c3-8813-e3cef0ae3991")
+	)
+	(wire
+		(pts
+			(xy 166.37 72.39) (xy 168.91 72.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3f92607e-d2e8-4a19-9bc4-f4d59f78f950")
+	)
+	(wire
+		(pts
+			(xy 135.89 69.85) (xy 138.43 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "439875c7-85e1-488f-bba8-e608a4e89ca4")
+	)
+	(wire
+		(pts
+			(xy 166.37 72.39) (xy 166.37 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "47c1cf48-bc28-49bf-957f-a76658c4209b")
+	)
+	(wire
+		(pts
+			(xy 161.29 67.31) (xy 168.91 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5465d80c-f674-4ab8-aa50-ec2f37f6d730")
+	)
+	(wire
+		(pts
+			(xy 163.83 69.85) (xy 163.83 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7b6e0ef2-1cb2-4838-bdde-f39ff3101101")
+	)
+	(wire
+		(pts
+			(xy 134.62 64.77) (xy 138.43 64.77)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c5a4bafe-4161-4fd1-9d8d-8480045d3369")
+	)
+	(wire
+		(pts
+			(xy 134.62 62.23) (xy 138.43 62.23)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c5fe5c22-c189-49f9-939d-0de5a42facd2")
+	)
+	(wire
+		(pts
+			(xy 135.89 72.39) (xy 138.43 72.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d893942b-ffce-4584-a4c0-e249ffead03c")
+	)
+	(wire
+		(pts
+			(xy 161.29 72.39) (xy 166.37 72.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e50b8d10-359c-4fef-8716-a7103fbc21f5")
+	)
+	(wire
+		(pts
+			(xy 161.29 64.77) (xy 168.91 64.77)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e67e3460-45b6-46ac-a5ac-e18f9cd98ad4")
+	)
+	(global_label "GND_sup"
+		(shape input)
+		(at 166.37 74.93 270)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "2991b604-4b7c-499a-83b7-c69c768ccf8e")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 166.37 86.0794 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
 	)
 	(global_label "GND"
 		(shape input)
@@ -307,6 +660,28 @@
 		(uuid "7f4e2d39-7698-4eb4-a274-f33c7ebe940d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 129.0343 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "+5V_sup"
+		(shape input)
+		(at 163.83 74.93 270)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "c20beed8-acb5-4cad-926d-cca7855ced24")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 163.83 86.0794 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -372,8 +747,162 @@
 		(uuid "8b0ee40d-2e2d-45fc-84c4-a6880bd7179b")
 	)
 	(symbol
+		(lib_id "Connector_Generic:Conn_01x05")
+		(at 156.21 67.31 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "7001f690-933c-4eb7-9ad9-5a4cd2d08b3c")
+		(property "Reference" "J5"
+			(at 156.21 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Conn_01x05"
+			(at 156.21 58.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 156.21 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 156.21 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x05, script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(at 156.21 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "5"
+			(uuid "70ff318f-e2c8-442e-bbe0-9823086bdc7c")
+		)
+		(pin "1"
+			(uuid "9a8714d5-d74a-489d-84d9-f793dbfab595")
+		)
+		(pin "2"
+			(uuid "668c9090-3d81-4709-8a96-056c3c1b7f8e")
+		)
+		(pin "3"
+			(uuid "ef80cd7e-8d53-4171-bff0-c08ea8839bfa")
+		)
+		(pin "4"
+			(uuid "2574c2a7-aa65-49aa-8706-c9ec5aa90220")
+		)
+		(instances
+			(project ""
+				(path "/f7e5c6e4-37d6-479e-ad19-5d06867b62e9/c0ae2a18-8911-41a2-a147-b910b3488347"
+					(reference "J5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x05")
+		(at 143.51 67.31 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "74a88df5-bb19-414c-be2c-11f4bc38bedb")
+		(property "Reference" "J6"
+			(at 143.51 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Conn_01x05"
+			(at 143.51 58.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 143.51 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 143.51 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x05, script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(at 143.51 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "5"
+			(uuid "2829216c-47c1-4fea-9c62-826fe28b22f0")
+		)
+		(pin "1"
+			(uuid "0dc2f90c-69e4-4c17-8cd8-710605a8c0a7")
+		)
+		(pin "2"
+			(uuid "0432eb18-3b86-4a7e-bf32-91e8754b6d35")
+		)
+		(pin "3"
+			(uuid "c07ea7fa-6331-4c8f-b3da-c872c762176e")
+		)
+		(pin "4"
+			(uuid "3fab626c-c0d3-42c9-b882-62a9f32cb830")
+		)
+		(instances
+			(project "Prototipo"
+				(path "/f7e5c6e4-37d6-479e-ad19-5d06867b62e9/c0ae2a18-8911-41a2-a147-b910b3488347"
+					(reference "J6")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "KY-040:KY-040")
-		(at 161.29 67.31 0)
+		(at 179.07 67.31 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -382,7 +911,7 @@
 		(fields_autoplaced yes)
 		(uuid "ab87ce39-deb6-46b8-86d8-92c4f586b3af")
 		(property "Reference" "U7"
-			(at 167.64 66.0399 0)
+			(at 185.42 66.0399 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -391,7 +920,7 @@
 			)
 		)
 		(property "Value" "KY-040"
-			(at 167.64 68.5799 0)
+			(at 185.42 68.5799 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -400,7 +929,7 @@
 			)
 		)
 		(property "Footprint" "KY-040:KY-040-PORT"
-			(at 161.29 67.31 0)
+			(at 179.07 67.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -410,7 +939,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 161.29 67.31 0)
+			(at 179.07 67.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -419,7 +948,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 161.29 67.31 0)
+			(at 179.07 67.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -428,7 +957,7 @@
 			)
 		)
 		(property "MF" "Joy-IT"
-			(at 161.29 67.31 0)
+			(at 179.07 67.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -438,7 +967,7 @@
 			)
 		)
 		(property "Description_1" "KY-5.0-4P Green(RAL6018/T) ; CONTACT WITH TIN PLATED MARK"
-			(at 161.29 67.31 0)
+			(at 179.07 67.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -448,7 +977,7 @@
 			)
 		)
 		(property "Package" "Package"
-			(at 161.29 67.31 0)
+			(at 179.07 67.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -458,7 +987,7 @@
 			)
 		)
 		(property "Price" "None"
-			(at 161.29 67.31 0)
+			(at 179.07 67.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -468,7 +997,7 @@
 			)
 		)
 		(property "SnapEDA_Link" "https://www.snapeda.com/parts/KY-040/Joy-IT/view-part/?ref=snap"
-			(at 161.29 67.31 0)
+			(at 179.07 67.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -478,7 +1007,7 @@
 			)
 		)
 		(property "MP" "KY-040"
-			(at 161.29 67.31 0)
+			(at 179.07 67.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -488,7 +1017,7 @@
 			)
 		)
 		(property "Availability" "Not in stock"
-			(at 161.29 67.31 0)
+			(at 179.07 67.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -498,7 +1027,7 @@
 			)
 		)
 		(property "Check_prices" "https://www.snapeda.com/parts/KY-040/Joy-IT/view-part/?ref=eda"
-			(at 161.29 67.31 0)
+			(at 179.07 67.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
