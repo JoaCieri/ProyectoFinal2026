@@ -1657,6 +1657,96 @@
 			(embedded_fonts no)
 		)
 	)
+	(wire
+		(pts
+			(xy 107.95 83.82) (xy 116.84 83.82)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1d8159a6-5c12-478d-b029-410d3023554f")
+	)
+	(wire
+		(pts
+			(xy 109.22 69.85) (xy 109.22 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "365ea9f0-6340-4955-8cb0-2421ad69096b")
+	)
+	(wire
+		(pts
+			(xy 107.95 72.39) (xy 107.95 83.82)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "537619be-fa7d-432a-a90b-318f78860fcc")
+	)
+	(wire
+		(pts
+			(xy 72.39 69.85) (xy 109.22 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "61ebfe13-7921-4ecf-b9d3-5e2aeab305e2")
+	)
+	(wire
+		(pts
+			(xy 110.49 67.31) (xy 110.49 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "771ed812-577e-419e-809c-917e076fa61e")
+	)
+	(wire
+		(pts
+			(xy 72.39 72.39) (xy 107.95 72.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8cba010e-de55-42b1-a1ce-2476dbf19f99")
+	)
+	(wire
+		(pts
+			(xy 110.49 78.74) (xy 116.84 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8f344572-6f89-4348-9876-6f73e2b4831f")
+	)
+	(wire
+		(pts
+			(xy 109.22 81.28) (xy 116.84 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9909a87f-d2c5-4837-ac4a-134e74599ac0")
+	)
+	(wire
+		(pts
+			(xy 72.39 67.31) (xy 110.49 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d8b712c2-5f2d-4a3c-8b04-e498972974aa")
+	)
 	(symbol
 		(lib_id "YAAJ_BluePill_Part_Like_SWD_Breakout:YAAJ_BluePill_Part_Like_SWD_Breakout")
 		(at 139.7 83.82 0)
@@ -2177,6 +2267,36 @@
 					(size 1.27 1.27)
 				)
 				(justify left top)
+			)
+		)
+		(pin "OUT_TR_V_3" output
+			(at 72.39 72.39 0)
+			(uuid "c75c3dd6-09ef-4190-9428-3e177fd12e1f")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "OUT_TR_V_2" output
+			(at 72.39 69.85 0)
+			(uuid "4c7c5abe-f633-49b7-b8df-12295ab16680")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "OUT_TR_V_1" output
+			(at 72.39 67.31 0)
+			(uuid "75306afc-3fe1-43f6-a179-4b19810b845a")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 			)
 		)
 		(instances
