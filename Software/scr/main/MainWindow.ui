@@ -104,7 +104,7 @@ text-decoration: underline;
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -896,8 +896,8 @@ border-color: rgb(0, 0, 0);</string>
      <widget class="QLabel" name="label_6">
       <property name="geometry">
        <rect>
-        <x>350</x>
-        <y>280</y>
+        <x>380</x>
+        <y>360</y>
         <width>401</width>
         <height>31</height>
        </rect>
@@ -912,10 +912,10 @@ border-color: rgb(0, 0, 0);</string>
      <widget class="QLabel" name="consola">
       <property name="geometry">
        <rect>
-        <x>330</x>
-        <y>320</y>
+        <x>360</x>
+        <y>400</y>
         <width>441</width>
-        <height>141</height>
+        <height>81</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -926,11 +926,11 @@ border-color: rgb(0, 0, 0);</string>
        <string/>
       </property>
      </widget>
-     <widget class="QComboBox" name="Combobox_3">
+     <widget class="QComboBox" name="Combobox_duracion">
       <property name="geometry">
        <rect>
-        <x>500</x>
-        <y>80</y>
+        <x>240</x>
+        <y>120</y>
         <width>121</width>
         <height>31</height>
        </rect>
@@ -974,8 +974,8 @@ border-color: rgb(0, 0, 0);</string>
      <widget class="QLabel" name="label_8">
       <property name="geometry">
        <rect>
-        <x>350</x>
-        <y>80</y>
+        <x>90</x>
+        <y>120</y>
         <width>141</width>
         <height>31</height>
        </rect>
@@ -990,8 +990,8 @@ border-color: rgb(0, 0, 0);</string>
      <widget class="QLabel" name="label_9">
       <property name="geometry">
        <rect>
-        <x>390</x>
-        <y>30</y>
+        <x>130</x>
+        <y>70</y>
         <width>291</width>
         <height>31</height>
        </rect>
@@ -1006,9 +1006,9 @@ border-color: rgb(0, 0, 0);</string>
      <widget class="QPushButton" name="proceso">
       <property name="geometry">
        <rect>
-        <x>350</x>
-        <y>210</y>
-        <width>401</width>
+        <x>110</x>
+        <y>290</y>
+        <width>171</width>
         <height>51</height>
        </rect>
       </property>
@@ -1016,14 +1016,14 @@ border-color: rgb(0, 0, 0);</string>
        <string notr="true">background-color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
-       <string>COMENZAR ESTUDIO</string>
+       <string>COMENZAR </string>
       </property>
      </widget>
      <widget class="QLabel" name="label_26">
       <property name="geometry">
        <rect>
-        <x>350</x>
-        <y>120</y>
+        <x>90</x>
+        <y>160</y>
         <width>141</width>
         <height>31</height>
        </rect>
@@ -1035,11 +1035,11 @@ border-color: rgb(0, 0, 0);</string>
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Intervalo de muestreo&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
-     <widget class="QComboBox" name="Combobox_4">
+     <widget class="QComboBox" name="Combobox_intervalo">
       <property name="geometry">
        <rect>
-        <x>500</x>
-        <y>120</y>
+        <x>240</x>
+        <y>160</y>
         <width>121</width>
         <height>31</height>
        </rect>
@@ -1080,11 +1080,11 @@ border-color: rgb(0, 0, 0);</string>
        </property>
       </item>
      </widget>
-     <widget class="QComboBox" name="Combobox_5">
+     <widget class="QComboBox" name="Combobox_unidad_duracion">
       <property name="geometry">
        <rect>
-        <x>630</x>
-        <y>80</y>
+        <x>370</x>
+        <y>120</y>
         <width>121</width>
         <height>31</height>
        </rect>
@@ -1105,11 +1105,11 @@ border-color: rgb(0, 0, 0);</string>
        </property>
       </item>
      </widget>
-     <widget class="QComboBox" name="Combobox_6">
+     <widget class="QComboBox" name="Combobox_unidad_intervalo">
       <property name="geometry">
        <rect>
-        <x>630</x>
-        <y>120</y>
+        <x>370</x>
+        <y>160</y>
         <width>121</width>
         <height>31</height>
        </rect>
@@ -1128,8 +1128,8 @@ border-color: rgb(0, 0, 0);</string>
      <widget class="QLabel" name="label_27">
       <property name="geometry">
        <rect>
-        <x>350</x>
-        <y>160</y>
+        <x>90</x>
+        <y>200</y>
         <width>141</width>
         <height>31</height>
        </rect>
@@ -1141,14 +1141,178 @@ border-color: rgb(0, 0, 0);</string>
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Nombre: &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit">
+     <widget class="QLineEdit" name="txt_nombre">
       <property name="geometry">
        <rect>
-        <x>500</x>
-        <y>160</y>
+        <x>240</x>
+        <y>200</y>
         <width>251</width>
         <height>31</height>
        </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_28">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>240</y>
+        <width>141</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(187, 255, 189);</string>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Ubicación:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_ruta">
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>240</y>
+        <width>71</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>EXAMINAR</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="txt_ruta">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>240</y>
+        <width>251</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="fin_proceso">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>290</y>
+        <width>171</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>FINALIZAR </string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_29">
+      <property name="geometry">
+       <rect>
+        <x>720</x>
+        <y>70</y>
+        <width>291</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(187, 255, 189);</string>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;INFORMACIÓN&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_30">
+      <property name="geometry">
+       <rect>
+        <x>720</x>
+        <y>120</y>
+        <width>141</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(187, 255, 189);</string>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;ESTADO:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lbl_estado">
+      <property name="geometry">
+       <rect>
+        <x>880</x>
+        <y>120</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_31">
+      <property name="geometry">
+       <rect>
+        <x>720</x>
+        <y>160</y>
+        <width>141</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(187, 255, 189);</string>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;TIEMPO RESTANTE:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lbl_tiempo_restante">
+      <property name="geometry">
+       <rect>
+        <x>880</x>
+        <y>160</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_32">
+      <property name="geometry">
+       <rect>
+        <x>720</x>
+        <y>200</y>
+        <width>141</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(187, 255, 189);</string>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;N° MUESTRAS:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lbl_muestras">
+      <property name="geometry">
+       <rect>
+        <x>880</x>
+        <y>200</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
       </property>
      </widget>
     </widget>
@@ -1158,6 +1322,29 @@ border-color: rgb(0, 0, 0);</string>
      </attribute>
     </widget>
    </widget>
+   <widget class="QLabel" name="lbl_hora">
+    <property name="geometry">
+     <rect>
+      <x>900</x>
+      <y>10</y>
+      <width>171</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">selection-color: rgb(255, 219, 220);
+border-color: rgb(0, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -1165,7 +1352,7 @@ border-color: rgb(0, 0, 0);</string>
      <x>0</x>
      <y>0</y>
      <width>1150</width>
-     <height>21</height>
+     <height>33</height>
     </rect>
    </property>
   </widget>

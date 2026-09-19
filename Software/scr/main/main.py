@@ -3,6 +3,8 @@ import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5 import uic
 from PyQt5.QtCore import QTimer
+from datetime import datetime
+from PyQt5.QtWidgets import QFileDialog
 
 from driver import driver
 from historico import Historico
@@ -10,6 +12,11 @@ from historico import Historico
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
+
+        # Timer reloj
+        self.timer_hora = QTimer()
+        self.timer_hora.timeout.connect(self.actualizar_hora)
+        self.timer_hora.start(1000)
 
         # Cargar interfaz
         uic.loadUi("MainWindow.ui", self)
@@ -23,10 +30,12 @@ class MainWindow(QMainWindow):
         self.historico = Historico()
 
         #Estado inicial
+        self.estudio_activo = False
         self.consola.setText("Desconectado")
         self.comenzar.setEnabled(False)
         self.finalizar.setEnabled(False)
-        self.proceso.setEnabled(False)
+        self.proceso.setEnabled(True)
+        self.fin_proceso.setEnabled(False)
 
         # Conectar botones (IMPORTANTE: nombres del .ui)
         self.btn_conectar.clicked.connect(self.conectar)
@@ -34,7 +43,17 @@ class MainWindow(QMainWindow):
         self.btn_salir.clicked.connect(self.cerrar)
         self.comenzar.clicked.connect(self.temporizador)
         self.finalizar.clicked.connect(self.detener)
-        self.proceso.clicked.connect(self.proceso_1)
+        self.proceso.clicked.connect(self.proceso_estudio)
+        self.fin_proceso.clicked.connect(self.fin_proceso_estudio)
+        self.btn_ruta.clicked.connect(self.examinar)
+        
+        
+    # ---------------- HORARIO RELOS ----------------
+    def actualizar_hora(self):    
+        ahora = datetime.now()    
+        self.lbl_hora.setText(
+            ahora.strftime("%d/%m/%Y %H:%M:%S")
+        )
 
     # ---------------- CONECTAR ----------------
     def conectar(self):
@@ -82,7 +101,7 @@ class MainWindow(QMainWindow):
             return
         
         datos = self.driver.leer_datos()
-    
+            
         if datos is None:
             return
     
@@ -143,12 +162,118 @@ class MainWindow(QMainWindow):
     
         self.lbl_FP_total.setText(
             str(datos["totales"]["FP_total"])
-        )       
-     
+        ) 
+        
+        # Guardar solo si hay un estudio activo
+        if self.estudio_activo:
+            self.historico.guardar_muestra(datos)
+            self.muestras += 1
+            self.lbl_muestras.setText(
+                str(self.muestras)
+            )
+        
+        # ---------------- OBTENER DIRECCION DE GUARDADO ----------------        
+    def examinar(self):
+        carpeta = QFileDialog.getExistingDirectory(
+            self,
+            "Seleccionar carpeta para guardar el estudio"
+        )
+    
+        if carpeta:
+            self.txt_ruta.setText(carpeta)
+            self.consola.setText(
+                f"Carpeta seleccionada:\n{carpeta}"
+            )
+            
     # ---------------- PROCESO ----------------
-    def proceso_1(self):
-        self.consola.setText("PROCESO INICIADO")    
- 
+    def proceso_estudio(self):
+    
+        self.fin_proceso.setEnabled(True)
+    
+        self.consola.setText("PROCESO INICIADO")
+    
+        ruta = self.txt_ruta.text()
+        nombre = self.txt_nombre.text()
+    
+        archivo = self.historico.iniciar(
+            ruta,
+            nombre
+        )
+    
+        # ----------------------------
+        # Duración
+        # ----------------------------
+        duracion = int(self.Combobox_duracion.currentText())
+        unidad_duracion = self.Combobox_unidad_duracion.currentText()
+    
+        if unidad_duracion == "Segundos":
+            duracion_seg = duracion
+    
+        elif unidad_duracion == "Minutos":
+            duracion_seg = duracion * 60
+    
+        elif unidad_duracion == "Horas":
+            duracion_seg = duracion * 3600
+    
+        else:
+            duracion_seg = duracion
+    
+        # ----------------------------
+        # Intervalo
+        # ----------------------------
+        intervalo = int(self.Combobox_intervalo.currentText())
+        unidad_intervalo = self.Combobox_unidad_intervalo.currentText()
+    
+        if unidad_intervalo == "Segundos":
+            intervalo_ms = intervalo * 1000
+    
+        elif unidad_intervalo == "Minutos":
+            intervalo_ms = intervalo * 60 * 1000
+    
+        elif unidad_intervalo == "Horas":
+            intervalo_ms = intervalo * 3600 * 1000
+    
+        else:
+            intervalo_ms = intervalo * 1000
+    
+        # ----------------------------
+        # Configuración estudio
+        # ----------------------------
+        self.estudio_activo = True
+    
+        self.muestras = 0
+    
+        self.timer_estudio = QTimer()
+    
+        self.timer_estudio.timeout.connect(
+            self.actualizar_mediciones
+        )
+    
+        self.timer_estudio.start(intervalo_ms)
+    
+        # Timer para finalizar automáticamente
+        self.timer_fin_estudio = QTimer()
+    
+        self.timer_fin_estudio.setSingleShot(True)
+    
+        self.timer_fin_estudio.timeout.connect(
+            self.fin_proceso_estudio
+        )
+    
+        self.timer_fin_estudio.start(
+            duracion_seg * 1000
+        )
+    
+        self.consola.setText(
+            f"Estudio iniciado\n{archivo}"
+        )
+        
+    def fin_proceso_estudio(self):
+        self.timer_fin_estudio.stop()
+        self.historico.finalizar()
+        self.consola.setText(
+            "Estudio finalizado"
+        )
     # ---------------- CERRAR LA GUI ----------------
             
     def cerrar(self):
