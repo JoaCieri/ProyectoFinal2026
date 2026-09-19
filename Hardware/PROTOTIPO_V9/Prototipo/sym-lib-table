@@ -2,4 +2,5 @@
   (version 7)
   (lib (name "zmpt101b")(type "KiCad")(uri "/home/ianratti/Escritorio/UTN/Librerias_Kikad/Kicad-zmpt101b/zmpt101b.kicad_sym")(options "")(descr ""))
   (lib (name "3013")(type "KiCad")(uri "/home/ianratti/Escritorio/UTN/Librerias_Kikad/3013/3013.kicad_sym")(options "")(descr ""))
+  (lib (name "KY-040")(type "KiCad")(uri "/home/ianratti/Escritorio/UTN/Librerias_Kikad/KY-040/KY-040.kicad_sym")(options "")(descr ""))
 )
