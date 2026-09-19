@@ -5,13 +5,14 @@ class driver:
 
     def __init__(self):
         self.connected = False
+        print("DRIVER CREADO", id(self))
 
     # ---------------- CONEXIÓN ----------------
 
     def conectar(self):
 
         self.connected = True
-
+        print("CONECTAR", id(self))
         print("Driver simulado conectado")
 
         return True
@@ -28,8 +29,11 @@ class driver:
 
     def leer_datos(self):
 
+        print("LEYENDO", id(self))
         if not self.connected:
-            print("No conectado")
+            import traceback
+            print("No conectado.........")
+            traceback.print_stack(limit=3)
             return None
 
         datos = {

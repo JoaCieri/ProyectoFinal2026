@@ -2,10 +2,10 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5 import uic
+from PyQt5.QtCore import QTimer
 
 from driver import driver
 from historico import Historico
-
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -13,6 +13,10 @@ class MainWindow(QMainWindow):
 
         # Cargar interfaz
         uic.loadUi("MainWindow.ui", self)
+        
+        # TIMER
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.actualizar_mediciones)
 
         # Crear driver
         self.driver = driver()
@@ -20,14 +24,16 @@ class MainWindow(QMainWindow):
 
         #Estado inicial
         self.consola.setText("Desconectado")
-        self.prueba.setEnabled(False)
+        self.comenzar.setEnabled(False)
+        self.finalizar.setEnabled(False)
         self.proceso.setEnabled(False)
 
         # Conectar botones (IMPORTANTE: nombres del .ui)
         self.btn_conectar.clicked.connect(self.conectar)
         self.btn_desconectar.clicked.connect(self.desconectar)
         self.btn_salir.clicked.connect(self.cerrar)
-        self.prueba.clicked.connect(self.prueba_1)
+        self.comenzar.clicked.connect(self.temporizador)
+        self.finalizar.clicked.connect(self.detener)
         self.proceso.clicked.connect(self.proceso_1)
 
     # ---------------- CONECTAR ----------------
@@ -35,32 +41,116 @@ class MainWindow(QMainWindow):
         self.consola.setText("Conectando...")
 
         if self.driver.conectar():
-            self.consola.setText("Conectado - Leyendo...")
-            self.prueba.setEnabled(True)
+            self.consola_2.setText("Conectado - Leyendo...")
+            self.comenzar.setEnabled(True)
             self.proceso.setEnabled(True)
         else:
-            self.consola.setText("Error de conexión")
+            self.consola_2.setText("Error de conexión")
 
 
     # ---------------- DESCONECTAR ----------------
     def desconectar(self):
         self.driver.desconectar()
-        self.consola.setText("Desconectado")
-        self.prueba.setEnabled(False)
-        self.proceso.setEnabled(False)
- 
-    # ---------------- PRUEBA EN TIEMPO REAL ----------------
-    def prueba_1(self):
-        self.consola.setText("PRUEBA en TIEMPO REAL ")
+        self.consola_2.setText("Desconectado")
+        self.comenzar.setEnabled(False)
+        self.proceso.setEnabled(False)   
+        
+        
+     # ---------------- Temporizador ----------------    
+        
+    def temporizador(self):
+        print("Timer iniciado")
+        self.timer.start(2000) # 2000 ms = 2 segundos
+        self.consola_2.setText("Monitoreo iniciado")
+        self.finalizar.setEnabled(True)
+        self.comenzar.setEnabled(False)
+        
+    def detener(self): 
+        print("ENTRO A DETENER")
+        self.timer.stop()    
+        self.consola_2.setText("Monitoreo detenido")
+        self.finalizar.setEnabled(False)
+        self.comenzar.setEnabled(True)
+        
+        
+    # ---------------- PRUEBA EN TIEMPO REAL ----------------   
+    def actualizar_mediciones(self):
+    
+        print("ACTUALIZANDO")
+        
+        if not self.driver.connected:
+            return
+        
         datos = self.driver.leer_datos()
-        self.consola.setText(str(datos))
- 
+    
+        if datos is None:
+            return
+    
+        # ---- SISTEMA ----
+    
+        self.lbl_frecuencia.setText(
+            f"{datos['sistema']['frecuencia']} Hz"
+        )
+    
+        topologias = {
+            1: "Monofásica",
+            2: "Bifásica",
+            3: "Trifásica"
+        }
+    
+        self.lbl_topologia.setText(
+            topologias.get(
+                datos["sistema"]["topologia"],
+                "Desconocida"
+            )
+        )
+    
+        # ---- L1 ----
+    
+        self.lbl_V_L1.setText(str(datos["L1"]["Vrms"]))
+        self.lbl_I_L1.setText(str(datos["L1"]["Irms"]))
+        self.lbl_P_L1.setText(str(datos["L1"]["P"]))
+        self.lbl_Q_L1.setText(str(datos["L1"]["Q"]))
+        self.lbl_FP_L1.setText(str(datos["L1"]["FP"]))
+        self.lbl_THDV_L1.setText(str(datos["L1"]["THD_V"]))
+        self.lbl_THDI_L1.setText(str(datos["L1"]["THD_I"]))
+    
+        # ---- L2 ----
+    
+        self.lbl_V_L2.setText(str(datos["L2"]["Vrms"]))
+        self.lbl_I_L2.setText(str(datos["L2"]["Irms"]))
+        self.lbl_P_L2.setText(str(datos["L2"]["P"]))
+        self.lbl_Q_L2.setText(str(datos["L2"]["Q"]))
+        self.lbl_FP_L2.setText(str(datos["L2"]["FP"]))
+        self.lbl_THDV_L2.setText(str(datos["L2"]["THD_V"]))
+        self.lbl_THDI_L2.setText(str(datos["L2"]["THD_I"]))
+    
+        # ---- L3 ----
+    
+        self.lbl_V_L3.setText(str(datos["L3"]["Vrms"]))
+        self.lbl_I_L3.setText(str(datos["L3"]["Irms"]))
+        self.lbl_P_L3.setText(str(datos["L3"]["P"]))
+        self.lbl_Q_L3.setText(str(datos["L3"]["Q"]))
+        self.lbl_FP_L3.setText(str(datos["L3"]["FP"]))
+        self.lbl_THDV_L3.setText(str(datos["L3"]["THD_V"]))
+        self.lbl_THDI_L3.setText(str(datos["L3"]["THD_I"]))
+    
+        # ---- TOTALES ----
+    
+        self.lbl_P_total.setText(
+            str(datos["totales"]["P_total"])
+        )
+    
+        self.lbl_FP_total.setText(
+            str(datos["totales"]["FP_total"])
+        )       
+     
     # ---------------- PROCESO ----------------
     def proceso_1(self):
         self.consola.setText("PROCESO INICIADO")    
  
     # ---------------- CERRAR LA GUI ----------------
-        
+            
     def cerrar(self):
         if self.driver:
             self.driver.desconectar()
