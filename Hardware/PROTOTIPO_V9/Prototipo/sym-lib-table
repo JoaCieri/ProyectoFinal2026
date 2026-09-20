@@ -2,4 +2,5 @@
   (version 7)
   (lib (name "zmpt101b")(type "KiCad")(uri "/home/ianratti/Escritorio/UTN/Librerias_Kikad/Kicad-zmpt101b/zmpt101b.kicad_sym")(options "")(descr ""))
   (lib (name "W5500_ETHERNET_SHIELD")(type "KiCad")(uri "${KIPRJMOD}/footprints_proyecto.pretty/W5500_ETHERNET_SHIELD.kicad_sym")(options "")(descr ""))
+  (lib (name "TSW-108-X-X-S")(type "KiCad")(uri "/home/ianratti/Escritorio/UTN/Librerias_Kikad/TSW-108-X-X-S/TSW-108-X-X-S.kicad_sym")(options "")(descr ""))
 )

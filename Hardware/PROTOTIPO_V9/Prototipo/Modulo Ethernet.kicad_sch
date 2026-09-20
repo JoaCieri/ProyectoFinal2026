@@ -1573,7 +1573,7 @@
 			(uuid "e61b9743-5df7-4054-a65e-eae4232d73ef")
 		)
 		(instances
-			(project ""
+			(project "Prototipo"
 				(path "/f7e5c6e4-37d6-479e-ad19-5d06867b62e9/a7956967-8981-46f6-84b6-6535d4c5544c"
 					(reference "U8")
 					(unit 1)
