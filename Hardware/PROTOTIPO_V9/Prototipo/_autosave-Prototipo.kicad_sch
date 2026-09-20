@@ -1709,6 +1709,16 @@
 	)
 	(wire
 		(pts
+			(xy 173.99 41.91) (xy 173.99 59.69)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0bef6518-4f35-4fea-8b9d-46fe7e93fff7")
+	)
+	(wire
+		(pts
 			(xy 36.83 91.44) (xy 33.02 91.44)
 		)
 		(stroke
@@ -1919,6 +1929,16 @@
 	)
 	(wire
 		(pts
+			(xy 113.03 59.69) (xy 113.03 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5b1552f2-ded7-4643-84c4-0d6ef6b97863")
+	)
+	(wire
+		(pts
 			(xy 121.92 86.36) (xy 124.46 86.36)
 		)
 		(stroke
@@ -1946,6 +1966,16 @@
 			(type default)
 		)
 		(uuid "6a75f071-ac13-43e2-a2d9-fc996969d61b")
+	)
+	(wire
+		(pts
+			(xy 113.03 101.6) (xy 124.46 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6d750354-bcee-46da-b273-05d971d4d3a4")
 	)
 	(wire
 		(pts
@@ -2029,13 +2059,13 @@
 	)
 	(wire
 		(pts
-			(xy 107.95 101.6) (xy 124.46 101.6)
+			(xy 107.95 104.14) (xy 124.46 104.14)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "853d5e40-3b2e-49f7-bf2d-71c7a6844440")
+		(uuid "838dcd7f-787b-4972-96fd-761ff70ac1fb")
 	)
 	(wire
 		(pts
@@ -2056,6 +2086,16 @@
 			(type default)
 		)
 		(uuid "8cba010e-de55-42b1-a1ce-2476dbf19f99")
+	)
+	(wire
+		(pts
+			(xy 173.99 59.69) (xy 113.03 59.69)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8eab1d8b-0143-4fe5-8859-b10dbefb8b8d")
 	)
 	(wire
 		(pts
@@ -2129,16 +2169,6 @@
 	)
 	(wire
 		(pts
-			(xy 113.03 104.14) (xy 124.46 104.14)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a087d635-7e74-49fb-93e4-8508ccc2dd73")
-	)
-	(wire
-		(pts
 			(xy 33.02 49.53) (xy 36.83 49.53)
 		)
 		(stroke
@@ -2196,6 +2226,16 @@
 			(type default)
 		)
 		(uuid "c9205185-4d62-40a3-bf56-a6c53179a535")
+	)
+	(wire
+		(pts
+			(xy 167.64 41.91) (xy 173.99 41.91)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d2241c74-acca-469d-940c-5b5be3a435e1")
 	)
 	(wire
 		(pts
@@ -2343,7 +2383,7 @@
 	)
 	(global_label "RST_Eth"
 		(shape input)
-		(at 107.95 101.6 180)
+		(at 107.95 104.14 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2353,7 +2393,7 @@
 		)
 		(uuid "44d3bf46-1367-4e71-97d9-102264792bb5")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 97.5264 101.6 0)
+			(at 97.5264 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)

@@ -1148,28 +1148,6 @@
 		)
 		(uuid "ff68b44f-1544-4447-82ea-e4f2db1ab331")
 	)
-	(global_label "CS_SD"
-		(shape input)
-		(at 168.91 111.76 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "1c43ee21-cfc2-4c2f-b0f1-da24c33dfad4")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 177.8218 111.76 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
 	(global_label "GND"
 		(shape input)
 		(at 168.91 83.82 0)
@@ -1183,50 +1161,6 @@
 		(uuid "256ee59d-cdf6-46e8-b777-22af5799c14b")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 175.7657 83.82 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "RST_Eth"
-		(shape input)
-		(at 115.57 91.44 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "6d5db083-3ae1-4eb1-a2e4-dc7c51891ae6")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 105.1464 91.44 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "CS_Eth"
-		(shape input)
-		(at 168.91 93.98 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "6daf67d7-a13f-4ce5-8743-8f367c854ab5")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 178.366 93.98 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1323,6 +1257,39 @@
 				(hide yes)
 			)
 		)
+	)
+	(hierarchical_label "SD_CS"
+		(shape input)
+		(at 168.91 111.76 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "3421a49f-4ee3-436c-9a6b-dc7fdf3f6ec6")
+	)
+	(hierarchical_label "Eth_RST"
+		(shape input)
+		(at 115.57 91.44 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "5a7792dc-01a1-4283-ad05-26f1bb26fa95")
+	)
+	(hierarchical_label "Eth_CS"
+		(shape input)
+		(at 168.91 93.98 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "cce693e7-93a2-4d00-9ff2-0b5cdaf0182c")
 	)
 	(symbol
 		(lib_id "W5500_ETHERNET_SHIELD:W5500_ETHERNET_SHIELD")

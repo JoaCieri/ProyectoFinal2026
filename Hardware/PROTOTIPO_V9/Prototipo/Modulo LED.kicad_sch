@@ -406,16 +406,8 @@
 		(uuid "15e51a3f-4380-4dee-89f1-36df4b32970c")
 	)
 	(no_connect
-		(at 128.27 91.44)
-		(uuid "2d952467-2270-48ac-a127-692af06b2b0e")
-	)
-	(no_connect
 		(at 128.27 104.14)
 		(uuid "95a6daca-9cc8-4241-a03d-21fec65614f6")
-	)
-	(no_connect
-		(at 128.27 101.6)
-		(uuid "971d8390-aaf8-4537-86c4-fbbf17277348")
 	)
 	(no_connect
 		(at 87.63 88.9)
@@ -531,6 +523,26 @@
 	)
 	(wire
 		(pts
+			(xy 128.27 101.6) (xy 140.97 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "58812552-7e42-45b7-a69b-674a209900a9")
+	)
+	(wire
+		(pts
+			(xy 128.27 91.44) (xy 140.97 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "aea6b64f-07ce-4f49-bf04-42ad70e167c3")
+	)
+	(wire
+		(pts
 			(xy 128.27 93.98) (xy 140.97 93.98)
 		)
 		(stroke
@@ -593,17 +605,6 @@
 		)
 		(uuid "7a820e7e-87e9-4cfa-8aa5-4a9c05fbd419")
 	)
-	(hierarchical_label "LCD_RST"
-		(shape input)
-		(at 140.97 106.68 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "83a5201e-4fd2-47e9-b6f1-d06ed9ab058c")
-	)
 	(hierarchical_label "LCD_GND"
 		(shape output)
 		(at 140.97 113.03 0)
@@ -614,6 +615,28 @@
 			(justify left)
 		)
 		(uuid "c03d80c6-d7ba-4888-be99-71503fa4d015")
+	)
+	(hierarchical_label "LCD_DC"
+		(shape input)
+		(at 140.97 91.44 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "d5ab00c4-34db-436b-9e62-7a2d4ecedb35")
+	)
+	(hierarchical_label "LCD_SCK"
+		(shape input)
+		(at 140.97 101.6 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "ed16369d-a1f0-4132-a43d-9cfa67e8e604")
 	)
 	(symbol
 		(lib_id "Driver_Display:CR2013-MI2120")
