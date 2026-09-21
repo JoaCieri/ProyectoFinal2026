@@ -1317,7 +1317,7 @@
 				)
 			)
 		)
-		(property "Footprint" "W5500_ETHERNET_SHIELD:W5500_ETHERNET_SHIELD"
+		(property "Footprint" "footprints_proyecto:W5500_ETHERNET_SHIELD"
 			(at 124.46 124.46 0)
 			(effects
 				(font

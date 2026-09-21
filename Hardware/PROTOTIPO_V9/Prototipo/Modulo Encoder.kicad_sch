@@ -377,7 +377,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "KY-040:KY-040-PORT"
+		(property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_1x05_P2.54mm_Vertical"
 			(at 179.07 67.31 0)
 			(effects
 				(font

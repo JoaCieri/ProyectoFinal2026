@@ -2,7 +2,7 @@
 	(version 20250114)
 	(generator "eeschema")
 	(generator_version "9.0")
-	(uuid "0ef0ba3e-f9e7-4ae9-8034-86e1bef1d35f")
+	(uuid "164ff8a1-72ce-47e3-bbca-00998f97e3d1")
 	(paper "A4")
 	(lib_symbols
 		(symbol "Connector_Generic:Conn_01x01"
@@ -225,7 +225,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical"
 			(at 148.59 82.55 0)
 			(effects
 				(font
@@ -292,7 +292,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical"
 			(at 142.24 88.9 0)
 			(effects
 				(font
@@ -359,7 +359,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical"
 			(at 148.59 95.25 0)
 			(effects
 				(font

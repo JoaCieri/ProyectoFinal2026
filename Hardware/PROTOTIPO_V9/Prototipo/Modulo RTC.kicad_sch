@@ -529,7 +529,7 @@
 				)
 			)
 		)
-		(property "Footprint" "3013:MODULE_3013"
+		(property "Footprint" "footprints_proyecto:MODULE_3013"
 			(at 146.05 92.71 0)
 			(effects
 				(font

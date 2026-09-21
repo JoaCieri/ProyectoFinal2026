@@ -722,38 +722,38 @@
 		(uuid "57a4bb88-55f2-426e-a391-cceaba6edd47")
 	)
 	(junction
-		(at 168.91 69.85)
+		(at 161.29 69.85)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "da7f13dc-4c0b-4cc6-bc8e-2318ddcca09f")
 	)
 	(junction
-		(at 198.12 77.47)
+		(at 190.5 77.47)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "e973afa5-77b8-46a3-b157-f0a4f5841b25")
 	)
 	(junction
-		(at 168.91 77.47)
+		(at 161.29 77.47)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "ef411a29-bbbb-4cd5-bc2a-f50b0a02a3cc")
 	)
 	(junction
-		(at 184.15 77.47)
+		(at 176.53 77.47)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "f860ec61-95ac-4d72-b3e0-cea5d65c203d")
 	)
 	(junction
-		(at 198.12 69.85)
+		(at 190.5 69.85)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "fa2b722e-1a03-4d14-97c7-8a1ab61cf2eb")
 	)
 	(wire
 		(pts
-			(xy 184.15 77.47) (xy 198.12 77.47)
+			(xy 176.53 77.47) (xy 190.5 77.47)
 		)
 		(stroke
 			(width 0)
@@ -763,7 +763,7 @@
 	)
 	(wire
 		(pts
-			(xy 168.91 69.85) (xy 176.53 69.85)
+			(xy 161.29 69.85) (xy 168.91 69.85)
 		)
 		(stroke
 			(width 0)
@@ -773,7 +773,7 @@
 	)
 	(wire
 		(pts
-			(xy 91.44 74.93) (xy 116.84 74.93)
+			(xy 104.14 74.93) (xy 116.84 74.93)
 		)
 		(stroke
 			(width 0)
@@ -783,7 +783,7 @@
 	)
 	(wire
 		(pts
-			(xy 168.91 60.96) (xy 223.52 60.96)
+			(xy 161.29 60.96) (xy 208.28 60.96)
 		)
 		(stroke
 			(width 0)
@@ -803,7 +803,7 @@
 	)
 	(wire
 		(pts
-			(xy 191.77 69.85) (xy 198.12 69.85)
+			(xy 184.15 69.85) (xy 190.5 69.85)
 		)
 		(stroke
 			(width 0)
@@ -813,7 +813,7 @@
 	)
 	(wire
 		(pts
-			(xy 137.16 69.85) (xy 168.91 69.85)
+			(xy 137.16 69.85) (xy 161.29 69.85)
 		)
 		(stroke
 			(width 0)
@@ -823,7 +823,7 @@
 	)
 	(wire
 		(pts
-			(xy 168.91 77.47) (xy 184.15 77.47)
+			(xy 161.29 77.47) (xy 176.53 77.47)
 		)
 		(stroke
 			(width 0)
@@ -853,7 +853,7 @@
 	)
 	(wire
 		(pts
-			(xy 198.12 77.47) (xy 223.52 77.47)
+			(xy 190.5 77.47) (xy 208.28 77.47)
 		)
 		(stroke
 			(width 0)
@@ -863,7 +863,7 @@
 	)
 	(wire
 		(pts
-			(xy 91.44 69.85) (xy 116.84 69.85)
+			(xy 104.14 69.85) (xy 116.84 69.85)
 		)
 		(stroke
 			(width 0)
@@ -873,7 +873,7 @@
 	)
 	(wire
 		(pts
-			(xy 168.91 69.85) (xy 168.91 60.96)
+			(xy 161.29 69.85) (xy 161.29 60.96)
 		)
 		(stroke
 			(width 0)
@@ -883,7 +883,7 @@
 	)
 	(wire
 		(pts
-			(xy 149.86 77.47) (xy 168.91 77.47)
+			(xy 149.86 77.47) (xy 161.29 77.47)
 		)
 		(stroke
 			(width 0)
@@ -893,7 +893,7 @@
 	)
 	(wire
 		(pts
-			(xy 198.12 69.85) (xy 223.52 69.85)
+			(xy 190.5 69.85) (xy 208.28 69.85)
 		)
 		(stroke
 			(width 0)
@@ -903,7 +903,7 @@
 	)
 	(global_label "+3V3"
 		(shape output)
-		(at 223.52 69.85 0)
+		(at 208.28 69.85 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -913,7 +913,7 @@
 		)
 		(uuid "1bfc8441-96d9-491c-b8c3-3ba6aa7aefd4")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 231.5852 69.85 0)
+			(at 216.3452 69.85 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -925,7 +925,7 @@
 	)
 	(global_label "+5V"
 		(shape output)
-		(at 223.52 60.96 0)
+		(at 208.28 60.96 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -935,7 +935,7 @@
 		)
 		(uuid "58abd6f7-490e-4cfb-8523-a48136946b82")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 230.3757 60.96 0)
+			(at 215.1357 60.96 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -947,7 +947,7 @@
 	)
 	(global_label "GND"
 		(shape output)
-		(at 223.52 77.47 0)
+		(at 208.28 77.47 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -957,7 +957,7 @@
 		)
 		(uuid "d33c6e7a-1684-48f9-a13b-946865058acc")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 230.3757 77.47 0)
+			(at 215.1357 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -969,7 +969,7 @@
 	)
 	(hierarchical_label "220VAC_N"
 		(shape input)
-		(at 91.44 74.93 180)
+		(at 104.14 74.93 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -980,7 +980,7 @@
 	)
 	(hierarchical_label "220VAC_L"
 		(shape input)
-		(at 91.44 69.85 180)
+		(at 104.14 69.85 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1065,7 +1065,7 @@
 	)
 	(symbol
 		(lib_id "Regulator_Linear:LD1117V33")
-		(at 184.15 69.85 0)
+		(at 176.53 69.85 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -1074,7 +1074,7 @@
 		(fields_autoplaced yes)
 		(uuid "16e3166b-bf56-438b-a24a-0a6c3548405e")
 		(property "Reference" "U5"
-			(at 184.15 63.5 0)
+			(at 176.53 63.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1082,7 +1082,7 @@
 			)
 		)
 		(property "Value" "LD1117V33"
-			(at 184.15 66.04 0)
+			(at 176.53 66.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1090,7 +1090,7 @@
 			)
 		)
 		(property "Footprint" "Package_TO_SOT_THT:TO-220-3_Vertical"
-			(at 184.15 64.77 0)
+			(at 176.53 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1099,7 +1099,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.st.com/resource/en/datasheet/ld1117.pdf"
-			(at 186.69 76.2 0)
+			(at 179.07 76.2 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1108,7 +1108,7 @@
 			)
 		)
 		(property "Description" "800 mA Fixed Low Drop Positive Voltage Regulator (ldo). Max input 15V. Fixed Output 3.3V. TO-220-3"
-			(at 184.15 69.85 0)
+			(at 176.53 69.85 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1136,7 +1136,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Polarized")
-		(at 198.12 73.66 0)
+		(at 190.5 73.66 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -1145,7 +1145,7 @@
 		(fields_autoplaced yes)
 		(uuid "669c6023-8df6-4b1d-8aca-5ca94e3d8d03")
 		(property "Reference" "C2"
-			(at 201.93 71.5009 0)
+			(at 194.31 71.5009 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1154,7 +1154,7 @@
 			)
 		)
 		(property "Value" "10u"
-			(at 201.93 74.0409 0)
+			(at 194.31 74.0409 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1162,8 +1162,8 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
-			(at 199.0852 77.47 0)
+		(property "Footprint" "Capacitor_THT:CP_Radial_D5.0mm_P2.50mm"
+			(at 191.4652 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1172,7 +1172,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 198.12 73.66 0)
+			(at 190.5 73.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1181,7 +1181,7 @@
 			)
 		)
 		(property "Description" "Polarized capacitor"
-			(at 198.12 73.66 0)
+			(at 190.5 73.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1272,7 +1272,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Polarized")
-		(at 168.91 73.66 0)
+		(at 161.29 73.66 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -1281,7 +1281,7 @@
 		(fields_autoplaced yes)
 		(uuid "e26ba5f8-023a-483f-997f-b769d4edf92d")
 		(property "Reference" "C1"
-			(at 172.72 71.5009 0)
+			(at 165.1 71.5009 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1290,7 +1290,7 @@
 			)
 		)
 		(property "Value" "100n"
-			(at 172.72 74.0409 0)
+			(at 165.1 74.0409 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1298,8 +1298,8 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
-			(at 169.8752 77.47 0)
+		(property "Footprint" "Capacitor_THT:CP_Radial_Tantal_D4.5mm_P5.00mm"
+			(at 162.2552 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1308,7 +1308,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 168.91 73.66 0)
+			(at 161.29 73.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1317,7 +1317,7 @@
 			)
 		)
 		(property "Description" "Polarized capacitor"
-			(at 168.91 73.66 0)
+			(at 161.29 73.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
