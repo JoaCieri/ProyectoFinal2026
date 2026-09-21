@@ -1262,7 +1262,7 @@
 			(uuid "00cf33a5-a753-429f-b095-e05e4f28fa35")
 		)
 		(instances
-			(project ""
+			(project "Prototipo"
 				(path "/f7e5c6e4-37d6-479e-ad19-5d06867b62e9/c5b625a2-7ffc-4013-afb3-a0507713338d"
 					(reference "#PWR03")
 					(unit 1)

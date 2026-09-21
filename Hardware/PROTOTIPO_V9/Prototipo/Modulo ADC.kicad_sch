@@ -425,10 +425,6 @@
 		(uuid "5c25de32-22b2-40fb-ae6a-c5106db71eba")
 	)
 	(no_connect
-		(at 139.7 92.71)
-		(uuid "339a581c-c488-4628-82c8-b8e0e8702ca0")
-	)
-	(no_connect
 		(at 160.02 87.63)
 		(uuid "d85cfce4-4d4e-4935-90d8-b2881fb1dea6")
 	)
@@ -531,6 +527,16 @@
 			(type default)
 		)
 		(uuid "8e7c78a3-0c36-4110-8fd5-e505a80a7408")
+	)
+	(wire
+		(pts
+			(xy 134.62 92.71) (xy 139.7 92.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "90ecd172-8d93-4b64-bf86-41b41e40ad78")
 	)
 	(wire
 		(pts
@@ -680,6 +686,17 @@
 		)
 		(uuid "a3c22d75-76a7-473a-97cb-b110e3cce279")
 	)
+	(hierarchical_label "ADC_IN1"
+		(shape input)
+		(at 134.62 92.71 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "d89cd3a0-807c-415e-afe5-31dcf17ccedd")
+	)
 	(hierarchical_label "ADC_SDA"
 		(shape bidirectional)
 		(at 176.53 95.25 0)
@@ -777,7 +794,7 @@
 			(uuid "4783e8f1-eec9-455e-b4ec-4f8ab1c138c0")
 		)
 		(instances
-			(project ""
+			(project "Prototipo"
 				(path "/f7e5c6e4-37d6-479e-ad19-5d06867b62e9/e27cf666-8cbc-4822-abe7-5197a8083313"
 					(reference "U10")
 					(unit 1)
@@ -847,7 +864,7 @@
 			(uuid "bc326eae-e10d-471b-9a8f-7013ebccf011")
 		)
 		(instances
-			(project ""
+			(project "Prototipo"
 				(path "/f7e5c6e4-37d6-479e-ad19-5d06867b62e9/e27cf666-8cbc-4822-abe7-5197a8083313"
 					(reference "R13")
 					(unit 1)

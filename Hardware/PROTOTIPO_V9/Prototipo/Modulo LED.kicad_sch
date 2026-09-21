@@ -1273,7 +1273,7 @@
 			(uuid "b9ba6ba4-28b1-4119-a074-d91794a9038d")
 		)
 		(instances
-			(project ""
+			(project "Prototipo"
 				(path "/f7e5c6e4-37d6-479e-ad19-5d06867b62e9/dc70b030-638a-4a35-8eda-471de98a086f/3570a500-835d-4a1e-8b96-6ea8e40dae9a"
 					(reference "R1")
 					(unit 1)
@@ -1412,7 +1412,7 @@
 			(uuid "9bea4add-ab17-42a4-b336-5101693e8cd2")
 		)
 		(instances
-			(project ""
+			(project "Prototipo"
 				(path "/f7e5c6e4-37d6-479e-ad19-5d06867b62e9/dc70b030-638a-4a35-8eda-471de98a086f/3570a500-835d-4a1e-8b96-6ea8e40dae9a"
 					(reference "R2")
 					(unit 1)
@@ -1579,10 +1579,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "31ab9fe1-0187-405c-8c5b-fa1aaf7ceb15")
+			(uuid "31ab9fe1-0187-405c-8c5b-fa1aaf7ceb16")
 		)
 		(pin "2"
-			(uuid "374463a4-ba42-4bab-8d81-447189e10dea")
+			(uuid "374463a4-ba42-4bab-8d81-447189e10deb")
 		)
 		(instances
 			(project "Prototipo"
@@ -1715,10 +1715,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "31ab9fe1-0187-405c-8c5b-fa1aaf7ceb15")
+			(uuid "31ab9fe1-0187-405c-8c5b-fa1aaf7ceb17")
 		)
 		(pin "2"
-			(uuid "374463a4-ba42-4bab-8d81-447189e10dea")
+			(uuid "374463a4-ba42-4bab-8d81-447189e10dec")
 		)
 		(instances
 			(project "Prototipo"
@@ -1920,10 +1920,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "31ab9fe1-0187-405c-8c5b-fa1aaf7ceb15")
+			(uuid "31ab9fe1-0187-405c-8c5b-fa1aaf7ceb18")
 		)
 		(pin "2"
-			(uuid "374463a4-ba42-4bab-8d81-447189e10dea")
+			(uuid "374463a4-ba42-4bab-8d81-447189e10ded")
 		)
 		(instances
 			(project "Prototipo"
@@ -1987,10 +1987,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "31ab9fe1-0187-405c-8c5b-fa1aaf7ceb15")
+			(uuid "31ab9fe1-0187-405c-8c5b-fa1aaf7ceb19")
 		)
 		(pin "2"
-			(uuid "374463a4-ba42-4bab-8d81-447189e10dea")
+			(uuid "374463a4-ba42-4bab-8d81-447189e10dee")
 		)
 		(instances
 			(project "Prototipo"
