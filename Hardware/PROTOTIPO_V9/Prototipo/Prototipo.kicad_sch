@@ -1670,12 +1670,6 @@
 		(uuid "8b9ac3a9-a60f-474b-bd58-7044fd774550")
 	)
 	(junction
-		(at 121.92 81.28)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "8c004d09-247a-4f21-9b1a-ad04a28d8620")
-	)
-	(junction
 		(at 121.92 83.82)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1915,16 +1909,6 @@
 	)
 	(wire
 		(pts
-			(xy 171.45 46.99) (xy 171.45 64.77)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "254cf8fa-a48b-4e9f-a8d2-b14fc86667ac")
-	)
-	(wire
-		(pts
 			(xy 194.31 110.49) (xy 199.39 110.49)
 		)
 		(stroke
@@ -2072,16 +2056,6 @@
 			(type default)
 		)
 		(uuid "4df6c370-7cf0-4f22-bbaa-bc30ca5c1ca4")
-	)
-	(wire
-		(pts
-			(xy 167.64 46.99) (xy 171.45 46.99)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5255bb5f-a520-4e4e-aa1b-463b75bda50b")
 	)
 	(wire
 		(pts
@@ -2625,16 +2599,6 @@
 	)
 	(wire
 		(pts
-			(xy 171.45 64.77) (xy 121.92 64.77)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e5f291ba-07ad-4907-8c88-b12cc47b27ed")
-	)
-	(wire
-		(pts
 			(xy 87.63 140.97) (xy 87.63 149.86)
 		)
 		(stroke
@@ -2662,16 +2626,6 @@
 			(type default)
 		)
 		(uuid "efd811c2-76ac-4110-b9c2-d62ddb5b63bf")
-	)
-	(wire
-		(pts
-			(xy 121.92 64.77) (xy 121.92 81.28)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f84f2bf5-5e95-4e49-8d2f-ee48c8c21a24")
 	)
 	(wire
 		(pts
@@ -3406,16 +3360,6 @@
 		(pin "BUS_LCD_DC" input
 			(at 167.64 41.91 0)
 			(uuid "e04f7638-6f1f-427f-b22d-a3a410f98fa6")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "BUS_LCD_SCK" input
-			(at 167.64 46.99 0)
-			(uuid "141bd935-6f5e-4a7a-9e9b-43a80796da6e")
 			(effects
 				(font
 					(size 1.27 1.27)

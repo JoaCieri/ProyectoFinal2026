@@ -1055,7 +1055,7 @@
 		)
 		(uuid "073027b9-94be-4aa9-9fc9-d6e8b003780b")
 	)
-	(hierarchical_label "BUS_LCD_DC"
+	(hierarchical_label "BUS_LCD_CS"
 		(shape input)
 		(at 236.22 71.12 0)
 		(effects
@@ -1066,7 +1066,7 @@
 		)
 		(uuid "29fe1115-1d8f-43bc-8874-92bc136761b9")
 	)
-	(hierarchical_label "BUS_LCD_SCK"
+	(hierarchical_label "BUS_LCD_DC"
 		(shape input)
 		(at 236.22 73.66 0)
 		(effects
