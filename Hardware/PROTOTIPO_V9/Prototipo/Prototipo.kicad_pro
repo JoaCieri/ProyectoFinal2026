@@ -649,6 +649,10 @@
     [
       "dc70b030-638a-4a35-8eda-471de98a086f",
       "PCB2CONNECTION"
+    ],
+    [
+      "671bd778-e511-4534-b337-b2c149ed4da7",
+      "SCT013_100A_1V"
     ]
   ],
   "text_variables": {}
