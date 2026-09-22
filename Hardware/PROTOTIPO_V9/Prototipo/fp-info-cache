@@ -1,4 +1,4 @@
-24744399043698130
+24758719679321614
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -99523,8 +99523,8 @@ MODULE_3013
 
 
 0
-10
-10
+8
+8
 footprints_proyecto
 MODULE_3013_1
 
@@ -99533,12 +99533,68 @@ MODULE_3013_1
 10
 10
 footprints_proyecto
+MODULE_ADS1115
+
+
+0
+10
+10
+footprints_proyecto
+MODULE_KY-040
+
+
+0
+5
+5
+footprints_proyecto
+MODULE_ZC261500
+
+
+0
+12
+12
+footprints_proyecto
+MODULE_ZMPT101B
+
+
+0
+6
+6
+footprints_proyecto
+Untitled
+
+
+0
+0
+0
+footprints_proyecto
+Untitled_1
+
+
+0
+0
+0
+footprints_proyecto
+Untitled_2
+
+
+0
+0
+0
+footprints_proyecto
 W5500_ETHERNET_SHIELD
 
 
 0
 38
-36
+38
+footprints_proyecto
+W5500_ETHERNET_SHIELD_1
+
+
+0
+38
+38
 footprints_proyecto
 YAAJ_BluePill_1
 Through hole headers for BluePill module. No SWD breakout. Fancy silkscreen.

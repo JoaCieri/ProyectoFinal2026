@@ -1,4 +1,4 @@
-(footprint "W5500_ETHERNET_SHIELD"
+(footprint "W5500_ETHERNET_SHIELD_1"
 	(version 20241229)
 	(generator "pcbnew")
 	(generator_version "9.0")
@@ -14,7 +14,7 @@
 			)
 		)
 	)
-	(property "Value" "W5500_ETHERNET_SHIELD"
+	(property "Value" "W5500_ETHERNET_SHIELD_1"
 		(at 0 0 0)
 		(layer "F.Fab")
 		(uuid "77a91ada-1b34-47c7-8100-9beb78cd6442")
