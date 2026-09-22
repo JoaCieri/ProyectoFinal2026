@@ -428,8 +428,20 @@
 		(color 0 0 0 0)
 		(uuid "8c3f2fb4-0917-439d-973f-2a67b6316697")
 	)
+	(junction
+		(at 177.8 92.71)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "a62317c4-c8f7-4b87-a53e-f17857760fa7")
+	)
+	(junction
+		(at 177.8 82.55)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "a701a3cd-3266-4217-a99c-2acded52082e")
+	)
 	(no_connect
-		(at 172.72 87.63)
+		(at 186.69 87.63)
 		(uuid "2dce22d0-e04a-417b-a360-0f6f418c46b1")
 	)
 	(wire
@@ -454,6 +466,36 @@
 	)
 	(wire
 		(pts
+			(xy 177.8 83.82) (xy 177.8 82.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0c129cc6-ec47-4dbb-bc24-dbfab4006fbf")
+	)
+	(wire
+		(pts
+			(xy 177.8 92.71) (xy 186.69 92.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "27899e6d-4218-4ddb-859c-e2decd6f247b")
+	)
+	(wire
+		(pts
+			(xy 177.8 91.44) (xy 177.8 92.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "280ea364-7f34-42a8-b62d-aae32248ed29")
+	)
+	(wire
+		(pts
 			(xy 134.62 92.71) (xy 137.16 92.71)
 		)
 		(stroke
@@ -474,7 +516,7 @@
 	)
 	(wire
 		(pts
-			(xy 133.35 82.55) (xy 172.72 82.55)
+			(xy 133.35 82.55) (xy 177.8 82.55)
 		)
 		(stroke
 			(width 0)
@@ -514,7 +556,7 @@
 	)
 	(wire
 		(pts
-			(xy 162.56 92.71) (xy 172.72 92.71)
+			(xy 162.56 92.71) (xy 177.8 92.71)
 		)
 		(stroke
 			(width 0)
@@ -551,6 +593,16 @@
 			(type default)
 		)
 		(uuid "e750a056-1f48-4543-aa67-1a50970543e8")
+	)
+	(wire
+		(pts
+			(xy 177.8 82.55) (xy 186.69 82.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fbc6ffe7-8d2f-4a94-aff2-5e32508ce004")
 	)
 	(label "RING"
 		(at 166.37 92.71 0)
@@ -640,7 +692,7 @@
 	)
 	(symbol
 		(lib_id "Connector_Generic:Conn_01x01")
-		(at 177.8 92.71 0)
+		(at 191.77 92.71 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -649,7 +701,7 @@
 		(fields_autoplaced yes)
 		(uuid "144946ee-5088-41a8-ad71-a344d5427633")
 		(property "Reference" "J8"
-			(at 180.34 91.4399 0)
+			(at 194.31 91.4399 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -658,7 +710,7 @@
 			)
 		)
 		(property "Value" "Conn_01x01"
-			(at 180.34 93.9799 0)
+			(at 194.31 93.9799 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -667,7 +719,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 177.8 92.71 0)
+			(at 191.77 92.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -676,7 +728,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 177.8 92.71 0)
+			(at 191.77 92.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -685,7 +737,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x01, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 177.8 92.71 0)
+			(at 191.77 92.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -775,7 +827,7 @@
 	)
 	(symbol
 		(lib_id "Connector_Generic:Conn_01x01")
-		(at 177.8 82.55 0)
+		(at 191.77 82.55 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -784,7 +836,7 @@
 		(fields_autoplaced yes)
 		(uuid "26c2ce85-59c5-4e47-9863-f35d967fc068")
 		(property "Reference" "J7"
-			(at 180.34 81.2799 0)
+			(at 194.31 81.2799 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -793,7 +845,7 @@
 			)
 		)
 		(property "Value" "Conn_01x01"
-			(at 180.34 83.8199 0)
+			(at 194.31 83.8199 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -802,7 +854,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 177.8 82.55 0)
+			(at 191.77 82.55 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -811,7 +863,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 177.8 82.55 0)
+			(at 191.77 82.55 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -820,7 +872,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x01, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 177.8 82.55 0)
+			(at 191.77 82.55 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -842,7 +894,7 @@
 	)
 	(symbol
 		(lib_id "Connector_Generic:Conn_01x01")
-		(at 177.8 87.63 0)
+		(at 191.77 87.63 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -851,7 +903,7 @@
 		(fields_autoplaced yes)
 		(uuid "5d2af76f-e835-4aa1-acd7-1753ae824f72")
 		(property "Reference" "J6"
-			(at 180.34 86.3599 0)
+			(at 194.31 86.3599 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -860,7 +912,7 @@
 			)
 		)
 		(property "Value" "Conn_01x01"
-			(at 180.34 88.8999 0)
+			(at 194.31 88.8999 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -869,7 +921,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 177.8 87.63 0)
+			(at 191.77 87.63 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -878,7 +930,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 177.8 87.63 0)
+			(at 191.77 87.63 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -887,7 +939,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x01, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 177.8 87.63 0)
+			(at 191.77 87.63 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -972,6 +1024,76 @@
 			(project "Prototipo"
 				(path "/f7e5c6e4-37d6-479e-ad19-5d06867b62e9/671bd778-e511-4534-b337-b2c149ed4da7"
 					(reference "C3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 177.8 87.63 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "78ff9f78-1428-44fc-a60f-22229fedba6d")
+		(property "Reference" "R16"
+			(at 180.34 86.3599 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100"
+			(at 180.34 88.8999 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 176.022 87.63 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 177.8 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 177.8 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "c3392278-9d21-4e88-b9ca-d0331a3f3afd")
+		)
+		(pin "1"
+			(uuid "e8ce07b9-e9ca-4766-b6fb-61cdf17fc654")
+		)
+		(instances
+			(project "Prototipo"
+				(path "/f7e5c6e4-37d6-479e-ad19-5d06867b62e9/671bd778-e511-4534-b337-b2c149ed4da7"
+					(reference "R16")
 					(unit 1)
 				)
 			)
