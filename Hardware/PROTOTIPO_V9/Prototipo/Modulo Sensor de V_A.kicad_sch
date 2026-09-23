@@ -484,8 +484,8 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
-			(property "Reference" "U"
-				(at 4.445 -8.255 0)
+			(property "Reference" "U2"
+				(at -13.462 -5.334 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -493,14 +493,14 @@
 				)
 			)
 			(property "Value" "zmpt101b"
-				(at 10.16 -8.255 0)
+				(at -13.462 -7.874 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
 				)
 			)
-			(property "Footprint" ""
+			(property "Footprint" "footprints_proyecto:MODULE_ZMPT101B"
 				(at 2.54 0 0)
 				(effects
 					(font
@@ -653,7 +653,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin output line
 					(at 8.89 0 180)
 					(length 2.54)
 					(name "OUT"

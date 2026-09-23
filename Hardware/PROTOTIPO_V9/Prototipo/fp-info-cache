@@ -1,4 +1,4 @@
-24758719679321614
+24753349668159848
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -99526,13 +99526,6 @@ MODULE_3013
 8
 8
 footprints_proyecto
-MODULE_3013_1
-
-
-0
-10
-10
-footprints_proyecto
 MODULE_ADS1115
 
 
@@ -99546,13 +99539,6 @@ MODULE_KY-040
 0
 5
 5
-footprints_proyecto
-MODULE_ZC261500
-
-
-0
-12
-12
 footprints_proyecto
 MODULE_ZMPT101B
 
@@ -99583,13 +99569,6 @@ Untitled_2
 0
 footprints_proyecto
 W5500_ETHERNET_SHIELD
-
-
-0
-38
-38
-footprints_proyecto
-W5500_ETHERNET_SHIELD_1
 
 
 0
