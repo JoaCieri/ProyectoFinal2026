@@ -6,4 +6,5 @@
   (lib (name "DS3231M")(type "KiCad")(uri "${KIPRJMOD}/footprints_proyecto.pretty/DS3231M.kicad_sym")(options "")(descr ""))
   (lib (name "ILI9341")(type "KiCad")(uri "${KIPRJMOD}/footprints_proyecto.pretty/ILI9341.kicad_sym")(options "")(descr ""))
   (lib (name "ZC261500")(type "KiCad")(uri "${KIPRJMOD}/footprints_proyecto.pretty/ZC261500.kicad_sym")(options "")(descr ""))
+  (lib (name "YAAJ_BlackPill_Part_Like_SWD_Breakout")(type "Legacy")(uri "${KIPRJMOD}/footprints_proyecto.pretty/YAAJ_BlackPill_Part_Like_SWD_Breakout.lib")(options "")(descr ""))
 )
