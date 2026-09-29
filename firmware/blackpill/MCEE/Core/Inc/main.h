@@ -57,6 +57,18 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define voltage1_Pin GPIO_PIN_0
+#define voltage1_GPIO_Port GPIOA
+#define current1_Pin GPIO_PIN_1
+#define current1_GPIO_Port GPIOA
+#define voltage2_Pin GPIO_PIN_2
+#define voltage2_GPIO_Port GPIOA
+#define current2_Pin GPIO_PIN_3
+#define current2_GPIO_Port GPIOA
+#define voltage3_Pin GPIO_PIN_0
+#define voltage3_GPIO_Port GPIOB
+#define current3_Pin GPIO_PIN_1
+#define current3_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 
