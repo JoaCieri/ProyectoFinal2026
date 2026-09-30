@@ -1,0 +1,7 @@
+../Core/Src/measurements.c:13:7:CalculateRMS	24	static
+../Core/Src/measurements.c:23:7:CalculateMean	24	static
+../Core/Src/measurements.c:33:7:MeasureLineFrequency	40	static
+../Core/Src/measurements.c:79:14:GoertzelMagnitude	56	static
+../Core/Src/measurements.c:100:6:CalculateHarmonics	40	static
+../Core/Src/measurements.c:122:6:CalculatePower	40	static
+../Core/Src/measurements.c:154:6:DetectVoltageEvents	16	static

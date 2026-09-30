@@ -21,7 +21,9 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "signals.h"
+#include "acquisition.h"
+#include "processing.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -47,102 +49,6 @@ TIM_HandleTypeDef htim3;
 
 /* USER CODE BEGIN PV */
 
-/* ADC */
-#define ADC_CHANNELS              6
-#define DMA_BUFFER_SAMPLES        256
-#define HALF_BUFFER_SAMPLES       (DMA_BUFFER_SAMPLES / 2)
-#define SAMPLES_PER_CYCLE   100   // 5000 SPS / 50 Hz
-#define WARMUP_BUFFERS   200   // ~5s de descarte antes de calibrar y medir
-volatile uint16_t buffer_count = 0;
-/* Buffer del ADC */
-uint16_t adc_buffer[ADC_CHANNELS * DMA_BUFFER_SAMPLES];
-volatile uint8_t adc_half_complete = 0;
-volatile uint8_t adc_full_complete = 0;
-uint8_t calibration_done = 0;
-
-/* TENSION */
-float voltage1[HALF_BUFFER_SAMPLES];
-float voltage2[HALF_BUFFER_SAMPLES];
-float voltage3[HALF_BUFFER_SAMPLES];
-float voltage1_ac[HALF_BUFFER_SAMPLES];
-float voltage2_ac[HALF_BUFFER_SAMPLES];
-float voltage3_ac[HALF_BUFFER_SAMPLES];
-float voltage1_offset = 0.0f;
-float voltage2_offset = 0.0f;
-float voltage3_offset = 0.0f;
-float voltage1_gain = 229/1.355;//1.355vrms medidos con 228 vac medidos con multimetro
-float voltage2_gain = 1.0f;
-float voltage3_gain = 1.0f;
-volatile float vrms1 = 0;
-volatile float vrms2 = 0;
-volatile float vrms3 = 0;
-// Media movil
-#define VRMS_AVG_SAMPLES   50   // ~1s de promedio (50 buffers de ~20ms)
-volatile float vrms1_display = 0.0f;
-static float vrms1_accum = 0.0f;
-static uint16_t vrms1_avg_count = 0;
-
-/* CORRIENTE */
-float current1[HALF_BUFFER_SAMPLES];
-float current2[HALF_BUFFER_SAMPLES];
-float current3[HALF_BUFFER_SAMPLES];
-float current1_ac[HALF_BUFFER_SAMPLES];
-float current2_ac[HALF_BUFFER_SAMPLES];
-float current3_ac[HALF_BUFFER_SAMPLES];
-float current1_offset = 0.0f;
-float current2_offset = 0.0f;
-float current3_offset = 0.0f;
-float current1_gain = 1.0f;
-float current2_gain = 1.0f;
-float current3_gain = 1.0f;
-volatile float irms1 = 0;
-volatile float irms2 = 0;
-volatile float irms3 = 0;
-// Media movil
-volatile float irms1_display = 0.0f;
-static float irms1_accum = 0.0f;
-static uint16_t irms1_avg_count = 0;
-
-/* FRECUENCIA */
-volatile float measured_line_freq = 0.0f;
-volatile float line_freq_min = 9999.0f;
-volatile float line_freq_max = 0.0f;
-#define ZC_HYSTERESIS   3.0f   // volts; ajustable segun ruido observado
-#define MIN_SAMPLES_PER_CYCLE  95    // ~52.6Hz máximo plausible (+5%)
-#define MAX_SAMPLES_PER_CYCLE  105   // ~47.6Hz mínimo plausible (-5%)
-
-/* ARMONICOS */
-#define MAX_HARMONIC   25   // armónico más alto a calcular (ajustable, hasta ~40-45 con margen)
-float voltage1_harmonics[MAX_HARMONIC + 1]; // [1]=fundamental, [2]=2do armonico, etc. [0] no se usa
-float voltage1_thd = 0.0f;
-
-/* POTENCIA */
-volatile float p_active1 = 0.0f;
-volatile float p_apparent1 = 0.0f;
-volatile float p_reactive1 = 0.0f;
-volatile float power_factor1 = 0.0f;
-
-/* EVENTOS: SAG-SWELL */
-typedef enum { EVENT_NONE = 0, EVENT_SAG, EVENT_SWELL } event_type_t;
-typedef struct {
-    event_type_t type;
-    uint32_t start_time_ms;
-    uint32_t duration_ms;
-    float extreme_value;   // valor minimo (sag) o maximo (swell) alcanzado
-} power_event_t;
-#define MAX_EVENTS_LOG   20
-power_event_t events_log[MAX_EVENTS_LOG];
-volatile uint8_t events_count = 0;
-static event_type_t current_event_type = EVENT_NONE;
-static uint32_t current_event_start = 0;
-static float current_event_extreme = 0.0f;
-#define NOMINAL_VOLTAGE       220.0f
-#define SAG_THRESHOLD_LOW     (0.90f * NOMINAL_VOLTAGE)  // entra en sag
-#define SAG_THRESHOLD_HIGH    (0.92f * NOMINAL_VOLTAGE)  // sale del sag (histeresis)
-#define SWELL_THRESHOLD_HIGH  (1.10f * NOMINAL_VOLTAGE)  // entra en swell
-#define SWELL_THRESHOLD_LOW   (1.08f * NOMINAL_VOLTAGE)  // sale del swell (histeresis)
-
-
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -152,17 +58,6 @@ static void MX_DMA_Init(void);
 static void MX_ADC1_Init(void);
 static void MX_TIM3_Init(void);
 /* USER CODE BEGIN PFP */
-void ProcessADCBuffer(uint16_t *buffer);
-void ProcessMeasurements(void);
-void CalibrateOffset(void);
-void ApplyCalibration(void);
-float CalculateRMS(float *signal);
-float CalculateMean(float *signal);
-float GoertzelMagnitude(float *signal, uint16_t N, uint16_t k);
-void CalculateHarmonics(float *signal);
-float MeasureLineFrequency(float *signal, uint16_t N, float fs);
-void CalculatePower(float *voltage_ac, float *current_ac, float vrms, float irms);
-void DetectVoltageEvents(float vrms);
 
 /* USER CODE END PFP */
 
@@ -204,15 +99,26 @@ int main(void)
   MX_ADC1_Init();
   MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
-
+  HAL_TIM_Base_Start_IT(&htim3);
+  HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adc_buffer, ADC_CHANNELS * DMA_BUFFER_SAMPLES);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-	  HAL_Delay(1000);
+	  if (adc_half_complete)
+	  {
+	      adc_half_complete = 0;
+	      ProcessADCBuffer(&adc_buffer[0]);
+	      ProcessMeasurements();
+	  }
+	  else if (adc_full_complete)
+	  {
+	      adc_full_complete = 0;
+	      ProcessADCBuffer(&adc_buffer[(ADC_CHANNELS * DMA_BUFFER_SAMPLES) / 2]);
+	      ProcessMeasurements();
+	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -296,7 +202,7 @@ static void MX_ADC1_Init(void)
   hadc1.Init.ExternalTrigConv = ADC_EXTERNALTRIGCONV_T3_TRGO;
   hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
   hadc1.Init.NbrOfConversion = 6;
-  hadc1.Init.DMAContinuousRequests = DISABLE;
+  hadc1.Init.DMAContinuousRequests = ENABLE;
   hadc1.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
   if (HAL_ADC_Init(&hadc1) != HAL_OK)
   {

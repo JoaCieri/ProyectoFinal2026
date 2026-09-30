@@ -1,0 +1,5 @@
+../Core/Src/acquisition.c:18:6:HAL_ADC_ConvCpltCallback	16	static
+../Core/Src/acquisition.c:24:6:HAL_ADC_ConvHalfCpltCallback	16	static
+../Core/Src/acquisition.c:29:6:ProcessADCBuffer	24	static
+../Core/Src/acquisition.c:44:6:CalibrateOffset	8	static
+../Core/Src/acquisition.c:54:6:ApplyCalibration	16	static

@@ -1,0 +1,7 @@
+../Core/Src/measurements.c:13:7:CalculateRMS	2
+../Core/Src/measurements.c:23:7:CalculateMean	2
+../Core/Src/measurements.c:33:7:MeasureLineFrequency	10
+../Core/Src/measurements.c:79:14:GoertzelMagnitude	2
+../Core/Src/measurements.c:100:6:CalculateHarmonics	4
+../Core/Src/measurements.c:122:6:CalculatePower	4
+../Core/Src/measurements.c:154:6:DetectVoltageEvents	11
