@@ -1061,7 +1061,7 @@
 		)
 		(uuid "59fada66-65f2-4863-8b9c-bd888298fd15")
 	)
-	(global_label "+5V"
+	(global_label "+3V3"
 		(shape input)
 		(at 200.66 88.9 0)
 		(fields_autoplaced yes)
@@ -1073,7 +1073,7 @@
 		)
 		(uuid "18e694bf-32e3-4998-b2d8-375f6887c2b5")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 207.5157 88.9 0)
+			(at 208.7252 88.9 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1083,7 +1083,7 @@
 			)
 		)
 	)
-	(global_label "+5V"
+	(global_label "+3V3"
 		(shape input)
 		(at 173.99 57.15 180)
 		(fields_autoplaced yes)
@@ -1095,7 +1095,7 @@
 		)
 		(uuid "5dbee184-e180-4c5b-82c7-7ffd7a1e04eb")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 167.1343 57.15 0)
+			(at 165.9248 57.15 0)
 			(effects
 				(font
 					(size 1.27 1.27)
