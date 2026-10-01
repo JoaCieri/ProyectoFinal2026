@@ -57,6 +57,10 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define ETH_RST_Pin GPIO_PIN_14
+#define ETH_RST_GPIO_Port GPIOC
+#define ENCODER_SW_Pin GPIO_PIN_15
+#define ENCODER_SW_GPIO_Port GPIOC
 #define voltage1_Pin GPIO_PIN_0
 #define voltage1_GPIO_Port GPIOA
 #define current1_Pin GPIO_PIN_1
@@ -69,6 +73,18 @@ void Error_Handler(void);
 #define voltage3_GPIO_Port GPIOB
 #define current3_Pin GPIO_PIN_1
 #define current3_GPIO_Port GPIOB
+#define DISP_RST_Pin GPIO_PIN_10
+#define DISP_RST_GPIO_Port GPIOB
+#define DISP_CS_Pin GPIO_PIN_12
+#define DISP_CS_GPIO_Port GPIOB
+#define DISP_DC_Pin GPIO_PIN_8
+#define DISP_DC_GPIO_Port GPIOA
+#define ETH1_CS_Pin GPIO_PIN_15
+#define ETH1_CS_GPIO_Port GPIOA
+#define SD_CS_Pin GPIO_PIN_3
+#define SD_CS_GPIO_Port GPIOB
+#define ETH2_CS_Pin GPIO_PIN_5
+#define ETH2_CS_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 
