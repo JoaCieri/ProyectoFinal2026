@@ -5,144 +5,6 @@
 	(uuid "bc5fe741-d230-4640-9d7e-2309cf836efb")
 	(paper "A4")
 	(lib_symbols
-		(symbol "Device:R_Small_US"
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0.254)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "R"
-				(at 0.762 0.508 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "R_Small_US"
-				(at 0.762 -1.016 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Resistor, small US symbol"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "r resistor"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "R_*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "R_Small_US_1_1"
-				(polyline
-					(pts
-						(xy 0 1.524) (xy 1.016 1.143) (xy 0 0.762) (xy -1.016 0.381) (xy 0 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0) (xy 1.016 -0.381) (xy 0 -0.762) (xy -1.016 -1.143) (xy 0 -1.524)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin passive line
-					(at 0 2.54 270)
-					(length 1.016)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -2.54 90)
-					(length 1.016)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "Driver_Display:CR2013-MI2120"
 			(pin_names
 				(offset 0.762)
@@ -536,10 +398,16 @@
 		)
 	)
 	(junction
-		(at 167.64 77.47)
+		(at 176.53 87.63)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "a72e402c-9387-45f1-a02d-c2315406c672")
+		(uuid "28843b5c-5ff6-4749-b5c5-fa8560dbad51")
+	)
+	(junction
+		(at 167.64 87.63)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "85f3436b-5c3b-48e4-8dad-36982a2c4c5e")
 	)
 	(no_connect
 		(at 87.63 91.44)
@@ -583,13 +451,43 @@
 	)
 	(wire
 		(pts
-			(xy 107.95 77.47) (xy 167.64 77.47)
+			(xy 137.16 87.63) (xy 167.64 87.63)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "193441fc-41d7-4773-bb55-d93b3a9adc07")
+	)
+	(wire
+		(pts
+			(xy 107.95 77.47) (xy 137.16 77.47)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "19ea2b23-aefa-4fea-82d4-bf46a4ee05c2")
+	)
+	(wire
+		(pts
+			(xy 137.16 77.47) (xy 137.16 87.63)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1a5bb090-5a6d-4b36-9156-a1bb26b5119b")
+	)
+	(wire
+		(pts
+			(xy 128.27 106.68) (xy 176.53 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1c651601-a549-4f21-abcc-3fbada5f9597")
 	)
 	(wire
 		(pts
@@ -603,17 +501,7 @@
 	)
 	(wire
 		(pts
-			(xy 128.27 106.68) (xy 152.4 106.68)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2f771bc6-359f-40c4-86cf-5ac0c9689559")
-	)
-	(wire
-		(pts
-			(xy 107.95 119.38) (xy 172.72 119.38)
+			(xy 107.95 119.38) (xy 157.48 119.38)
 		)
 		(stroke
 			(width 0)
@@ -643,7 +531,7 @@
 	)
 	(wire
 		(pts
-			(xy 167.64 77.47) (xy 167.64 93.98)
+			(xy 167.64 87.63) (xy 167.64 93.98)
 		)
 		(stroke
 			(width 0)
@@ -653,13 +541,33 @@
 	)
 	(wire
 		(pts
-			(xy 167.64 77.47) (xy 172.72 77.47)
+			(xy 167.64 87.63) (xy 176.53 87.63)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "95898f91-7fcb-41c6-b585-2d1aaa2356c9")
+	)
+	(wire
+		(pts
+			(xy 176.53 87.63) (xy 176.53 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b104020a-5ac5-4a2b-b1ef-2b509aa035c4")
+	)
+	(wire
+		(pts
+			(xy 176.53 87.63) (xy 180.34 87.63)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bd9e179f-42f3-48f1-b67e-b3701f2c43a8")
 	)
 	(wire
 		(pts
@@ -680,6 +588,16 @@
 			(type default)
 		)
 		(uuid "d80e2fc4-20a4-4fb5-89dd-baaa2f27824b")
+	)
+	(wire
+		(pts
+			(xy 176.53 99.06) (xy 176.53 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dd0448ee-bcec-4957-9958-3aaa49851696")
 	)
 	(wire
 		(pts
@@ -723,20 +641,9 @@
 		)
 		(uuid "42d144ab-0dd2-4604-a2fc-692159a819a1")
 	)
-	(hierarchical_label "LCD_RST"
-		(shape input)
-		(at 152.4 106.68 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "4c80e85c-694f-4fa0-8502-4dd9744f0a72")
-	)
 	(hierarchical_label "LCD_+5V"
 		(shape output)
-		(at 172.72 77.47 0)
+		(at 180.34 87.63 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -758,7 +665,7 @@
 	)
 	(hierarchical_label "LCD_GND"
 		(shape output)
-		(at 172.72 119.38 0)
+		(at 157.48 119.38 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -890,76 +797,6 @@
 			(project "Prototipo"
 				(path "/f7e5c6e4-37d6-479e-ad19-5d06867b62e9/dc70b030-638a-4a35-8eda-471de98a086f/3570a500-835d-4a1e-8b96-6ea8e40dae9a"
 					(reference "U9")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small_US")
-		(at 167.64 96.52 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "4fd70ce0-2343-4aaf-834f-b3999d560479")
-		(property "Reference" "R1"
-			(at 170.18 95.2499 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "100"
-			(at 170.18 97.7899 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
-			(at 167.64 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 167.64 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small US symbol"
-			(at 167.64 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "603a5a88-0fa9-4838-a3ca-2e1add35d8dd")
-		)
-		(pin "1"
-			(uuid "5ae1627d-0e5a-48c0-a953-0c112b9a2678")
-		)
-		(instances
-			(project ""
-				(path "/f7e5c6e4-37d6-479e-ad19-5d06867b62e9/dc70b030-638a-4a35-8eda-471de98a086f/3570a500-835d-4a1e-8b96-6ea8e40dae9a"
-					(reference "R1")
 					(unit 1)
 				)
 			)

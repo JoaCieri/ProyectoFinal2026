@@ -411,6 +411,12 @@
 		(uuid "2d3c4796-87a9-4585-a5df-459035124bce")
 	)
 	(junction
+		(at 148.59 92.71)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "48008861-2a60-482a-aa9d-4e182a681dd5")
+	)
+	(junction
 		(at 152.4 104.14)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -437,6 +443,16 @@
 	(no_connect
 		(at 186.69 87.63)
 		(uuid "2dce22d0-e04a-417b-a360-0f6f418c46b1")
+	)
+	(wire
+		(pts
+			(xy 133.35 99.06) (xy 148.59 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "021e32b2-9eae-4b65-9d88-773245c8f4b5")
 	)
 	(wire
 		(pts
@@ -490,6 +506,16 @@
 	)
 	(wire
 		(pts
+			(xy 144.78 92.71) (xy 148.59 92.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4c214cec-c6b1-4509-9847-a148388a885b")
+	)
+	(wire
+		(pts
 			(xy 133.35 82.55) (xy 177.8 82.55)
 		)
 		(stroke
@@ -497,6 +523,16 @@
 			(type default)
 		)
 		(uuid "6b269511-ea2f-4fa3-aa8c-fa20a7bd3550")
+	)
+	(wire
+		(pts
+			(xy 148.59 99.06) (xy 148.59 92.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "733a9b58-2277-4727-8416-6a4c7e391b35")
 	)
 	(wire
 		(pts
@@ -530,7 +566,7 @@
 	)
 	(wire
 		(pts
-			(xy 144.78 92.71) (xy 152.4 92.71)
+			(xy 148.59 92.71) (xy 152.4 92.71)
 		)
 		(stroke
 			(width 0)
@@ -632,7 +668,7 @@
 			)
 		)
 	)
-	(hierarchical_label "SCT013_VOUT"
+	(hierarchical_label "SCT013_VOUT+"
 		(shape output)
 		(at 133.35 82.55 180)
 		(effects
@@ -642,6 +678,17 @@
 			(justify right)
 		)
 		(uuid "96e47b4c-e9cb-4241-bfed-2300928414c8")
+	)
+	(hierarchical_label "SCT013_VOUT-"
+		(shape output)
+		(at 133.35 99.06 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "e8240634-e549-41af-a144-1f0618b4bab2")
 	)
 	(symbol
 		(lib_id "Connector_Generic:Conn_01x01")
@@ -720,7 +767,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1955d029-b126-4b10-b5b2-a6a3054c33c4")
-		(property "Reference" "R4"
+		(property "Reference" "R14"
 			(at 140.97 86.36 90)
 			(effects
 				(font
@@ -772,7 +819,7 @@
 		(instances
 			(project "Prototipo"
 				(path "/f7e5c6e4-37d6-479e-ad19-5d06867b62e9/671bd778-e511-4534-b337-b2c149ed4da7"
-					(reference "R4")
+					(reference "R14")
 					(unit 1)
 				)
 			)
@@ -992,7 +1039,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "78ff9f78-1428-44fc-a60f-22229fedba6d")
-		(property "Reference" "R2"
+		(property "Reference" "R16"
 			(at 180.34 86.3599 0)
 			(effects
 				(font
@@ -1046,7 +1093,7 @@
 		(instances
 			(project "Prototipo"
 				(path "/f7e5c6e4-37d6-479e-ad19-5d06867b62e9/671bd778-e511-4534-b337-b2c149ed4da7"
-					(reference "R2")
+					(reference "R16")
 					(unit 1)
 				)
 			)
@@ -1062,7 +1109,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "aca19c73-633f-43ed-8300-d553570a93a4")
-		(property "Reference" "R3"
+		(property "Reference" "R15"
 			(at 154.94 95.2499 0)
 			(effects
 				(font
@@ -1116,7 +1163,7 @@
 		(instances
 			(project "Prototipo"
 				(path "/f7e5c6e4-37d6-479e-ad19-5d06867b62e9/671bd778-e511-4534-b337-b2c149ed4da7"
-					(reference "R3")
+					(reference "R15")
 					(unit 1)
 				)
 			)

@@ -267,6 +267,144 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Device:R_Small_US"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0.254)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "R"
+				(at 0.762 0.508 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "R_Small_US"
+				(at 0.762 -1.016 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Resistor, small US symbol"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "r resistor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "R_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "R_Small_US_1_1"
+				(polyline
+					(pts
+						(xy 0 1.524) (xy 1.016 1.143) (xy 0 0.762) (xy -1.016 0.381) (xy 0 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0) (xy 1.016 -0.381) (xy 0 -0.762) (xy -1.016 -1.143) (xy 0 -1.524)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at 0 2.54 270)
+					(length 1.016)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -2.54 90)
+					(length 1.016)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 	)
 	(junction
 		(at 149.86 104.14)
@@ -274,17 +412,31 @@
 		(color 0 0 0 0)
 		(uuid "02fa2dfb-77b8-4130-bec4-ba984996e5a6")
 	)
+	(junction
+		(at 168.91 95.25)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "3f2e79a1-a826-4c70-b977-97ab9fb96220")
+	)
+	(junction
+		(at 149.86 74.93)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "5c25de32-22b2-40fb-ae6a-c5106db71eba")
+	)
 	(no_connect
 		(at 160.02 87.63)
 		(uuid "d85cfce4-4d4e-4935-90d8-b2881fb1dea6")
 	)
-	(no_connect
-		(at 139.7 95.25)
-		(uuid "de0854e5-0818-4c82-ab33-116272df12b0")
-	)
-	(no_connect
-		(at 139.7 97.79)
-		(uuid "e9aa62ea-57c1-4036-bdbd-1796f1a35a8b")
+	(wire
+		(pts
+			(xy 134.62 97.79) (xy 139.7 97.79)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0246512e-f717-496a-87bb-800b37415c15")
 	)
 	(wire
 		(pts
@@ -308,7 +460,27 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 95.25) (xy 176.53 95.25)
+			(xy 168.91 88.9) (xy 168.91 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2ae3b48e-788e-4627-b081-7bbd957494c8")
+	)
+	(wire
+		(pts
+			(xy 134.62 95.25) (xy 139.7 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3587705b-6d23-4b25-a767-60b479c52321")
+	)
+	(wire
+		(pts
+			(xy 160.02 95.25) (xy 168.91 95.25)
 		)
 		(stroke
 			(width 0)
@@ -368,13 +540,33 @@
 	)
 	(wire
 		(pts
-			(xy 149.86 72.39) (xy 149.86 80.01)
+			(xy 149.86 74.93) (xy 149.86 80.01)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "943a110a-9c7b-4204-8100-8842b2fa9336")
+	)
+	(wire
+		(pts
+			(xy 168.91 83.82) (xy 168.91 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a42e2ae7-11f6-40b0-998c-0e85b36857ce")
+	)
+	(wire
+		(pts
+			(xy 168.91 95.25) (xy 176.53 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a5abaede-43e0-4ec8-b149-597c43088513")
 	)
 	(wire
 		(pts
@@ -385,6 +577,26 @@
 			(type default)
 		)
 		(uuid "a7497b73-f133-48d2-94eb-0d06d4f7fee9")
+	)
+	(wire
+		(pts
+			(xy 149.86 74.93) (xy 168.91 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b142c172-1d13-4e0d-a29f-4cfcb9ba781c")
+	)
+	(wire
+		(pts
+			(xy 149.86 72.39) (xy 149.86 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b578cf33-124d-4ecc-87b2-d8ec5f50b4be")
 	)
 	(global_label "GND"
 		(shape input)
@@ -430,6 +642,17 @@
 			)
 		)
 	)
+	(hierarchical_label "ADC_IN3"
+		(shape input)
+		(at 134.62 97.79 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "226f40a5-2049-4644-af7f-e17538e021d6")
+	)
 	(hierarchical_label "ADC_IN0"
 		(shape input)
 		(at 134.62 90.17 180)
@@ -440,6 +663,17 @@
 			(justify right)
 		)
 		(uuid "8e9631c2-267f-4c7c-8c08-00443a48b085")
+	)
+	(hierarchical_label "ADC_IN2"
+		(shape input)
+		(at 134.62 95.25 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "97506b7a-448e-468e-a067-4d1db35a9682")
 	)
 	(hierarchical_label "ADC_SCL"
 		(shape input)
@@ -563,6 +797,76 @@
 			(project "Prototipo"
 				(path "/f7e5c6e4-37d6-479e-ad19-5d06867b62e9/e27cf666-8cbc-4822-abe7-5197a8083313"
 					(reference "U10")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_Small_US")
+		(at 168.91 86.36 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "6747d77f-30af-4382-8fb5-20d31ffd9244")
+		(property "Reference" "R13"
+			(at 171.45 85.0899 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10k"
+			(at 171.45 87.6299 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
+			(at 168.91 86.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 168.91 86.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, small US symbol"
+			(at 168.91 86.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "fed9c46a-6e83-44a3-9cb5-3cb8286773bf")
+		)
+		(pin "2"
+			(uuid "bc326eae-e10d-471b-9a8f-7013ebccf011")
+		)
+		(instances
+			(project "Prototipo"
+				(path "/f7e5c6e4-37d6-479e-ad19-5d06867b62e9/e27cf666-8cbc-4822-abe7-5197a8083313"
+					(reference "R13")
 					(unit 1)
 				)
 			)
