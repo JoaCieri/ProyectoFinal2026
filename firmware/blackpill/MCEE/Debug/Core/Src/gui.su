@@ -1,0 +1,2 @@
+../Core/Src/gui.c:16:13:update_cb	32	static
+../Core/Src/gui.c:23:6:Gui_Init	16	static

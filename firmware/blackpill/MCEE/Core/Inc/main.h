@@ -61,6 +61,7 @@ void Error_Handler(void);
 #define ETH_RST_GPIO_Port GPIOC
 #define ENCODER_SW_Pin GPIO_PIN_15
 #define ENCODER_SW_GPIO_Port GPIOC
+#define ENCODER_SW_EXTI_IRQn EXTI15_10_IRQn
 #define voltage1_Pin GPIO_PIN_0
 #define voltage1_GPIO_Port GPIOA
 #define current1_Pin GPIO_PIN_1

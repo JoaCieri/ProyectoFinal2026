@@ -1,0 +1,15 @@
+../Middlewares/lvgl/src/draw/sw/blend/lv_draw_sw_blend_to_rgb888.c:210:28:lv_draw_sw_blend_color_to_rgb888	45
+../Middlewares/lvgl/src/draw/sw/blend/lv_draw_sw_blend_to_rgb888.c:517:28:lv_draw_sw_blend_image_to_rgb888	9
+../Middlewares/lvgl/src/draw/sw/blend/lv_draw_sw_blend_to_rgb888.c:569:35:i1_image_blend	22
+../Middlewares/lvgl/src/draw/sw/blend/lv_draw_sw_blend_to_rgb888.c:659:35:al88_image_blend	22
+../Middlewares/lvgl/src/draw/sw/blend/lv_draw_sw_blend_to_rgb888.c:745:35:l8_image_blend	22
+../Middlewares/lvgl/src/draw/sw/blend/lv_draw_sw_blend_to_rgb888.c:833:35:rgb565_image_blend	20
+../Middlewares/lvgl/src/draw/sw/blend/lv_draw_sw_blend_to_rgb888.c:931:35:rgb888_image_blend	24
+../Middlewares/lvgl/src/draw/sw/blend/lv_draw_sw_blend_to_rgb888.c:1031:35:argb8888_image_blend	22
+../Middlewares/lvgl/src/draw/sw/blend/lv_draw_sw_blend_to_rgb888.c:1118:42:lv_color_24_24_mix_premult	3
+../Middlewares/lvgl/src/draw/sw/blend/lv_draw_sw_blend_to_rgb888.c:1138:35:argb8888_premultiplied_image_blend	26
+../Middlewares/lvgl/src/draw/sw/blend/lv_draw_sw_blend_to_rgb888.c:1260:42:blend_non_normal_pixel	5
+../Middlewares/lvgl/src/draw/sw/blend/lv_draw_sw_blend_to_rgb888.c:1291:42:lv_color_8_24_mix	3
+../Middlewares/lvgl/src/draw/sw/blend/lv_draw_sw_blend_to_rgb888.c:1313:42:lv_color_24_24_mix	3
+../Middlewares/lvgl/src/draw/sw/blend/lv_draw_sw_blend_to_rgb888.c:1337:45:get_bit	2
+../Middlewares/lvgl/src/draw/sw/blend/lv_draw_sw_blend_to_rgb888.c:1344:44:drawbuf_next_row	1

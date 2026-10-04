@@ -70,3 +70,17 @@ void ProcessMeasurements(void)
     /* DETECCION DE EVENTOS */
     DetectVoltageEvents(vrms1);
 }
+
+
+void ProcessPendingBuffers(void)
+{
+    if (adc_half_complete) {
+        adc_half_complete = 0;
+        ProcessADCBuffer(&adc_buffer[0]);
+        ProcessMeasurements();
+    } else if (adc_full_complete) {
+        adc_full_complete = 0;
+        ProcessADCBuffer(&adc_buffer[(ADC_CHANNELS * DMA_BUFFER_SAMPLES) / 2]);
+        ProcessMeasurements();
+    }
+}

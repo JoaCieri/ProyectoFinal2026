@@ -1,0 +1,15 @@
+../Core/Src/display.c:54:20:cs_low	1
+../Core/Src/display.c:55:20:cs_high	1
+../Core/Src/display.c:56:20:dc_cmd	1
+../Core/Src/display.c:57:20:dc_data	1
+../Core/Src/display.c:59:13:write_cmd	1
+../Core/Src/display.c:67:13:write_data	1
+../Core/Src/display.c:75:13:write_cmd_data	2
+../Core/Src/display.c:81:6:Display_Init	2
+../Core/Src/display.c:108:6:Display_SetWindow	1
+../Core/Src/display.c:116:6:Display_FillRect	10
+../Core/Src/display.c:145:6:Display_FillScreen	1
+../Core/Src/display.c:150:6:Display_TestPattern	1
+../Core/Src/display.c:163:9:Display_FlushBusy	1
+../Core/Src/display.c:169:6:Display_FlushAsync	3
+../Core/Src/display.c:189:6:HAL_SPI_TxCpltCallback	3
