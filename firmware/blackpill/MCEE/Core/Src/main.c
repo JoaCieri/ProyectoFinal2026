@@ -24,6 +24,7 @@
 #include "signals.h"
 #include "acquisition.h"
 #include "processing.h"
+#include "encoder.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -54,7 +55,8 @@ TIM_HandleTypeDef htim3;
 TIM_HandleTypeDef htim4;
 
 /* USER CODE BEGIN PV */
-
+volatile int32_t  enc_position = 0;
+volatile uint32_t enc_button_count = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -111,6 +113,7 @@ int main(void)
   MX_SPI2_Init();
   MX_TIM4_Init();
   /* USER CODE BEGIN 2 */
+  Encoder_Init();
   HAL_TIM_Base_Start_IT(&htim3);
   HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adc_buffer, ADC_CHANNELS * DMA_BUFFER_SAMPLES);
   /* USER CODE END 2 */
@@ -131,6 +134,8 @@ int main(void)
 	      ProcessADCBuffer(&adc_buffer[(ADC_CHANNELS * DMA_BUFFER_SAMPLES) / 2]);
 	      ProcessMeasurements();
 	  }
+
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

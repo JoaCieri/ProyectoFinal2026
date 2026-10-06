@@ -1,0 +1,8 @@
+../Libs/lvgl/src/themes/default/lv_theme_default.c:198:13:style_init	104	static
+../Libs/lvgl/src/themes/default/lv_theme_default.c:626:14:lv_theme_default_init	64	static
+../Libs/lvgl/src/themes/default/lv_theme_default.c:702:6:lv_theme_default_is_inited	16	static
+../Libs/lvgl/src/themes/default/lv_theme_default.c:709:14:lv_theme_default_get	8	static
+../Libs/lvgl/src/themes/default/lv_theme_default.c:718:6:lv_theme_default_deinit	24	static
+../Libs/lvgl/src/themes/default/lv_theme_default.c:744:13:theme_apply	32	static
+../Libs/lvgl/src/themes/default/lv_theme_default.c:1240:13:style_init_reset	16	static
+../Libs/lvgl/src/themes/default/lv_theme_default.c:1252:13:resolution_change_event_cb	40	static

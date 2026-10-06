@@ -1,0 +1,4 @@
+../Libs/lvgl/src/draw/sw/../../misc/../../include/lvgl/core/../font/../draw/../stdlib/lv_string.h:73:20:lv_memzero	16	static
+../Libs/lvgl/src/draw/sw/lv_draw_sw_border.c:49:6:lv_draw_sw_border	88	static
+../Libs/lvgl/src/draw/sw/lv_draw_sw_border.c:85:6:draw_border_complex	248	static
+../Libs/lvgl/src/draw/sw/lv_draw_sw_border.c:291:13:draw_border_simple	88	static

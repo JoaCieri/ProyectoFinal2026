@@ -1,0 +1,11 @@
+../Libs/lvgl/src/draw/sw/blend/../../../../include/lvgl/core/../font/../draw/../stdlib/lv_string.h:73:20:lv_memzero	1
+../Libs/lvgl/src/draw/sw/blend/lv_draw_sw_blend_private.h:240:50:lv_color_mix32_premultiplied_inlined	3
+../Libs/lvgl/src/draw/sw/blend/lv_draw_sw_blend_to_argb8888_premultiplied.c:126:28:lv_draw_sw_blend_color_to_argb8888_premultiplied	21
+../Libs/lvgl/src/draw/sw/blend/lv_draw_sw_blend_to_argb8888_premultiplied.c:230:28:lv_draw_sw_blend_image_to_argb8888_premultiplied	5
+../Libs/lvgl/src/draw/sw/blend/lv_draw_sw_blend_to_argb8888_premultiplied.c:267:35:argb8888_image_blend	46
+../Libs/lvgl/src/draw/sw/blend/lv_draw_sw_blend_to_argb8888_premultiplied.c:447:35:rgb888_image_blend	25
+../Libs/lvgl/src/draw/sw/blend/lv_draw_sw_blend_to_argb8888_premultiplied.c:567:35:argb8888_premultiplied_image_blend	23
+../Libs/lvgl/src/draw/sw/blend/lv_draw_sw_blend_to_argb8888_premultiplied.c:706:28:lv_color_32_32_mix_premul	9
+../Libs/lvgl/src/draw/sw/blend/lv_draw_sw_blend_to_argb8888_premultiplied.c:749:13:lv_color_mix_with_alpha_cache_init	1
+../Libs/lvgl/src/draw/sw/blend/lv_draw_sw_blend_to_argb8888_premultiplied.c:759:44:drawbuf_next_row	1
+../Libs/lvgl/src/draw/sw/blend/lv_draw_sw_blend_to_argb8888_premultiplied.c:765:42:blend_non_normal_pixel_premultiplied	5

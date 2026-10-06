@@ -1,0 +1,5 @@
+../Libs/lvgl/src/draw/sw/../../misc/../../include/lvgl/core/../font/../draw/../stdlib/lv_string.h:73:20:lv_memzero	16	static
+../Libs/lvgl/src/draw/sw/lv_draw_sw_line.c:47:6:lv_draw_sw_line	160	static
+../Libs/lvgl/src/draw/sw/lv_draw_sw_line.c:102:35:draw_line_hor	128	static
+../Libs/lvgl/src/draw/sw/lv_draw_sw_line.c:179:35:draw_line_ver	120	static
+../Libs/lvgl/src/draw/sw/lv_draw_sw_line.c:250:35:draw_line_skew	416	static

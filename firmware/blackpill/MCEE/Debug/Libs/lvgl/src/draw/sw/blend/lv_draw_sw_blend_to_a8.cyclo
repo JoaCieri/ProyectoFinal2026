@@ -1,0 +1,9 @@
+../Libs/lvgl/src/draw/sw/blend/lv_draw_sw_blend_to_a8.c:165:28:lv_draw_sw_blend_color_to_a8	17
+../Libs/lvgl/src/draw/sw/blend/lv_draw_sw_blend_to_a8.c:240:28:lv_draw_sw_blend_image_to_a8	11
+../Libs/lvgl/src/draw/sw/blend/lv_draw_sw_blend_to_a8.c:302:35:a8_image_blend	21
+../Libs/lvgl/src/draw/sw/blend/lv_draw_sw_blend_to_a8.c:368:35:mask_only_image_blend	17
+../Libs/lvgl/src/draw/sw/blend/lv_draw_sw_blend_to_a8.c:429:35:i1_image_blend	24
+../Libs/lvgl/src/draw/sw/blend/lv_draw_sw_blend_to_a8.c:504:35:al88_image_blend	21
+../Libs/lvgl/src/draw/sw/blend/lv_draw_sw_blend_to_a8.c:574:35:argb8888_image_blend	21
+../Libs/lvgl/src/draw/sw/blend/lv_draw_sw_blend_to_a8.c:643:45:get_bit	2
+../Libs/lvgl/src/draw/sw/blend/lv_draw_sw_blend_to_a8.c:650:44:drawbuf_next_row	1
