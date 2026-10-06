@@ -14,6 +14,7 @@ C_SRCS += \
 ../Core/Src/main.c \
 ../Core/Src/measurements.c \
 ../Core/Src/processing.c \
+../Core/Src/settings.c \
 ../Core/Src/signals.c \
 ../Core/Src/stm32f4xx_hal_msp.c \
 ../Core/Src/stm32f4xx_it.c \
@@ -31,6 +32,7 @@ OBJS += \
 ./Core/Src/main.o \
 ./Core/Src/measurements.o \
 ./Core/Src/processing.o \
+./Core/Src/settings.o \
 ./Core/Src/signals.o \
 ./Core/Src/stm32f4xx_hal_msp.o \
 ./Core/Src/stm32f4xx_it.o \
@@ -48,6 +50,7 @@ C_DEPS += \
 ./Core/Src/main.d \
 ./Core/Src/measurements.d \
 ./Core/Src/processing.d \
+./Core/Src/settings.d \
 ./Core/Src/signals.d \
 ./Core/Src/stm32f4xx_hal_msp.d \
 ./Core/Src/stm32f4xx_it.d \
@@ -63,7 +66,7 @@ Core/Src/%.o Core/Src/%.su Core/Src/%.cyclo: ../Core/Src/%.c Core/Src/subdir.mk
 clean: clean-Core-2f-Src
 
 clean-Core-2f-Src:
-	-$(RM) ./Core/Src/acquisition.cyclo ./Core/Src/acquisition.d ./Core/Src/acquisition.o ./Core/Src/acquisition.su ./Core/Src/display.cyclo ./Core/Src/display.d ./Core/Src/display.o ./Core/Src/display.su ./Core/Src/encoder.cyclo ./Core/Src/encoder.d ./Core/Src/encoder.o ./Core/Src/encoder.su ./Core/Src/gui.cyclo ./Core/Src/gui.d ./Core/Src/gui.o ./Core/Src/gui.su ./Core/Src/i2c_devices.cyclo ./Core/Src/i2c_devices.d ./Core/Src/i2c_devices.o ./Core/Src/i2c_devices.su ./Core/Src/lvgl_port.cyclo ./Core/Src/lvgl_port.d ./Core/Src/lvgl_port.o ./Core/Src/lvgl_port.su ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/measurements.cyclo ./Core/Src/measurements.d ./Core/Src/measurements.o ./Core/Src/measurements.su ./Core/Src/processing.cyclo ./Core/Src/processing.d ./Core/Src/processing.o ./Core/Src/processing.su ./Core/Src/signals.cyclo ./Core/Src/signals.d ./Core/Src/signals.o ./Core/Src/signals.su ./Core/Src/stm32f4xx_hal_msp.cyclo ./Core/Src/stm32f4xx_hal_msp.d ./Core/Src/stm32f4xx_hal_msp.o ./Core/Src/stm32f4xx_hal_msp.su ./Core/Src/stm32f4xx_it.cyclo ./Core/Src/stm32f4xx_it.d ./Core/Src/stm32f4xx_it.o ./Core/Src/stm32f4xx_it.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32f4xx.cyclo ./Core/Src/system_stm32f4xx.d ./Core/Src/system_stm32f4xx.o ./Core/Src/system_stm32f4xx.su
+	-$(RM) ./Core/Src/acquisition.cyclo ./Core/Src/acquisition.d ./Core/Src/acquisition.o ./Core/Src/acquisition.su ./Core/Src/display.cyclo ./Core/Src/display.d ./Core/Src/display.o ./Core/Src/display.su ./Core/Src/encoder.cyclo ./Core/Src/encoder.d ./Core/Src/encoder.o ./Core/Src/encoder.su ./Core/Src/gui.cyclo ./Core/Src/gui.d ./Core/Src/gui.o ./Core/Src/gui.su ./Core/Src/i2c_devices.cyclo ./Core/Src/i2c_devices.d ./Core/Src/i2c_devices.o ./Core/Src/i2c_devices.su ./Core/Src/lvgl_port.cyclo ./Core/Src/lvgl_port.d ./Core/Src/lvgl_port.o ./Core/Src/lvgl_port.su ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/measurements.cyclo ./Core/Src/measurements.d ./Core/Src/measurements.o ./Core/Src/measurements.su ./Core/Src/processing.cyclo ./Core/Src/processing.d ./Core/Src/processing.o ./Core/Src/processing.su ./Core/Src/settings.cyclo ./Core/Src/settings.d ./Core/Src/settings.o ./Core/Src/settings.su ./Core/Src/signals.cyclo ./Core/Src/signals.d ./Core/Src/signals.o ./Core/Src/signals.su ./Core/Src/stm32f4xx_hal_msp.cyclo ./Core/Src/stm32f4xx_hal_msp.d ./Core/Src/stm32f4xx_hal_msp.o ./Core/Src/stm32f4xx_hal_msp.su ./Core/Src/stm32f4xx_it.cyclo ./Core/Src/stm32f4xx_it.d ./Core/Src/stm32f4xx_it.o ./Core/Src/stm32f4xx_it.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32f4xx.cyclo ./Core/Src/system_stm32f4xx.d ./Core/Src/system_stm32f4xx.o ./Core/Src/system_stm32f4xx.su
 
 .PHONY: clean-Core-2f-Src
 

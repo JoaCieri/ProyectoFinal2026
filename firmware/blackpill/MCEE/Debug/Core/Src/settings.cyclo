@@ -1,0 +1,7 @@
+../Core/Src/settings.c:38:17:crc32_calc.constprop	3
+../Core/Src/settings.c:52:13:blob_from_globals	1
+../Core/Src/settings.c:89:13:read_slot	5
+../Core/Src/settings.c:114:13:write_slot_verified	4
+../Core/Src/settings.c:160:6:Settings_Save	2
+../Core/Src/settings.c:126:19:Settings_Init	6
+../Core/Src/settings.c:170:6:Settings_RestoreFactory	2
