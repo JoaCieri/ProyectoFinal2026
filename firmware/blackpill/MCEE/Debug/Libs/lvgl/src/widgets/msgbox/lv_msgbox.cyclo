@@ -1,4 +1,4 @@
-../Libs/lvgl/src/widgets/msgbox/../../core/lv_obj_style_internal_gen.h:70:23:lv_obj_get_style_height_internal	1
+../Libs/lvgl/src/widgets/msgbox/lv_msgbox.c:324:13:msgbox_size_changed_event_cb	2
 ../Libs/lvgl/src/widgets/msgbox/lv_msgbox.c:104:12:lv_msgbox_create	4
 ../Libs/lvgl/src/widgets/msgbox/lv_msgbox.c:140:12:lv_msgbox_add_title	5
 ../Libs/lvgl/src/widgets/msgbox/lv_msgbox.c:168:12:lv_msgbox_add_header_button	5
@@ -11,6 +11,5 @@
 ../Libs/lvgl/src/widgets/msgbox/lv_msgbox.c:277:12:lv_msgbox_get_content	2
 ../Libs/lvgl/src/widgets/msgbox/lv_msgbox.c:284:12:lv_msgbox_get_title	2
 ../Libs/lvgl/src/widgets/msgbox/lv_msgbox.c:291:6:lv_msgbox_close	3
-../Libs/lvgl/src/widgets/msgbox/lv_msgbox.c:299:6:lv_msgbox_close_async	3
 ../Libs/lvgl/src/widgets/msgbox/lv_msgbox.c:311:13:msgbox_close_click_event_cb	1
-../Libs/lvgl/src/widgets/msgbox/lv_msgbox.c:324:13:msgbox_size_changed_event_cb	1
+../Libs/lvgl/src/widgets/msgbox/lv_msgbox.c:299:6:lv_msgbox_close_async	3

@@ -1,8 +1,12 @@
+../Libs/lvgl/src/widgets/spinbox/lv_spinbox.c:562:13:lv_spinbox_updatevalue	12
+../Libs/lvgl/src/widgets/spinbox/lv_spinbox.c:429:13:lv_spinbox_constructor	1
+../Libs/lvgl/src/widgets/spinbox/lv_spinbox.c:640:13:spinbox_value_changed_event_cb	3
 ../Libs/lvgl/src/widgets/spinbox/lv_spinbox.c:115:12:lv_spinbox_create	1
-../Libs/lvgl/src/widgets/spinbox/lv_spinbox.c:127:6:lv_spinbox_set_value	4
+../Libs/lvgl/src/widgets/spinbox/lv_spinbox.c:127:6:lv_spinbox_set_value	2
+../Libs/lvgl/src/widgets/spinbox/lv_spinbox.c:659:13:spinbox_value_observer_cb	2
 ../Libs/lvgl/src/widgets/spinbox/lv_spinbox.c:140:6:lv_spinbox_set_rollover	2
-../Libs/lvgl/src/widgets/spinbox/lv_spinbox.c:148:6:lv_spinbox_set_digit_format	7
-../Libs/lvgl/src/widgets/spinbox/lv_spinbox.c:169:6:lv_spinbox_set_digit_count	3
+../Libs/lvgl/src/widgets/spinbox/lv_spinbox.c:148:6:lv_spinbox_set_digit_format	5
+../Libs/lvgl/src/widgets/spinbox/lv_spinbox.c:169:6:lv_spinbox_set_digit_count	2
 ../Libs/lvgl/src/widgets/spinbox/lv_spinbox.c:181:6:lv_spinbox_set_dec_point_pos	2
 ../Libs/lvgl/src/widgets/spinbox/lv_spinbox.c:191:6:lv_spinbox_set_step	2
 ../Libs/lvgl/src/widgets/spinbox/lv_spinbox.c:200:6:lv_spinbox_set_range	4
@@ -22,9 +26,5 @@
 ../Libs/lvgl/src/widgets/spinbox/lv_spinbox.c:343:10:lv_spinbox_get_digit_step_direction	2
 ../Libs/lvgl/src/widgets/spinbox/lv_spinbox.c:350:6:lv_spinbox_increment	8
 ../Libs/lvgl/src/widgets/spinbox/lv_spinbox.c:379:6:lv_spinbox_decrement	8
-../Libs/lvgl/src/widgets/spinbox/lv_spinbox.c:409:17:lv_spinbox_bind_value	5
-../Libs/lvgl/src/widgets/spinbox/lv_spinbox.c:429:13:lv_spinbox_constructor	1
 ../Libs/lvgl/src/widgets/spinbox/lv_spinbox.c:455:13:lv_spinbox_event	27
-../Libs/lvgl/src/widgets/spinbox/lv_spinbox.c:562:13:lv_spinbox_updatevalue	14
-../Libs/lvgl/src/widgets/spinbox/lv_spinbox.c:640:13:spinbox_value_changed_event_cb	2
-../Libs/lvgl/src/widgets/spinbox/lv_spinbox.c:659:13:spinbox_value_observer_cb	2
+../Libs/lvgl/src/widgets/spinbox/lv_spinbox.c:409:17:lv_spinbox_bind_value	4

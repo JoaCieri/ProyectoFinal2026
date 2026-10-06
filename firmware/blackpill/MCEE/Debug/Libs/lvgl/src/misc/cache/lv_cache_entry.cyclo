@@ -1,6 +1,6 @@
 ../Libs/lvgl/src/misc/cache/lv_cache_entry.c:42:6:lv_cache_entry_reset_ref	1
 ../Libs/lvgl/src/misc/cache/lv_cache_entry.c:48:6:lv_cache_entry_inc_ref	1
-../Libs/lvgl/src/misc/cache/lv_cache_entry.c:54:6:lv_cache_entry_dec_ref	2
+../Libs/lvgl/src/misc/cache/lv_cache_entry.c:54:6:lv_cache_entry_dec_ref	1
 ../Libs/lvgl/src/misc/cache/lv_cache_entry.c:64:9:lv_cache_entry_get_ref	1
 ../Libs/lvgl/src/misc/cache/lv_cache_entry.c:70:10:lv_cache_entry_get_node_size	1
 ../Libs/lvgl/src/misc/cache/lv_cache_entry.c:75:6:lv_cache_entry_set_node_size	1

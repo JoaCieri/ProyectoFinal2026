@@ -1,11 +1,11 @@
-../Libs/lvgl/src/widgets/arclabel/../../core/lv_obj_style_internal_gen.h:1204:26:lv_obj_get_style_text_color_internal	1
-../Libs/lvgl/src/widgets/arclabel/../../core/lv_obj_style_internal_gen.h:1232:24:lv_obj_get_style_text_opa_internal	1
-../Libs/lvgl/src/widgets/arclabel/../../core/lv_obj_style_internal_gen.h:1245:33:lv_obj_get_style_text_font_internal	1
-../Libs/lvgl/src/widgets/arclabel/../../core/lv_obj_style_internal_gen.h:1258:23:lv_obj_get_style_text_letter_space_internal	1
+../Libs/lvgl/src/widgets/arclabel/lv_arclabel.c:683:21:recolor_cmd_get_next.constprop	24
+../Libs/lvgl/src/widgets/arclabel/lv_arclabel.c:562:27:arclabel_calc_arc_text_total_angle	23
+../Libs/lvgl/src/widgets/arclabel/lv_arclabel.c:404:13:lv_arclabel_event	22
 ../Libs/lvgl/src/widgets/arclabel/lv_arclabel.c:83:12:lv_arclabel_create	1
 ../Libs/lvgl/src/widgets/arclabel/lv_arclabel.c:103:6:lv_arclabel_set_text	10
 ../Libs/lvgl/src/widgets/arclabel/lv_arclabel.c:143:6:lv_arclabel_set_text_fmt	5
 ../Libs/lvgl/src/widgets/arclabel/lv_arclabel.c:169:6:lv_arclabel_set_text_static	5
+../Libs/lvgl/src/widgets/arclabel/lv_arclabel.c:380:13:lv_arclabel_constructor	1
 ../Libs/lvgl/src/widgets/arclabel/lv_arclabel.c:187:6:lv_arclabel_set_angle_start	2
 ../Libs/lvgl/src/widgets/arclabel/lv_arclabel.c:196:6:lv_arclabel_set_angle_size	2
 ../Libs/lvgl/src/widgets/arclabel/lv_arclabel.c:205:6:lv_arclabel_set_offset	2
@@ -30,11 +30,3 @@
 ../Libs/lvgl/src/widgets/arclabel/lv_arclabel.c:353:24:lv_arclabel_get_overflow	2
 ../Libs/lvgl/src/widgets/arclabel/lv_arclabel.c:359:6:lv_arclabel_get_end_overlap	2
 ../Libs/lvgl/src/widgets/arclabel/lv_arclabel.c:365:20:lv_arclabel_get_text_angle	2
-../Libs/lvgl/src/widgets/arclabel/lv_arclabel.c:380:13:lv_arclabel_constructor	1
-../Libs/lvgl/src/widgets/arclabel/lv_arclabel.c:404:13:lv_arclabel_event	3
-../Libs/lvgl/src/widgets/arclabel/lv_arclabel.c:420:13:arclabel_draw_main	22
-../Libs/lvgl/src/widgets/arclabel/lv_arclabel.c:562:27:arclabel_calc_arc_text_total_angle	10
-../Libs/lvgl/src/widgets/arclabel/lv_arclabel.c:610:27:calc_arc_text_total_angle	18
-../Libs/lvgl/src/widgets/arclabel/lv_arclabel.c:683:21:recolor_cmd_get_next	37
-../Libs/lvgl/src/widgets/arclabel/lv_arclabel.c:744:27:deg_to_rad	1
-../Libs/lvgl/src/widgets/arclabel/lv_arclabel.c:753:27:rad_to_deg	1

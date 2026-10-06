@@ -1,5 +1,5 @@
-../Core/Src/lvgl_port.c:24:13:flush_done	1
-../Core/Src/lvgl_port.c:29:13:flush_cb	3
-../Core/Src/lvgl_port.c:53:13:flush_wait_cb	2
 ../Core/Src/lvgl_port.c:61:13:encoder_read_cb	1
+../Core/Src/lvgl_port.c:53:13:flush_wait_cb	2
+../Core/Src/lvgl_port.c:29:13:flush_cb	3
+../Core/Src/lvgl_port.c:24:13:flush_done	1
 ../Core/Src/lvgl_port.c:68:6:LvglPort_Init	1

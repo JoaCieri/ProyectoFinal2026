@@ -1,4 +1,3 @@
-../Libs/lvgl/src/layouts/../core/lv_obj_style_internal_gen.h:1707:24:lv_obj_get_style_layout_internal	1
 ../Libs/lvgl/src/layouts/lv_layout.c:40:6:lv_layout_init	1
 ../Libs/lvgl/src/layouts/lv_layout.c:54:6:lv_layout_deinit	1
 ../Libs/lvgl/src/layouts/lv_layout.c:59:10:lv_layout_create	1

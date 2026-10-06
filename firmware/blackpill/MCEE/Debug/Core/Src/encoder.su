@@ -1,5 +1,5 @@
 ../Core/Src/encoder.c:24:6:Encoder_Init	8	static
-../Core/Src/encoder.c:30:9:Encoder_GetDelta	16	static
+../Core/Src/encoder.c:30:9:Encoder_GetDelta	0	static
 ../Core/Src/encoder.c:42:9:Encoder_ButtonIsDown	8	static
 ../Core/Src/encoder.c:47:9:Encoder_ButtonPressed	16	static
-../Core/Src/encoder.c:74:6:HAL_GPIO_EXTI_Callback	16	static
+../Core/Src/encoder.c:74:6:HAL_GPIO_EXTI_Callback	8	static

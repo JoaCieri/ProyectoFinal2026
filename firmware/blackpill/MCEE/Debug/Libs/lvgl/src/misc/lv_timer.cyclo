@@ -1,12 +1,13 @@
+../Libs/lvgl/src/misc/lv_timer.c:403:13:lv_timer_handler_resume	2
 ../Libs/lvgl/src/misc/lv_timer.c:50:6:lv_timer_core_init	1
-../Libs/lvgl/src/misc/lv_timer.c:58:37:lv_timer_handler	12
-../Libs/lvgl/src/misc/lv_timer.c:135:37:lv_timer_get_time_to_next	4
-../Libs/lvgl/src/misc/lv_timer.c:153:33:lv_timer_periodic_handler	2
-../Libs/lvgl/src/misc/lv_timer.c:163:14:lv_timer_create_basic	1
+../Libs/lvgl/src/misc/lv_timer.c:135:37:lv_timer_get_time_to_next	5
 ../Libs/lvgl/src/misc/lv_timer.c:168:14:lv_timer_create	2
+../Libs/lvgl/src/misc/lv_timer.c:163:14:lv_timer_create_basic	1
 ../Libs/lvgl/src/misc/lv_timer.c:195:6:lv_timer_set_cb	2
 ../Libs/lvgl/src/misc/lv_timer.c:201:6:lv_timer_delete	2
 ../Libs/lvgl/src/misc/lv_timer.c:217:6:lv_timer_pause	2
+../Libs/lvgl/src/misc/lv_timer.c:58:37:lv_timer_handler	17
+../Libs/lvgl/src/misc/lv_timer.c:153:33:lv_timer_periodic_handler	2
 ../Libs/lvgl/src/misc/lv_timer.c:223:6:lv_timer_resume	2
 ../Libs/lvgl/src/misc/lv_timer.c:230:6:lv_timer_set_period	2
 ../Libs/lvgl/src/misc/lv_timer.c:237:6:lv_timer_ready	2
@@ -22,7 +23,4 @@
 ../Libs/lvgl/src/misc/lv_timer.c:298:37:lv_timer_handler_run_in_period	2
 ../Libs/lvgl/src/misc/lv_timer.c:309:8:lv_timer_get_user_data	2
 ../Libs/lvgl/src/misc/lv_timer.c:315:6:lv_timer_get_paused	2
-../Libs/lvgl/src/misc/lv_timer.c:339:13:lv_timer_exec	9
-../Libs/lvgl/src/misc/lv_timer.c:391:17:lv_timer_time_remaining	2
-../Libs/lvgl/src/misc/lv_timer.c:403:13:lv_timer_handler_resume	2
 ../Libs/lvgl/src/misc/lv_timer.c:412:6:lv_timer_handler_set_resume_cb	1

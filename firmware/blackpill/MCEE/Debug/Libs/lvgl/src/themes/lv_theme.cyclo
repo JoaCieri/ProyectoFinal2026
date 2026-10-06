@@ -1,4 +1,6 @@
-../Libs/lvgl/src/themes/lv_theme.c:40:14:lv_theme_get_from_obj	3
+../Libs/lvgl/src/themes/lv_theme.c:148:13:apply_theme	4
+../Libs/lvgl/src/themes/lv_theme.c:159:13:apply_theme_recursion	3
+../Libs/lvgl/src/themes/lv_theme.c:40:14:lv_theme_get_from_obj	2
 ../Libs/lvgl/src/themes/lv_theme.c:48:14:lv_theme_create	1
 ../Libs/lvgl/src/themes/lv_theme.c:54:6:lv_theme_delete	1
 ../Libs/lvgl/src/themes/lv_theme.c:59:6:lv_theme_copy	3
@@ -12,5 +14,3 @@
 ../Libs/lvgl/src/themes/lv_theme.c:116:12:lv_theme_get_color_primary	2
 ../Libs/lvgl/src/themes/lv_theme.c:122:12:lv_theme_get_color_secondary	2
 ../Libs/lvgl/src/themes/lv_theme.c:128:8:lv_theme_get_user_data	2
-../Libs/lvgl/src/themes/lv_theme.c:148:13:apply_theme	4
-../Libs/lvgl/src/themes/lv_theme.c:159:13:apply_theme_recursion	3
