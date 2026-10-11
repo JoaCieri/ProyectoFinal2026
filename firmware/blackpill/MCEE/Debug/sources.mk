@@ -25,6 +25,7 @@ SUBDIRS := \
 Core/Src \
 Core/Startup \
 Drivers/STM32F4xx_HAL_Driver/Src \
+Libs/fatfs \
 Libs/lvgl/src/core \
 Libs/lvgl/src/debugging/monkey \
 Libs/lvgl/src/debugging/profiler \

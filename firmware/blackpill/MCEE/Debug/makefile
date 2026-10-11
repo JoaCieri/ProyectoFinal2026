@@ -156,6 +156,7 @@ RM := rm -rf
 -include Libs/lvgl/src/debugging/monkey/subdir.mk
 -include Libs/lvgl/src/core/subdir.mk
 -include Libs/lvgl/src/subdir.mk
+-include Libs/fatfs/subdir.mk
 -include Drivers/STM32F4xx_HAL_Driver/Src/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/subdir.mk

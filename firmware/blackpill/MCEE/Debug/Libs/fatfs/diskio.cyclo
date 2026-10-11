@@ -1,0 +1,6 @@
+../Libs/fatfs/diskio.c:17:9:disk_status	2
+../Libs/fatfs/diskio.c:24:9:disk_initialize	2
+../Libs/fatfs/diskio.c:33:9:disk_read	4
+../Libs/fatfs/diskio.c:44:9:disk_write	4
+../Libs/fatfs/diskio.c:55:9:disk_ioctl	7
+../Libs/fatfs/diskio.c:86:7:get_fattime	3

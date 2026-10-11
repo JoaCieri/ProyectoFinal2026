@@ -14,16 +14,22 @@ static float current1[HALF_BUFFER_SAMPLES];
 static float current2[HALF_BUFFER_SAMPLES];
 static float current3[HALF_BUFFER_SAMPLES];
 
+/* Esta variable se debe monitorear que permanezca en 0 para validar que el
+ * agregado de modulos no afecte la adquisicion de muestras y se pierdan */
+volatile uint32_t adc_overruns = 0;
+
 
 /* Callback de buffer completo */
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
+    if (adc_full_complete) adc_overruns++;
 	adc_full_complete = 1;
 }
 
 /* Callback de mitad de buffer */
 void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* hadc)
 {
+    if (adc_half_complete) adc_overruns++;
     adc_half_complete = 1;
 }
 

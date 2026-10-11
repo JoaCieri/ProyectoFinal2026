@@ -28,6 +28,10 @@
 #include "lvgl/lvgl.h"
 #include "lvgl_port.h"
 #include "gui.h"
+#include "sd_card.h"
+#include "i2c_devices.h"
+#include "settings.h"
+#include "test_logger.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -118,8 +122,12 @@ int main(void)
   Encoder_Init();
   LvglPort_Init();
   Gui_Init();
+  DS3231_Init();
+  Settings_Init();
+  TestLogger_Init();
   /* primera pantalla completa, antes de arrancar el ADC */
   lv_refr_now(NULL);
+
   HAL_TIM_Base_Start_IT(&htim3);
   HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adc_buffer, ADC_CHANNELS * DMA_BUFFER_SAMPLES);
   /* USER CODE END 2 */
@@ -130,7 +138,8 @@ int main(void)
   {
 	  ProcessPendingBuffers();
 	  lv_timer_handler();
-    /* USER CODE END WHILE */
+	  TestLogger_Process();
+	  /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
   }

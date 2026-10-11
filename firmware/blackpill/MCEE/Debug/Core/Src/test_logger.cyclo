@@ -1,0 +1,11 @@
+../Core/Src/test_logger.c:134:13:sd_mount	7
+../Core/Src/test_logger.c:266:13:take_snapshot	6
+../Core/Src/test_logger.c:362:13:update_status	5
+../Core/Src/test_logger.c:162:13:sd_drop	2
+../Core/Src/test_logger.c:297:17:reg_u	4
+../Core/Src/test_logger.c:306:17:reg_s	3
+../Core/Src/test_logger.c:390:13:eth_start	2
+../Core/Src/test_logger.c:65:14:put_fixed	5
+../Core/Src/test_logger.c:184:13:sd_open_session.isra	9
+../Core/Src/test_logger.c:492:6:TestLogger_Init	3
+../Core/Src/test_logger.c:507:6:TestLogger_Process	16

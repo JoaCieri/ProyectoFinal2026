@@ -1,0 +1,16 @@
+../Core/Src/sd_card.c:60:13:spi_set_prescaler	1
+../Core/Src/sd_card.c:76:13:bus_release	1
+../Core/Src/sd_card.c:68:13:bus_acquire	2
+../Core/Src/sd_card.c:81:16:spi_xfer	1
+../Core/Src/sd_card.c:103:13:deselect	1
+../Core/Src/sd_card.c:164:13:read_datablock	5
+../Core/Src/sd_card.c:91:13:wait_ready.constprop	3
+../Core/Src/sd_card.c:189:13:write_datablock	4
+../Core/Src/sd_card.c:109:13:select_card	2
+../Core/Src/sd_card.c:120:16:send_cmd	9
+../Core/Src/sd_card.c:224:13:SD_Init	18
+../Core/Src/sd_card.c:339:6:SD_IsReady	1
+../Core/Src/sd_card.c:344:10:SD_GetSectorCount	1
+../Core/Src/sd_card.c:349:13:SD_ReadBlocks	13
+../Core/Src/sd_card.c:381:13:SD_WriteBlocks	14
+../Core/Src/sd_card.c:416:13:SD_Sync	3
