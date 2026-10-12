@@ -1,107 +1,75 @@
-import random
+from pymodbus.client import ModbusTcpClient
 
-
-class driver:
+class Driver:
 
     def __init__(self):
-        self.connected = False
-        print("DRIVER CREADO", id(self))
-
-    # ---------------- CONEXIÓN ----------------
+        self.client = None
 
     def conectar(self):
+        self.client = ModbusTcpClient("192.168.0.50")
 
-        self.connected = True
-        print("CONECTAR", id(self))
-        print("Driver simulado conectado")
-
-        return True
-
-    # ---------------- DESCONEXIÓN ----------------
+        return self.client.connect()
 
     def desconectar(self):
-
-        self.connected = False
-
-        print("Driver simulado desconectado")
+        if self.client:
+            self.client.close()
 
     # ---------------- LECTURA ----------------
-
     def leer_datos(self):
-
-        print("LEYENDO", id(self))
-        if not self.connected:
-            import traceback
-            print("No conectado.........")
-            traceback.print_stack(limit=3)
+        if self.client is None:
+            print("No conectado")
             return None
 
+        rr = self.client.read_holding_registers(address=0, count=31)
+
+        if rr.isError():
+            print("Error en lectura Modbus")
+            return None
+
+        r = rr.registers
+
+        # ----------- PARSEO -----------
         datos = {
-
             "L1": {
-
-                "Vrms": round(random.uniform(220, 235), 1),
-                "Irms": round(random.uniform(5, 20), 2),
-
-                "P": round(random.uniform(1000, 4000), 1),
-                "Q": round(random.uniform(150, 1200), 1),
-                "S": round(random.uniform(1200, 4500), 1),
-
-                "FP": round(random.uniform(0.85, 0.99), 3),
-
-                "THD_V": round(random.uniform(1, 6), 1),
-                "THD_I": round(random.uniform(2, 20), 1)
-
+                "Vrms": r[0] / 10,
+                "Irms": r[1] / 100,
+                "P": r[2] / 10,
+                "Q": r[3] / 10,
+                "S": r[4] / 10,
+                "FP": r[5] / 1000,
+                "THD_V": r[6] / 10,
+                "THD_I": r[7] / 10
             },
-
             "L2": {
-
-                "Vrms": round(random.uniform(220, 235), 1),
-                "Irms": round(random.uniform(5, 20), 2),
-
-                "P": round(random.uniform(1000, 4000), 1),
-                "Q": round(random.uniform(150, 1200), 1),
-                "S": round(random.uniform(1200, 4500), 1),
-
-                "FP": round(random.uniform(0.85, 0.99), 3),
-
-                "THD_V": round(random.uniform(1, 6), 1),
-                "THD_I": round(random.uniform(2, 20), 1)
-
+                "Vrms": r[8] / 10,
+                "Irms": r[9] / 100,
+                "P": r[10] / 10,
+                "Q": r[11] / 10,
+                "S": r[12] / 10,
+                "FP": r[13] / 1000,
+                "THD_V": r[14] / 10,
+                "THD_I": r[15] / 10
             },
-
             "L3": {
-
-                "Vrms": round(random.uniform(220, 235), 1),
-                "Irms": round(random.uniform(5, 20), 2),
-
-                "P": round(random.uniform(1000, 4000), 1),
-                "Q": round(random.uniform(150, 1200), 1),
-                "S": round(random.uniform(1200, 4500), 1),
-
-                "FP": round(random.uniform(0.85, 0.99), 3),
-
-                "THD_V": round(random.uniform(1, 6), 1),
-                "THD_I": round(random.uniform(2, 20), 1)
-
+                "Vrms": r[16] / 10,
+                "Irms": r[17] / 100,
+                "P": r[18] / 10,
+                "Q": r[19] / 10,
+                "S": r[20] / 10,
+                "FP": r[21] / 1000,
+                "THD_V": r[22] / 10,
+                "THD_I": r[23] / 10
             },
-
             "totales": {
-
-                "P_total": round(random.uniform(3000, 12000), 1),
-                "Q_total": round(random.uniform(500, 3500), 1),
-                "S_total": round(random.uniform(3500, 13000), 1),
-                "FP_total": round(random.uniform(0.88, 0.99), 3)
-
+                "P_total": r[24] / 10,
+                "Q_total": r[25] / 10,
+                "S_total": r[26] / 10,
+                "FP_total": r[27] / 1000
             },
-
             "sistema": {
-
-                "frecuencia": round(random.uniform(49.8, 50.2), 2),
-                "topologia": 3
-
+                "frecuencia": r[28] / 10,
+                "topologia": r[29]
             }
-
         }
 
         return datos
