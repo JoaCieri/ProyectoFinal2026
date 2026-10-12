@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 import sys
+import pyqtgraph as pg
+import pandas as pd
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5 import uic
 from PyQt5.QtCore import QTimer
 from datetime import datetime
 from PyQt5.QtWidgets import QFileDialog
+from PyQt5.QtWidgets import QVBoxLayout
 
 from driver import driver
 from historico import Historico
@@ -20,6 +23,23 @@ class MainWindow(QMainWindow):
 
         # Cargar interfaz
         uic.loadUi("MainWindow.ui", self)
+        
+        # Crear gráfico
+        self.graphWidget = pg.PlotWidget()
+        
+        layout = QVBoxLayout(self.widgetGrafico)
+        layout.addWidget(self.graphWidget)
+        
+        self.graphWidget.setBackground('w')
+        self.graphWidget.setTitle("Tensión RMS L1")
+        self.graphWidget.setLabel('left', 'Voltaje', units='V')
+        self.graphWidget.setLabel('bottom', 'Muestra')
+        
+        # Curva vacía
+        self.curva = self.graphWidget.plot(
+            [],
+            pen=pg.mkPen('b', width=2)
+        )
         
         # TIMER
         self.timer = QTimer()
@@ -46,6 +66,11 @@ class MainWindow(QMainWindow):
         self.proceso.clicked.connect(self.proceso_estudio)
         self.fin_proceso.clicked.connect(self.fin_proceso_estudio)
         self.btn_ruta.clicked.connect(self.examinar)
+        self.btn_abrir_cvs.clicked.connect(self.diagnostico)
+        
+        self.comboGrafico.currentIndexChanged.connect(
+            self.actualizar_grafico
+        )
         
         
     # ---------------- HORARIO RELOS ----------------
@@ -74,6 +99,137 @@ class MainWindow(QMainWindow):
         self.comenzar.setEnabled(False)
         self.proceso.setEnabled(False)   
         
+        
+     # ---------------- DIAGNOSTICO---------------- 
+     
+    def diagnostico(self):
+    
+        archivo, _ = QFileDialog.getOpenFileName(
+            self,
+            "Seleccionar estudio",
+            "",
+            "Archivos CSV (*.csv)"
+        )
+    
+        if not archivo:
+            return
+    
+        try:
+    
+            # -------------------------
+            # CARGAR CSV
+            # -------------------------
+    
+            self.df_estudio = pd.read_csv(archivo)
+    
+            df = self.df_estudio
+    
+            # -------------------------
+            # ESTADISTICAS
+            # -------------------------
+    
+            self.lbl_v_prom.setText(
+                f"{df['Vrms_L1'].mean():.2f} V"
+            )
+    
+            self.lbl_v_max.setText(
+                f"{df['Vrms_L1'].max():.2f} V"
+            )
+    
+            self.lbl_v_min.setText(
+                f"{df['Vrms_L1'].min():.2f} V"
+            )
+    
+            self.lbl_i_prom.setText(
+                f"{df['Irms_L1'].mean():.2f} A"
+            )
+    
+            self.lbl_p_prom.setText(
+                f"{df['P_L1'].mean():.2f} W"
+            )
+    
+            self.lbl_fp_prom.setText(
+                f"{df['FP_L1'].mean():.3f}"
+            )
+    
+            self.lbl_thdv_prom.setText(
+                f"{df['THDv_L1'].mean():.2f} %"
+            )
+    
+            self.lbl_thdi_prom.setText(
+                f"{df['THDi_L1'].mean():.2f} %"
+            )
+    
+            # -------------------------
+            # MENSAJE
+            # -------------------------
+    
+            self.consola.setText(
+                f"Archivo cargado:\n{archivo}"
+            )
+    
+            # -------------------------
+            # GRAFICO INICIAL
+            # -------------------------
+    
+            self.actualizar_grafico()
+    
+        except Exception as e:
+    
+            self.consola.setText(
+                f"Error al cargar estudio:\n{str(e)}"
+            )
+    
+            print(e)
+   
+        
+    def actualizar_grafico(self):
+    
+        if not hasattr(self, "df_estudio"):
+            return
+    
+        variable = self.comboGrafico.currentText()
+    
+        mapa = {
+    
+            "Tensión L1": "Vrms_L1",
+            "Tensión L2": "Vrms_L2",
+            "Tensión L3": "Vrms_L3",
+    
+            "Corriente L1": "Irms_L1",
+            "Corriente L2": "Irms_L2",
+            "Corriente L3": "Irms_L3",
+    
+            "Potencia L1": "P_L1",
+            "Potencia L2": "P_L2",
+            "Potencia L3": "P_L3",
+    
+            "THDv L1": "THDv_L1",
+            "THDv L2": "THDv_L2",
+            "THDv L3": "THDv_L3",
+    
+            "THDi L1": "THDi_L1",
+            "THDi L2": "THDi_L2",
+            "THDi L3": "THDi_L3",
+    
+            "FP L1": "FP_L1",
+            "FP L2": "FP_L2",
+            "FP L3": "FP_L3"
+        }
+    
+        columna = mapa.get(variable)
+    
+        if columna is None:
+            return
+    
+        if columna not in self.df_estudio.columns:
+            print(f"Columna no encontrada: {columna}")
+            return
+    
+        x = range(len(self.df_estudio))
+        y = self.df_estudio[columna]
+    
+        self.curva.setData(x, y)
         
      # ---------------- Temporizador ----------------    
         

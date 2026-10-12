@@ -20,9 +20,9 @@
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>280</x>
+      <x>100</x>
       <y>10</y>
-      <width>601</width>
+      <width>681</width>
       <height>51</height>
      </rect>
     </property>
@@ -104,7 +104,7 @@ text-decoration: underline;
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -1320,13 +1320,13 @@ border-color: rgb(0, 0, 0);</string>
      <attribute name="title">
       <string>Diagnostico y Analisis</string>
      </attribute>
-     <widget class="QPushButton" name="proceso_2">
+     <widget class="QPushButton" name="btn_abrir_cvs">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>20</y>
-        <width>171</width>
-        <height>51</height>
+        <x>280</x>
+        <y>10</y>
+        <width>91</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1339,8 +1339,8 @@ border-color: rgb(0, 0, 0);</string>
      <widget class="QLabel" name="label_33">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>130</y>
+        <x>10</x>
+        <y>50</y>
         <width>141</width>
         <height>31</height>
        </rect>
@@ -1352,11 +1352,11 @@ border-color: rgb(0, 0, 0);</string>
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;TENSIÓN PROMEDIO&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
-     <widget class="QLabel" name="lbl_V_L1_2">
+     <widget class="QLabel" name="lbl_v_prom">
       <property name="geometry">
        <rect>
-        <x>180</x>
-        <y>130</y>
+        <x>170</x>
+        <y>50</y>
         <width>101</width>
         <height>31</height>
        </rect>
@@ -1372,9 +1372,9 @@ border-color: rgb(0, 0, 0);</string>
      <widget class="QLabel" name="label_34">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>90</y>
-        <width>291</width>
+        <x>10</x>
+        <y>10</y>
+        <width>261</width>
         <height>31</height>
        </rect>
       </property>
@@ -1388,7 +1388,39 @@ border-color: rgb(0, 0, 0);</string>
      <widget class="QLabel" name="label_35">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>10</x>
+        <y>90</y>
+        <width>141</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(187, 255, 189);</string>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;TENSIÓN MÁXIMO&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_36">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>130</y>
+        <width>141</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(187, 255, 189);</string>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;TENSIÓN MÍNIMA&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_37">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
         <y>170</y>
         <width>141</width>
         <height>31</height>
@@ -1398,13 +1430,13 @@ border-color: rgb(0, 0, 0);</string>
        <string notr="true">background-color: rgb(187, 255, 189);</string>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;TENSIÓN PROMEDIO&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;CORRIENTE PROMEDIO&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_36">
+     <widget class="QLabel" name="label_38">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>10</x>
         <y>210</y>
         <width>141</width>
         <height>31</height>
@@ -1414,13 +1446,13 @@ border-color: rgb(0, 0, 0);</string>
        <string notr="true">background-color: rgb(187, 255, 189);</string>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;TENSIÓN PROMEDIO&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;POTENCIA PROMEDIO&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_37">
+     <widget class="QLabel" name="label_39">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>10</x>
         <y>250</y>
         <width>141</width>
         <height>31</height>
@@ -1430,13 +1462,13 @@ border-color: rgb(0, 0, 0);</string>
        <string notr="true">background-color: rgb(187, 255, 189);</string>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;TENSIÓN PROMEDIO&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;FP PROMEDIO&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_38">
+     <widget class="QLabel" name="label_74">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>10</x>
         <y>290</y>
         <width>141</width>
         <height>31</height>
@@ -1446,13 +1478,115 @@ border-color: rgb(0, 0, 0);</string>
        <string notr="true">background-color: rgb(187, 255, 189);</string>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;TENSIÓN PROMEDIO&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;THDv PROMEDIO&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_39">
+     <widget class="QLabel" name="lbl_v_max">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>170</x>
+        <y>90</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);
+border-color: rgb(0, 0, 0);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lbl_v_min">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>130</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);
+border-color: rgb(0, 0, 0);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lbl_i_prom">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>170</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);
+border-color: rgb(0, 0, 0);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lbl_p_prom">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>210</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);
+border-color: rgb(0, 0, 0);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lbl_fp_prom">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>250</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);
+border-color: rgb(0, 0, 0);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lbl_thdv_prom">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>290</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);
+border-color: rgb(0, 0, 0);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_40">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
         <y>330</y>
         <width>141</width>
         <height>31</height>
@@ -1462,15 +1596,32 @@ border-color: rgb(0, 0, 0);</string>
        <string notr="true">background-color: rgb(187, 255, 189);</string>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;TENSIÓN PROMEDIO&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;THDi PROMEDIO&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_74">
+     <widget class="QLabel" name="lbl_thdi_prom">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>370</y>
-        <width>141</width>
+        <x>170</x>
+        <y>330</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);
+border-color: rgb(0, 0, 0);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_41">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>10</y>
+        <width>291</width>
         <height>31</height>
        </rect>
       </property>
@@ -1478,17 +1629,98 @@ border-color: rgb(0, 0, 0);</string>
        <string notr="true">background-color: rgb(187, 255, 189);</string>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;TENSIÓN PROMEDIO&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;GRÁFICO&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
+     </widget>
+     <widget class="QLabel" name="label_42">
+      <property name="geometry">
+       <rect>
+        <x>420</x>
+        <y>360</y>
+        <width>291</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(187, 255, 189);</string>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;DIAGNÓSTICO AUTOMÁTICO&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="widgetGrafico" native="true">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>49</y>
+        <width>671</width>
+        <height>291</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboGrafico">
+      <property name="geometry">
+       <rect>
+        <x>760</x>
+        <y>10</y>
+        <width>121</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>Tensión L1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Tensión L2</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Tensión L3</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Corriente L1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Corriente L2</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Corriente L3</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Potencia L1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>THDv L1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>THDi L1</string>
+       </property>
+      </item>
      </widget>
     </widget>
    </widget>
    <widget class="QLabel" name="lbl_hora">
     <property name="geometry">
      <rect>
-      <x>900</x>
+      <x>810</x>
       <y>10</y>
-      <width>171</width>
+      <width>211</width>
       <height>21</height>
      </rect>
     </property>

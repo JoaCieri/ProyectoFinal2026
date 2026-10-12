@@ -1,18 +1,41 @@
 from pymodbus.client import ModbusTcpClient
 
-class Driver:
+class driver:
 
     def __init__(self):
         self.client = None
+        self.connected = False
 
     def conectar(self):
-        self.client = ModbusTcpClient("192.168.0.50")
-
-        return self.client.connect()
+    
+        self.client = ModbusTcpClient(
+            "192.168.0.50",
+            port=502,
+            timeout=3
+        )
+    
+        if self.client.connect():
+    
+            self.connected = True
+    
+            print("Conectado al STM32")
+    
+            return True
+    
+        self.connected = False
+    
+        print("Error de conexión")
+    
+        return False
 
     def desconectar(self):
+    
+        self.connected = False
+    
         if self.client:
             self.client.close()
+    
+        print("Conexión cerrada")
 
     # ---------------- LECTURA ----------------
     def leer_datos(self):
