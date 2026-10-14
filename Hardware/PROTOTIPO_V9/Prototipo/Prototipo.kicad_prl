@@ -32,7 +32,6 @@
       "vias",
       "footprint_text",
       "footprint_anchors",
-      "ratsnest",
       "grid",
       "footprints_front",
       "footprints_back",
@@ -98,7 +97,7 @@
       10,
       10,
       10,
-      103
+      1487
     ],
     "custom_group_rules": [],
     "expanded_rows": [],
@@ -110,7 +109,7 @@
     "show_unconnected_nets": false,
     "show_zero_pad_nets": false,
     "sort_ascending": true,
-    "sorting_column": 0
+    "sorting_column": 9
   },
   "open_jobsets": [],
   "project": {
