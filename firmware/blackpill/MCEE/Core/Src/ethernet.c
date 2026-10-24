@@ -29,6 +29,12 @@ extern SPI_HandleTypeDef hspi2;
   #define ETH_RST_Pin        GPIO_PIN_14
 #endif
 
+/* 0 = no usar el reset por hardware (PC14). Ver Eth_Init. Poner en 1 solo si el RST
+ * se mueve a un pin que no sea PC13/PC14/PC15. */
+#ifndef ETH_USE_HW_RESET
+#define ETH_USE_HW_RESET  0
+#endif
+
 /* SPI2 cuelga de APB1 = 50 MHz. El W5500 admite hasta 33 MHz; 6.25 MHz sobra y tolera cables */
 #define ETH_SPEED   SPI_BAUDRATEPRESCALER_8
 
@@ -220,11 +226,24 @@ bool Eth_Init(uint8_t chip, const eth_config_t *cfg)
 
     if (!reset_done)
     {
+#if ETH_USE_HW_RESET
         /* Reset por hardware comun a los dos chips: 1 ms en bajo y ~60 ms para que arranque el PLL */
         HAL_GPIO_WritePin(ETH_RST_GPIO_Port, ETH_RST_Pin, GPIO_PIN_RESET);
         wait_ms(2);
         HAL_GPIO_WritePin(ETH_RST_GPIO_Port, ETH_RST_Pin, GPIO_PIN_SET);
         wait_ms(60);
+#else
+        /* PC14 no se usa: PC13/14/15 comparten una alimentacion interna debil y cada vez que
+         * PC13 (LED) cambia, PC14 hace un pulso que resetea el W5500 (medido en la placa).
+         * El pin queda en alta impedancia; el chip arranca por su reset de encendido y
+         * despues se le hace reset por software (registro MR). */
+        GPIO_InitTypeDef g = { 0 };
+        g.Pin  = ETH_RST_Pin;
+        g.Mode = GPIO_MODE_ANALOG;
+        g.Pull = GPIO_NOPULL;
+        HAL_GPIO_Init(ETH_RST_GPIO_Port, &g);
+        wait_ms(60);                    /* por si el W5500 se acaba de encender junto con la placa */
+#endif
         reset_done = true;
     }
 

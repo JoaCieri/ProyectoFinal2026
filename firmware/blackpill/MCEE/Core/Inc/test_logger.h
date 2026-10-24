@@ -22,7 +22,8 @@
  *   THD V    6    14   22     x10   [%]
  *   THD I    7    15   23     x10   [%]
  *   P total 24 (x10) | Q total 25 (x10) | S total 26 (x10) | FP total 27 (x1000)
- *   frecuencia 28 (x10 Hz) | topologia 29 (1 = monofasica, 2 = bifasica, 3 = trifasica)
+ *   frecuencia 28 (x100 Hz) | topologia 29 (1 = monofasica, 2 = bifasica, 3 = trifasica)
+ *   alarmas 30 (bitmask, ver SNAP_ALARMS en test_logger.c) | reserva 31 = 0
  *
  * Extras (fuera de lo que lee driver.py):
  *   32 numero de muestra de la sesion   33..38 anio, mes, dia, hora, minuto, segundo de la muestra
@@ -45,13 +46,16 @@ typedef struct
     rtc_time_t time;
     bool       time_valid;
     float      vrms, irms, p, q, s, pf, freq, thd_v, thd_i;   /* fase 1 */
+    float      temp_c;     /* temperatura del equipo (sensor del DS3231) [C] */
     bool       sd_ok;
     bool       eth_ok;
 } measurement_snapshot_t;
 
+
 /* Partes de la prueba: 1 = activa, 0 = apagada (para probar cada driver por separado) */
 #define TL_ENABLE_SD    1
-#define TL_ENABLE_ETH   1
+#define TL_ENABLE_ETH   0
+
 
 /* Cada cuanto se toma una muestra mientras se registra, y cada cuanto se refresca la pantalla */
 #define TL_LOG_PERIOD_MS    1000u

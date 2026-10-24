@@ -1,7 +1,7 @@
-../Core/Src/gui.c:104:13:fmt_val.constprop	32	static
-../Core/Src/gui.c:51:18:make_separator.isra	24	static
-../Core/Src/gui.c:63:18:make_big_row	40	static
-../Core/Src/gui.c:81:13:make_cell	40	static
-../Core/Src/gui.c:130:6:Gui_ShowLive	56	static
-../Core/Src/gui.c:155:6:Gui_SetStatus	32	static
-../Core/Src/gui.c:172:6:Gui_Init	56	static
+../Core/Src/gui.c:107:13:fmt_val.constprop	32	static
+../Core/Src/gui.c:54:18:make_separator.isra	24	static
+../Core/Src/gui.c:66:18:make_big_row	40	static
+../Core/Src/gui.c:84:13:make_cell	40	static
+../Core/Src/gui.c:133:6:Gui_ShowLive	56	static
+../Core/Src/gui.c:162:6:Gui_SetStatus	32	static
+../Core/Src/gui.c:179:6:Gui_Init	56	static

@@ -22,16 +22,23 @@
 #define SNAP_FREQ()    ((float)measured_line_freq)
 #define SNAP_THD_V()   ((float)voltage1_thd)
 #ifndef SNAP_P_W
-#define SNAP_P_W()     (NAN_VALUE)     /* ej.: (active_power1) */
+#define SNAP_P_W()     ((float)p_active1)       /* potencia activa fase 1 [W] (measurements.c) */
 #endif
 #ifndef SNAP_Q_VAR
-#define SNAP_Q_VAR()   (NAN_VALUE)     /* ej.: (reactive_power1) */
+#define SNAP_Q_VAR()   ((float)p_reactive1)     /* reactiva fase 1 [var]: hoy sin signo, sqrt(S^2-P^2) */
 #endif
 #ifndef SNAP_THD_I
 #define SNAP_THD_I()   (NAN_VALUE)     /* ej.: (current1_thd) */
 #endif
 
 #define NAN_VALUE      (__builtin_nanf(""))
+
+/* Registro 30, Estado_Alarmas (bitmask): bit0 Sag, bit1 Swell, bit2 THDv alto, bit3 THDi alto,
+ * bit4 FP bajo, bit5 perdida de fase. Mientras no lo conectes a tus flags queda en 0.
+ * Ej.: #define SNAP_ALARMS() ((sag_flag?1u:0u) | (swell_flag?2u:0u)) */
+#ifndef SNAP_ALARMS
+#define SNAP_ALARMS()  (0u)
+#endif
 
 #define SD_RETRY_MS    5000u     /* si se pierde la SD registrando, reintentar cada 5 s */
 
@@ -105,7 +112,7 @@ static char *put_time(char *p, const measurement_snapshot_t *s)
 }
 
 static const char csv_header[] =
-    "fecha_hora,muestra,V1_V,I1_A,P_W,Q_var,S_VA,FP,f_Hz,THD_V_pct,THD_I_pct,rtc_valido\r\n";
+    "fecha_hora,muestra,V1_V,I1_A,P_W,Q_var,S_VA,FP,f_Hz,THD_V_pct,THD_I_pct,rtc_valido,temp_equipo_C\r\n";
 
 static uint16_t build_csv_line(char *buf, const measurement_snapshot_t *s)
 {
@@ -122,7 +129,8 @@ static uint16_t build_csv_line(char *buf, const measurement_snapshot_t *s)
     p = put_fixed(p, s->freq, 2);  *p++ = ',';
     p = put_fixed(p, s->thd_v, 2); *p++ = ',';
     p = put_fixed(p, s->thd_i, 2); *p++ = ',';
-    *p++ = s->time_valid ? '1' : '0';
+    *p++ = s->time_valid ? '1' : '0';  *p++ = ',';
+    p = put_fixed(p, s->temp_c, 2);
     *p++ = '\r';
     *p++ = '\n';
     *p = '\0';
@@ -239,7 +247,7 @@ static bool sd_open_session(const rtc_time_t *t, bool time_valid)
 /* Agrega una linea al archivo y la sincroniza (si se corta la energia, queda guardada) */
 static bool sd_write_line(const measurement_snapshot_t *s)
 {
-    char line[128];
+    char line[192];
     UINT bw;
     uint16_t n = build_csv_line(line, s);
 
@@ -286,6 +294,10 @@ static void take_snapshot(measurement_snapshot_t *s, bool check_rtc)
     s->time_valid = rtc_valid;
     if (!read_ok || s->time.year < 2000)
         memset(&s->time, 0, sizeof(s->time));
+
+    /* Temperatura del DS3231 (el chip la actualiza cada 64 s; resolucion 0.25 C) */
+    int16_t t100;
+    s->temp_c = DS3231_GetTemperatureX100(&t100) ? (float)t100 / 100.0f : NAN_VALUE;
 
     s->eth_ok = tl_eth_ok != 0;
     s->sd_ok  = last_sd_ok;
@@ -341,8 +353,10 @@ static void publish_snapshot(const measurement_snapshot_t *s)
     Modbus_SetU16(26, reg_u(s->s, 10.0f));
     Modbus_SetU16(27, reg_s(s->pf, 1000.0f));
 
-    Modbus_SetU16(28, reg_u(s->freq, 10.0f));
+    Modbus_SetU16(28, reg_u(s->freq, 100.0f));   /* x100: 50.02 Hz -> 5002 */
     Modbus_SetU16(29, NET_TOPOLOGY);
+    Modbus_SetU16(30, (uint16_t)(SNAP_ALARMS()));  /* bitmask de alarmas */
+    Modbus_SetU16(31, 0);                          /* reserva */
 
     Modbus_SetU16(33, s->time.year);
     Modbus_SetU16(34, s->time.month);
@@ -413,8 +427,13 @@ static void rtc_set_build_time_if_lost(void)
     rtc_time_t t;
     char mon[4] = { __DATE__[0], __DATE__[1], __DATE__[2], 0 };   /* "Oct 11 2026" */
 
-    if (!DS3231_LostPower())
-        return;
+    /* Se pone en hora si el RTC perdio la hora (flag OSF) o si la fecha no es razonable
+     * (por ejemplo 01/01/2000: el DS3231 arranco de fabrica y nunca se lo ajusto). */
+    rtc_time_t now;
+    if (!DS3231_GetTime(&now))
+        return;                                  /* no hay RTC: nada que hacer */
+    if (!DS3231_LostPower() && now.year >= 2025)
+        return;                                  /* hora valida: no tocarla */
 
     const char *m = strstr(months, mon);
     t.month = m ? (uint8_t)((m - months) / 3 + 1) : 1;

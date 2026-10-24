@@ -456,7 +456,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Core/Inc/lvgl_port.h ../Core/Inc/gui.h ../Core/Inc/test_logger.h \
  ../Core/Inc/i2c_devices.h ../Core/Inc/sd_card.h \
  ../Core/Inc/i2c_devices.h ../Core/Inc/settings.h \
- ../Core/Inc/test_logger.h
+ ../Core/Inc/test_logger.h ../Core/Inc/splash.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -923,3 +923,4 @@ C:/Users/igles/Documents/Github/ProyectoFinal2026/firmware/blackpill/MCEE/Libs/l
 ../Core/Inc/i2c_devices.h:
 ../Core/Inc/settings.h:
 ../Core/Inc/test_logger.h:
+../Core/Inc/splash.h:

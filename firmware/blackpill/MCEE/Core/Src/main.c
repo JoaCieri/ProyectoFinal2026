@@ -32,6 +32,8 @@
 #include "i2c_devices.h"
 #include "settings.h"
 #include "test_logger.h"
+#include "splash.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -121,9 +123,11 @@ int main(void)
   /* USER CODE BEGIN 2 */
   Encoder_Init();
   LvglPort_Init();
+  Splash_Show();
   Gui_Init();
   DS3231_Init();
   Settings_Init();
+  Splash_Finish();
   TestLogger_Init();
   /* primera pantalla completa, antes de arrancar el ADC */
   lv_refr_now(NULL);
@@ -139,7 +143,7 @@ int main(void)
 	  ProcessPendingBuffers();
 	  lv_timer_handler();
 	  TestLogger_Process();
-	  /* USER CODE END WHILE */
+    /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
   }

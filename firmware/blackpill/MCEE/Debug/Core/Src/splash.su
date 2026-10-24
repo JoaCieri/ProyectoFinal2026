@@ -1,0 +1,4 @@
+../Core/Src/splash.c:138:13:release_card	8	static
+../Core/Src/splash.c:110:13:show_next	120	static
+../Core/Src/splash.c:145:6:Splash_Show	16	static
+../Core/Src/splash.c:164:6:Splash_Finish	16	static

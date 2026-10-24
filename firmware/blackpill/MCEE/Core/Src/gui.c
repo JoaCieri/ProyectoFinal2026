@@ -3,7 +3,7 @@
  * Pantalla provisoria (320x240, horizontal), siempre con los valores en vivo de la fase 1:
  *
  *   +--------------------------------------------+
- *   | MCEE F1      12/10 14:03:22      REC  125  |  barra: hora del RTC y estado del registro
+ *   | 12/10 14:03       REC  125        27.3 C  |  barra: fecha/hora (RTC), registro, temperatura del equipo
  *   | Tension                           220.4 V  |
  *   | Corriente                          3.25 A  |
  *   | P         | Q         | S                  |
@@ -29,8 +29,11 @@
 #define COLOR_BAR       lv_color_hex(0x1F3A5F)
 #define COLOR_CAPTION   lv_color_hex(0x9AA5B1)
 #define COLOR_SEP       lv_color_hex(0x2A3744)
-#define COLOR_REC       lv_color_hex(0xFF5252)
-#define COLOR_IDLE      lv_color_hex(0xFFD54F)
+/* Solo azules y blancos */
+#define COLOR_REC       lv_color_hex(0x4FC3F7)      /* celeste brillante: registrando */
+#define COLOR_IDLE      lv_color_hex(0x8FA9C8)      /* azul grisaceo: en espera */
+#define COLOR_VOLT      lv_color_white()            /* tension */
+#define COLOR_CURR      lv_color_hex(0x4FC3F7)      /* corriente */
 
 #define SCREEN_W        320
 #define MARGIN_X        10
@@ -44,7 +47,7 @@
 
 enum { CELL_P = 0, CELL_Q, CELL_S, CELL_FP, CELL_F, CELL_THDV, CELL_THDI, CELL_SD, CELL_ETH, CELL_COUNT };
 
-static lv_obj_t *lbl_time, *lbl_status;
+static lv_obj_t *lbl_time, *lbl_temp, *lbl_status;
 static lv_obj_t *lbl_v, *lbl_i;
 static lv_obj_t *lbl_cell[CELL_COUNT];
 
@@ -146,10 +149,14 @@ void Gui_ShowLive(const measurement_snapshot_t *s)
     fmt_val(b, sizeof(b), s->thd_v, 10,  "%");    lv_label_set_text(lbl_cell[CELL_THDV], b);
     fmt_val(b, sizeof(b), s->thd_i, 10,  "%");    lv_label_set_text(lbl_cell[CELL_THDI], b);
 
-    lv_label_set_text_fmt(lbl_time, "%02d/%02d %02d:%02d:%02d%s",
+    lv_label_set_text_fmt(lbl_time, "%02d/%02d %02d:%02d%s",
                           (int)s->time.day, (int)s->time.month,
-                          (int)s->time.hour, (int)s->time.min, (int)s->time.sec,
+                          (int)s->time.hour, (int)s->time.min,
                           s->time_valid ? "" : " ?");
+
+    /* Temperatura del equipo (sensor del DS3231, se actualiza cada 64 s) */
+    fmt_val(b, sizeof(b), s->temp_c, 10, "\xC2\xB0" "C");
+    lv_label_set_text(lbl_temp, b);
 }
 
 void Gui_SetStatus(bool logging, uint32_t samples, const char *sd_text, const char *eth_text)
@@ -184,24 +191,27 @@ void Gui_Init(void)
     lv_obj_set_style_bg_opa(bar, LV_OPA_COVER, 0);
     lv_obj_set_style_bg_color(bar, COLOR_BAR, 0);
 
-    lv_obj_t *title = lv_label_create(bar);
-    lv_label_set_text(title, "MCEE F1");
-    lv_obj_set_style_text_color(title, lv_color_white(), 0);
-    lv_obj_align(title, LV_ALIGN_LEFT_MID, MARGIN_X, 0);
-
+    /* Izquierda: fecha y hora (sin segundos) */
     lbl_time = lv_label_create(bar);
-    lv_label_set_text(lbl_time, "--/-- --:--:--");
+    lv_label_set_text(lbl_time, "--/-- --:--");
     lv_obj_set_style_text_color(lbl_time, lv_color_white(), 0);
-    lv_obj_align(lbl_time, LV_ALIGN_CENTER, -8, 0);
+    lv_obj_align(lbl_time, LV_ALIGN_LEFT_MID, MARGIN_X, 0);
 
+    /* Derecha: temperatura del equipo */
+    lbl_temp = lv_label_create(bar);
+    lv_label_set_text(lbl_temp, "---");
+    lv_obj_set_style_text_color(lbl_temp, lv_color_white(), 0);
+    lv_obj_align(lbl_temp, LV_ALIGN_RIGHT_MID, -MARGIN_X, 0);
+
+    /* Centro: estado del registro */
     lbl_status = lv_label_create(bar);
     lv_label_set_text(lbl_status, "En espera");
     lv_obj_set_style_text_color(lbl_status, COLOR_IDLE, 0);
-    lv_obj_align(lbl_status, LV_ALIGN_RIGHT_MID, -MARGIN_X, 0);
+    lv_obj_align(lbl_status, LV_ALIGN_CENTER, 0, 0);
 
     /* Tension y corriente grandes */
-    lbl_v = make_big_row(scr, BIG_Y0,          "Tension",   lv_color_hex(0xFFD54F));
-    lbl_i = make_big_row(scr, BIG_Y0 + BIG_H,  "Corriente", lv_color_hex(0x4FC3F7));
+    lbl_v = make_big_row(scr, BIG_Y0,          "Tension",   COLOR_VOLT);
+    lbl_i = make_big_row(scr, BIG_Y0 + BIG_H,  "Corriente", COLOR_CURR);
 
     /* Grilla de 3 x 3 */
     make_cell(scr, CELL_P,    "P");

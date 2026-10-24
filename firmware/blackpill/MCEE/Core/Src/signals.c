@@ -9,7 +9,7 @@ float current3_ac[HALF_BUFFER_SAMPLES];
 
 float voltage1_offset = 0.0f, voltage2_offset = 0.0f, voltage3_offset = 0.0f;
 float current1_offset = 0.0f, current2_offset = 0.0f, current3_offset = 0.0f;
-float voltage1_gain = 227.0f / 1.46f; // 1.46Vrms medidos con 227VAC de referencia (multimetro)
+float voltage1_gain = 227.0f / 0.293119609f; // 1.46Vrms medidos con 227VAC de referencia (multimetro)
 float voltage2_gain = 1.0f, voltage3_gain = 1.0f;
 float current1_gain = 1.0f, current2_gain = 1.0f, current3_gain = 1.0f;
 
