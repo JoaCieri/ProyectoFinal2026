@@ -158,20 +158,33 @@ void CalculateHarmonics(float *signal)
 // POTENCIA (P, Q, S, FP)
 ////////////////////////////////////////////////////////////////////////////
 
+/* Potencia de un ciclo.
+ * P = promedio de v*i.
+ * Q con signo: promedio de v(t - T/4) * i(t), es decir la tension atrasada un cuarto de ciclo
+ * (25 muestras a 50 Hz y 5 kHz). Positiva = inductiva (la corriente atrasa), negativa = capacitiva.
+ * Antes Q salia de sqrt(S^2 - P^2): no tenia signo y todo el ruido de la corriente aparecia como Q.
+ * S y FP de un ciclo quedan como antes (los valores para mostrar se promedian en processing.c). */
+#define Q_SHIFT   (SAMPLES_PER_CYCLE / 4)
+
 void CalculatePower(float *voltage_ac, float *current_ac, float vrms, float irms)
 {
-    float sum_inst = 0.0f;
-
+    float sum_p = 0.0f;
     for (uint16_t i = 0; i < SAMPLES_PER_CYCLE; i++)
-    {
-        sum_inst += voltage_ac[i] * current_ac[i];
-    }
+        sum_p += voltage_ac[i] * current_ac[i];
+    p_active1 = sum_p / SAMPLES_PER_CYCLE;
 
-    p_active1 = sum_inst / SAMPLES_PER_CYCLE;
     p_apparent1 = vrms * irms;
 
+#if HALF_BUFFER_SAMPLES >= (SAMPLES_PER_CYCLE + Q_SHIFT)
+    float sum_q = 0.0f;
+    for (uint16_t i = 0; i < SAMPLES_PER_CYCLE; i++)
+        sum_q += voltage_ac[i] * current_ac[i + Q_SHIFT];
+    p_reactive1 = sum_q / SAMPLES_PER_CYCLE;
+#else
+    /* el medio buffer no alcanza para el desplazamiento: Q sin signo como antes */
     float q_sq = (p_apparent1 * p_apparent1) - (p_active1 * p_active1);
     p_reactive1 = (q_sq > 0.0f) ? sqrtf(q_sq) : 0.0f;
+#endif
 
     power_factor1 = (p_apparent1 > 0.0f) ? (p_active1 / p_apparent1) : 0.0f;
 }

@@ -1,5 +1,7 @@
-../Core/Src/acquisition.c:23:6:HAL_ADC_ConvCpltCallback	2
-../Core/Src/acquisition.c:30:6:HAL_ADC_ConvHalfCpltCallback	2
-../Core/Src/acquisition.c:36:6:ProcessADCBuffer	2
-../Core/Src/acquisition.c:51:6:CalibrateOffset	1
-../Core/Src/acquisition.c:61:6:ApplyCalibration	2
+../Core/Src/acquisition.c:36:13:cb_interval	4
+../Core/Src/acquisition.c:48:13:overrun	2
+../Core/Src/acquisition.c:59:6:HAL_ADC_ConvCpltCallback	2
+../Core/Src/acquisition.c:69:6:HAL_ADC_ConvHalfCpltCallback	2
+../Core/Src/acquisition.c:90:6:ProcessADCBuffer	4
+../Core/Src/acquisition.c:125:6:CalibrateOffset	1
+../Core/Src/acquisition.c:135:6:ApplyCalibration	2

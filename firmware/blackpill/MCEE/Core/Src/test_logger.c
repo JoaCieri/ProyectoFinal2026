@@ -22,10 +22,11 @@
 #define SNAP_FREQ()    ((float)measured_line_freq)
 #define SNAP_THD_V()   ((float)voltage1_thd)
 #ifndef SNAP_P_W
-#define SNAP_P_W()     ((float)p_active1)       /* potencia activa fase 1 [W] (measurements.c) */
+extern volatile float p_active1_display, q_reactive1_display;   /* processing.c: promedios de ~1 s */
+#define SNAP_P_W()     ((float)p_active1_display)     /* potencia activa fase 1 [W] */
 #endif
 #ifndef SNAP_Q_VAR
-#define SNAP_Q_VAR()   ((float)p_reactive1)     /* reactiva fase 1 [var]: hoy sin signo, sqrt(S^2-P^2) */
+#define SNAP_Q_VAR()   ((float)q_reactive1_display)   /* reactiva fase 1 [var], + inductiva / - capacitiva */
 #endif
 #ifndef SNAP_THD_I
 #define SNAP_THD_I()   (NAN_VALUE)     /* ej.: (current1_thd) */
@@ -41,6 +42,12 @@
 #endif
 
 #define SD_RETRY_MS    5000u     /* si se pierde la SD registrando, reintentar cada 5 s */
+
+/* Que W5500 usa el equipo: 0 = CS en PA15 (ETH1), 1 = CS en PB5 (ETH2).
+ * En la PCB Prototipo el shield W5500 tiene el CS en PB5 (PA15 queda sin conectar). */
+#ifndef TL_ETH_CHIP
+#define TL_ETH_CHIP    1
+#endif
 
 volatile uint8_t  tl_sd_state = TL_SD_NOT_TRIED;
 volatile uint8_t  tl_fresult  = 0;
@@ -406,9 +413,9 @@ static void eth_start(void)
 #if !TL_ENABLE_ETH
     return;
 #endif
-    if (Eth_Init(0, &net_cfg))
+    if (Eth_Init(TL_ETH_CHIP, &net_cfg))
     {
-        Modbus_Init(0);
+        Modbus_Init(TL_ETH_CHIP);
         tl_eth_ok = 1;
     }
     else

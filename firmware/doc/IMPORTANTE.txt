@@ -1,0 +1,1 @@
+Reemplazar el LM358 del módulo por un MCP6002, que tiene las mismas patas y funciona bien con 3,3 V. Es la solución de fondo y permite usar casi todo el rango del ADC. 

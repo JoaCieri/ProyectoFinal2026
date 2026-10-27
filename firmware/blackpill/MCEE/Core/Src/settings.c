@@ -14,7 +14,8 @@
 #include <stdint.h>
 
 #define SETTINGS_MAGIC     0x4D434545u   /* 'MCEE' */
-#define SETTINGS_VERSION   1u
+#define SETTINGS_VERSION   3u           /* 2: ganancia de corriente de la fase 1 = 120 A/V (SCT-013 100 A / 1 V con R2 en paralelo).
+                                          * Al cambiar la version se descartan los valores guardados y se graban los nuevos. */
 
 #define SLOT_A_ADDR        0u
 #define SLOT_B_ADDR        64u           /* multiplo de 32: cada copia arranca en limite de pagina */

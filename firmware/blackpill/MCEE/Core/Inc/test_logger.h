@@ -54,7 +54,7 @@ typedef struct
 
 /* Partes de la prueba: 1 = activa, 0 = apagada (para probar cada driver por separado) */
 #define TL_ENABLE_SD    1
-#define TL_ENABLE_ETH   0
+#define TL_ENABLE_ETH   1
 
 
 /* Cada cuanto se toma una muestra mientras se registra, y cada cuanto se refresca la pantalla */

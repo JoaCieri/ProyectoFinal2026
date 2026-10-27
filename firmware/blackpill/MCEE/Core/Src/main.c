@@ -132,6 +132,7 @@ int main(void)
   /* primera pantalla completa, antes de arrancar el ADC */
   lv_refr_now(NULL);
 
+  __HAL_DBGMCU_FREEZE_TIM3();   /* el muestreo se detiene mientras el depurador pausa */
   HAL_TIM_Base_Start_IT(&htim3);
   HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adc_buffer, ADC_CHANNELS * DMA_BUFFER_SAMPLES);
   /* USER CODE END 2 */
@@ -237,7 +238,7 @@ static void MX_ADC1_Init(void)
   */
   sConfig.Channel = ADC_CHANNEL_0;
   sConfig.Rank = 1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
+  sConfig.SamplingTime = ADC_SAMPLETIME_84CYCLES;
   if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
   {
     Error_Handler();
